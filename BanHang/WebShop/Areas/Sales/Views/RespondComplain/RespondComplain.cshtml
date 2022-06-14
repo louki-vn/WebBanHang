@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "RespondComplain";
+    Layout = "~/Areas/Sales/Views/Shared/_Layout.cshtml";
+}
+
+
+<div id="page-content">
+    <!--Page Title-->
+    <div class="page section-header text-center">
+        <div class="page-title">
+            <div class="wrapper"><h1 class="page-width">Khiếu nại</h1></div>
+        </div>
+    </div>
+    <!--End Page Title-->
+
+    <div class="col-12 col-sm-12 col-md-6 col-lg-6 main-col offset-md-3">
+        <div class="card">            
+            <div id="tab2" class="tab-content">
+                <div id="shopify-product-reviews">
+                    <div class="spr-container">
+                        <div class="spr-content">
+                            <div class="spr-form clearfix">
+                                <form method="post" action="SendEmail" id="new-review-form" class="new-review-form">                                   
+                                    <fieldset class="spr-form-review">
+                                        <div class="spr-form-review-title">
+                                            <label class="spr-form-label" for="review_title_10508262282">Tiêu đề</label>
+                                            <input class="spr-form-input spr-form-input-text " id="review_title_10508262282" type="text" name="review[title]" value="" placeholder="Viết tiêu đề">
+                                        </div>
+
+                                        <div class="spr-form-review-body">
+                                            <label class="spr-form-label" for="review_body_10508262282">Nội dung khiếu nại <span class="spr-form-review-body-charactersremaining">(1500)</span></label>
+                                            <div class="spr-form-input">
+                                                <textarea class="spr-form-input spr-form-input-textarea " id="review_body_10508262282" data-product-id="10508262282" name="review[body]" rows="10" placeholder="Viết nội dung của bạn ở đây"></textarea>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <fieldset class="spr-form-actions">
+                                        <input type="submit" class="spr-button spr-button-primary button button-primary btn btn-primary" value="Gửi đến quản lý hệ thống">
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(".spr-form-actions").click(function () {
+        alert("Đã gửi khiếu nại đến quản lí hệ thống");
+    })
+</script>
+

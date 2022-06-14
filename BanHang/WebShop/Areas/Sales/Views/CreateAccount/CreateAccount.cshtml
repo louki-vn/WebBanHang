@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "CreateAccount";
+    Layout = "~/Areas/Sales/Views/Shared/_Layout.cshtml";
+}
+
+<!--Body Content-->
+<div id="page-content">
+    <!--Page Title-->
+    <div class="page section-header text-center">
+        <div class="page-title">
+            <div class="wrapper"><h1 class="page-width">Tạo tài khoản</h1></div>
+        </div>
+    </div>
+    <!--End Page Title-->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 main-col offset-md-3">
+                <div class="mb-4">
+                    @using (Html.BeginForm("CreateAccount", "CreateAccount", FormMethod.Post))
+                    {
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="form-group">
+                                    <label for="FirstName">Tên khách hàng</label>
+                                    <input type="text" name="customer[name]" placeholder="" id="FirstName" autofocus="">
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="form-group">
+                                    <label for="LastName">Số điện thoại</label>
+                                    <input type="text" name="customer[phone]" placeholder="" id="LastName">
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="form-group">
+                                    <label for="CustomerEmail">Tên người dùng</label>
+                                    <input type="text" name="customer[username]" placeholder="" id="CustomerEmail" class="" autocorrect="off" autocapitalize="off" autofocus="">
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="form-group">
+                                    <label for="CustomerPassword">Mật khẩu</label>
+                                    <input type="password" value="" name="customer[password]" placeholder="" id="CustomerPassword" class="">
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="form-group">
+                                    <label for="CustomerPassword">Địa chỉ</label>
+                                    <input type="text" value="" name="customer[address]" placeholder="" id="CustomerPassword" class="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="text-center col-12 col-sm-12 col-md-12 col-lg-12">
+                                <input type="submit" class="btn mb-3" value="Tạo tài khoản">
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--End Body Content-->

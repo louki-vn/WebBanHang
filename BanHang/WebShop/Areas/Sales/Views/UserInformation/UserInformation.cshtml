@@ -1,0 +1,134 @@
+﻿@model WebShop.Models.MEMBER
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Sales/Views/Shared/_Layout.cshtml";
+}
+@{
+    if (ViewBag.is_logined == 1)
+    {
+        <!--Body Content-->
+        <div id="page-content">
+            <!--Page Title-->
+            <div class="page section-header text-center">
+                <div class="page-title">
+                    <div class="wrapper"><h1 class="page-width">Thông tin cá nhân</h1></div>
+                </div>
+            </div>
+            <!--End Page Title-->
+
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 main-col offset-md-3">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Thông tin chi tiết </strong>
+                    </div>
+                    <form method="post" action="#">
+                        <div class="card-body card-block">
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label class=" form-control-label">ID khách hàng</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="text" id="id" name="id" placeholder="Disabled" disabled="" value="@Model.member_id" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label class=" form-control-label">Tên khách hàng</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="text" id="member_name_id" name="name" value="@Model.name" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label class=" form-control-label">Username</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="text" id="name" name="username" placeholder="Disabled" disabled="" value="@Model.username" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="text-input" class=" form-control-label">Số điện thoại</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="text" id="member_phone_id" name="phone" value="@Model.phone_number" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="text-input" class=" form-control-label">Địa chỉ</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="text" id="member_address_id" name="address" value="@Model.address" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="button" onclick="Update_Member_Information(@Model.member_id)" class="btn btn-primary btn-sm">
+                                <i class="fa fa-dot-circle-o"></i> Cập nhật
+                            </button>
+               
+                            <button  type="button" id="Doi_MK" class="btn btn-danger btn-sm">
+                                <i class="fa fa-ban"></i> Đổi mật khẩu
+                            </button>
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+        <!--End Body Content-->
+    }
+    else
+    {
+        <h1>Bạn chưa đăng nhập, không thể xem thông tin khách hàng</h1>
+        <a href="~/Sales/Login/Login">Đăng nhập ngay</a>
+    }
+}
+<script>
+    $("#Doi_MK").click(function () {
+        window.location = '/Sales/UserInformation/Change_Password'
+    });
+</script>
+
+@*<script>
+    function Change_Password(id) {
+        var uid = $("#txtUID").val();
+        var pwd = $("#txtPWD").val();
+        if (uid == '' || pwd == '') {
+            alert('Chưa nhập đủ thông tin');
+        }
+        else {
+            var form = new FormData();
+            form.append('tk', uid);
+            form.append('mk', pwd);
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", domain + '/DangNhap/CheckLogin', true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var content = xhr.responseText;
+                    var json = JSON.parse(content);
+
+                    if (json.Data.status == "OK") {
+                        if (json.Data.position == false) {
+                            window.location = '/Admin/Home_Admin/TrangChu';
+                        }
+                        else if (json.Data.position == true) {
+                            window.location = '/Manager/Home_Manager/TrangChu';
+                        }
+                    }
+                    else {
+                        $("#Error").html("Tên đăng nhập hoặc mật khẩu sai! ");
+                        $("#Error").css('display', 'block');
+                        //window.location = '/DangNhap/Index';
+                    }
+
+                }
+            }
+            xhr.send(form);
+        }
+
+    });
+</script>*@

@@ -1,0 +1,365 @@
+﻿@model IEnumerable<WebShop.Models.PRODUCT_Plus>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Sales/Views/Shared/_Layout.cshtml";
+}
+
+<!--Body Content-->
+<div id="page-content">
+    <!--Collection Banner-->
+    <div class="collection-header">
+        <div class="collection-hero">
+            <div class="collection-hero__image"><img class="blur-up lazyload" data-src="/Asset/assets/images/cat-women2.jpg" src="/Asset/assets/images/cat-women2.jpg" alt="Women" title="Women" /></div>
+        </div>
+    </div>
+    <!--End Collection Banner-->
+
+    <div class="container">
+        <div class="row">
+            <!--Sidebar-->
+            <div class="col-12 col-sm-12 col-md-3 col-lg-3 sidebar filterbar">
+                <div class="closeFilter d-block d-md-none d-lg-none"><i class="icon icon anm anm-times-l"></i></div>
+                <div class="sidebar_tags">
+                    <!--Price Filter-->
+                    <hr />
+                    <div class="sidebar_widget filterBox filter-widget">
+                        <div class="widget-title">
+                            <h2>Giá</h2>
+                        </div>
+                        <div action="#" method="post" class="price-filter">
+                            <div id="slider-range" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
+                                <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
+                                <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
+                                <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <p class="no-margin"><input id="amount" type="text"></p>
+                                </div>
+                                <div class="col-6 text-right margin-25px-top">
+                                    <button class="btn btn-secondary btn--small">Lọc</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End Price Filter-->
+                    <!--Size Swatches-->
+                    <div class="sidebar_widget filterBox filter-widget size-swacthes">
+                        <div class="widget-title"><h2>Size</h2></div>
+                        <div class="filter-color swacth-list">
+                            <ul>
+                                <li><span class="swacth-btn checked">X</span></li>
+                                <li><span class="swacth-btn">XL</span></li>
+                                <li><span class="swacth-btn">XLL</span></li>
+                                <li><span class="swacth-btn">M</span></li>
+                                <li><span class="swacth-btn">L</span></li>
+                                <li><span class="swacth-btn">S</span></li>
+                                <li><span class="swacth-btn">XXXL</span></li>
+                                <li><span class="swacth-btn">XXL</span></li>
+                                <li><span class="swacth-btn">XS</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--End Size Swatches-->
+                    <!--Brand-->
+                    <div class="sidebar_widget filterBox filter-widget">
+                        <div class="widget-title"><h2>Thương hiệu</h2></div>
+                        <ul>
+                            <li>
+                                <input type="checkbox" value="allen-vela" id="check1">
+                                <label for="check1"><span><span></span></span>Hermet</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" value="oxymat" id="check3">
+                                <label for="check3"><span><span></span></span>Anti Social</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" value="vanelas" id="check4">
+                                <label for="check4"><span><span></span></span>Zara</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" value="pagini" id="check5">
+                                <label for="check5"><span><span></span></span>KaiA</label>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--End Brand-->
+                    <!--Popular Products-->
+                    <div class="sidebar_widget">
+                        <div class="widget-title"><h2>Sản phẩm phổ biến</h2></div>
+                        <div class="widget-content">
+                            <div class="list list-sidebar-products">
+                                <div class="grid">
+                                    @{
+                                        int[] popular = new int[ViewBag.qty + 1];
+                                        popular[0] = 0;
+                                        int i = 0;
+                                        foreach (var a in Model)
+                                        {
+                                            popular[i] = a.sold;
+                                            i++;
+                                        }
+                                        if (popular[0] != 0)
+                                        {
+                                            for (int x = 0; x < 3; x++)
+                                            {
+                                                int biggest = popular[0];
+                                                int k = 0;
+                                                for (int j = 0; j < ViewBag.qty; j++)
+                                                {
+                                                    if (popular[j] > biggest)
+                                                    {
+                                                        k = j;
+                                                        biggest = popular[j];
+                                                    }
+                                                }
+                                                foreach (var a in Model)
+                                                {
+                                                    if (a.product_id == (k + 1))
+                                                    {
+                                                        <div class="grid__item">
+                                                            <div class="mini-list-item">
+                                                                <div class="mini-view_image"> <a class="grid-view-item__link" href="~/Sales/ProductSales/Product_Detail/@a.product_id"><img class="grid-view-item__image" src="@a.image_link.ToString().Trim()" alt="" /></a> </div>
+                                                                <div class="details">
+                                                                    <a class="grid-view-item__title" href="~/Sales/ProductSales/Product_Detail/@a.product_id">@a.name</a>
+                                                                    <div class="grid-view-item__meta"><span class="product-price__price"><span class="money">@a.price VND</span></span></div>
+                                                                    <p>Đã bán: @a.sold</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                }
+                                                popular[k] = 0;
+                                            }
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End Popular Products-->
+                    <!--Information-->
+                    <div class="sidebar_widget">
+                        <div class="widget-title"><h2>Thông tin thêm</h2></div>
+                        <div class="widget-content"><p>Trang web này của Nhat&Hieu là đại diện chính thức của 3 hãng thời trang cao cấp thế giới Hermet, Zara, KaiA</p></div>
+                    </div>
+                    <!--end Information-->
+                    <!--Product Tags-->
+                    <div class="sidebar_widget">
+                        <div class="widget-title">
+                            <h2>Tags</h2>
+                        </div>
+                        <div class="widget-content">
+                            <ul class="product-tags">
+                                <li><a href="@Url.Action("Get_Product_Base_On_Price", "ProductSales", new { area = "Sales", along = "1" })" title="Show products matching tag $100 - $400">1 000 000 - 5 000 000 </a></li>
+                                <li><a href="@Url.Action("Get_Product_Base_On_Price", "ProductSales", new { area = "Sales", along = "2" })" title="Show products matching tag $400 - $600">5 000 000 - 10 000 000</a></li>
+                                <li><a href="@Url.Action("Get_Product_Base_On_Price", "ProductSales", new { area = "Sales", along = "3" })" title="Show products matching tag $600 - $800">10 000 000 - 15 000 000</a></li>
+                                <li><a href="@Url.Action("Get_Product_Base_On_Price", "ProductSales", new { area = "Sales", along = "4" })" title="Show products matching tag Above $800">Trên 15 000 000</a></li>
+                                <li><a href="@Url.Action("Get_Product_Base_On_Brand", "ProductSales", new { area = "Sales", along = "KaiA" })" title="Show products matching tag Allen Vela">KaiA</a></li>
+                                <li><a href="@Url.Action("Get_Product_Base_On_Brand", "ProductSales", new { area = "Sales", along = "Hermet" })" title="Show products matching tag Black">Hermet</a></li>
+                                <li><a href="@Url.Action("Get_Product_Base_On_Brand", "ProductSales", new { area = "Sales", along = "Zara" })" title="Show products matching tag Blue">Zara</a></li>
+                                <li><a href="@Url.Action("Get_Product_Base_On_Brand", "ProductSales", new { area = "Sales", along = "Anti Social" })" title="Show products matching tag Cantitate">Anti Social</a></li>
+                            </ul>
+                            <span class="btn btn--small btnview">Xem tất cả</span>
+                        </div>
+                    </div>
+                    <!--end Product Tags-->
+                </div>
+            </div>
+            <!--End Sidebar-->
+            <!--Main Content-->
+            <div class="col-12 col-sm-12 col-md-9 col-lg-9 main-col">
+                <hr />
+                <div class="productList">
+                    <!--Toolbar-->
+                    <button type="button" class="btn btn-filter d-block d-md-none d-lg-none"> Product Filters</button>
+                    <div class="toolbar">
+                        <div class="filters-toolbar-wrapper">
+                            <div class="row">
+                                <div class="col-4 col-md-4 col-lg-4 filters-toolbar__item collection-view-as d-flex justify-content-start align-items-center">
+                                </div>
+                                <div class="col-4 col-md-4 col-lg-4 text-center filters-toolbar__item filters-toolbar__item--count d-flex justify-content-center align-items-center">
+                                    <span class="filters-toolbar__product-count">Số sản phẩm: @ViewBag.qty</span>
+                                </div>
+                                <div class="col-4 col-md-4 col-lg-4 text-right">
+                                    <div class="filters-toolbar__item">
+                                        <label for="SortBy" class="hidden">Sắp xếp theo</label>
+                                        <select name="SortBy" id="SortBy" class="filters-toolbar__input filters-toolbar__input--sort">
+                                            <option value="title-ascending" selected="selected">Sắp xếp</option>
+                                            <option>Bán chạy nhất</option>
+                                            <option>Theo tên</option>
+                                            <option>Giá từ thấp đến cao</option>
+                                            <option>Giá từ cao đến thấp</option>
+                                            <option>Mới nhất</option>
+                                        </select>
+                                        <input class="collection-header__default-sort" type="hidden" value="manual">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--End Toolbar-->
+                    <div class="grid-products grid--view-items">
+                        <div class="row">
+                            @{
+                                if (ViewBag.qty > 0)
+                                {
+                                    foreach (var a in Model)
+                                    {
+                                        <div class="col-6 col-sm-6 col-md-4 col-lg-4 item">
+                                            <!-- start product imagen -->
+                                            <div class="product-image">
+                                                <!-- start product image -->
+                                                <a href="~/Sales/ProductSales/Product_Detail/@a.product_id">
+                                                    <!-- image -->
+                                                    <img class="primary blur-up lazyload" data-src="@a.image_link.ToString().Trim()" src="@a.image_link.ToString().Trim()" alt="image" title="product" />
+                                                    <!-- End image -->
+                                                    <!-- Hover image -->
+                                                    <img class="hover blur-up lazyload" data-src="@a.image_link.ToString().Trim()" src="@a.image_link.ToString().Trim()" alt="image" title="product" />
+                                                    <!-- End hover image -->
+                                                    <div class="product-labels rectangular"><span class="lbl on-sale">-@a.percent%</span> <span class="lbl pr-label1">Mới</span></div>
+                                                </a>
+                                                <!-- end product image -->
+                                                <!-- Start product button -->
+                                                <form class="variants add" onclick="Add_to_Cart('@ViewBag.is_logined', @a.product_id);">
+                                                    <button id="themvaogiohang_id" class="btn btn-addto-cart" type="button">Thêm vào giỏ hàng</button>
+                                                </form>
+                                                <!-- end product button -->
+                                            </div>
+                                            <!-- end product image -->
+                                            <!--start product details -->
+                                            <div class="product-details text-center">
+                                                <!-- product name -->
+                                                <div class="product-name">
+                                                    <a href="#">@a.name</a>
+                                                </div>
+                                                <!-- End product name -->
+                                                <!-- product price -->
+                                                <div class="product-price">
+                                                    <span class="price">@a.price VND</span>
+                                                </div>
+                                                <!-- End product price -->
+                                                <div class="product-review">
+                                                    @{
+                                                        int number_star = a.sold / 50 + 1;
+                                                        if (number_star < 5)
+                                                        {
+                                                            for (int sao = 0; sao < (a.sold / 50 + 1); sao++)
+                                                            {
+                                                                <i class="font-13 fa fa-star"></i>
+                                                            }
+                                                            for (int ksao = 0; ksao < (5 - number_star); ksao++)
+                                                            {
+                                                                <i class="font-13 fa fa-star-o"></i>
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <i class="font-13 fa fa-star"></i>
+                                                            <i class="font-13 fa fa-star"></i>
+                                                            <i class="font-13 fa fa-star"></i>
+                                                            <i class="font-13 fa fa-star"></i>
+                                                            <i class="font-13 fa fa-star"></i>
+                                                        }
+                                                    }
+                                                </div>
+                                            </div>
+                                            <!-- End product details -->
+                                        </div>
+                                    }
+                                }
+                                else
+                                {
+                                    <h1>Không có sản phẩm thích hợp</h1>
+                                }
+
+                            }
+
+
+                            <!===============================================================================>
+
+                        </div>
+                    </div>
+                </div>
+                <hr class="clear">
+                <div class="pagination">
+                    <ul>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li class="next"><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <!--End Main Content-->
+        </div>
+    </div>
+    <p id="hiden_text" style="display:none">@ViewBag.Number</p>
+</div>
+<!--End Body Content-->
+
+<script>
+        window.onload = function () {
+            const hiden_text = $('#hiden_text').html();
+            $('#CartCount').html(hiden_text);
+        }
+
+        function Add_to_Cart(is_Login, product_id) {
+            if (is_Login == "1") {
+                var count = Number($('#CartCount').html());
+                var alltotal = $('.All__total_money');
+                var total = document.querySelectorAll('.total__money_cart');
+                var form = new FormData();
+                form.append("product_id", product_id);
+
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", '@Request.Url.Scheme://@Request.Url.Host:@Request.Url.Port/HomeSales/HandleAdd_Cart', true);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        var content = xhr.responseText;
+                        var json_xl = JSON.parse(content);
+                        if (json_xl.Data.status == "OK") {
+                            alert("Thêm sản phẩm vào giỏ hàng thành công!");
+
+                            var li = `
+
+                            <li class="item">
+                                                <a class="product-image" href="~/Sales/ProductSales/Product_Detail/`+ product_id +`">
+                                                    <img src="`+ json_xl.Data.image_link + `" alt="" title="" />
+                                                </a>
+                                                <div class="product-details">
+                                                    <a href="@Request.Url.Scheme://@Request.Url.Host:@Request.Url.Port/Sales/Cart/Remove_Item/`+ product_id +`" class="remove"><i class="anm anm-times-l" aria-hidden="true"></i></a>
+                                                    <a class="pName" href="~/Sales/ProductSales/Product_Detail/`+product_id+`">`+ json_xl.Data.name + `</a>
+                                                    <div class="variant-cart">Size: `+ json_xl.Data.size + `</div>
+
+                                                    <div class="priceRow">
+                                                        <div class="product-price">
+                                                            <span class="money">Giá: <span class="total__money_cart">`+ json_xl.Data.amount + `</span> VNĐ</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                            </li>
+
+                            `;
+                            if (json_xl.Data.no_add == 1) {
+
+                            } else {
+                                $('#header-cart .mini-products-list').append(li);
+                                count++;
+                                $('#CartCount').html(count);
+                            }
+
+                        }
+                        else {
+
+                            return;
+                        }
+                    }
+                }
+                xhr.send(form);
+            }
+            else {
+                alert("Bạn chưa đăng nhập!!");
+            }
+        }
+</script>

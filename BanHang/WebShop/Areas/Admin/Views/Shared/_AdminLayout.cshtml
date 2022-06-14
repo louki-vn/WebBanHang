@@ -1,0 +1,210 @@
+﻿
+@{ Layout = null; }
+
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="description">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+    <link rel="shortcut icon" href="~/Asset/admin/assets/images/favicon.png" />   
+    <link rel="stylesheet" href="~/Asset/assets/css/plugins.css">
+    <link rel="stylesheet" href="~/Asset/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Asset/assets/css/style.css">
+    <link rel="stylesheet" href="~/Asset/assets/css/responsive.css">
+
+    <title>Dashboard</title>
+
+    <link href="~/Asset/admin/css/font-face.css" rel="stylesheet" media="all">
+    <link href="~/Asset/admin/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="~/Asset/admin/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="~/Asset/admin/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="~/Asset/admin/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+    <link href="~/Asset/admin/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="~/Asset/admin/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+    <link href="~/Asset/admin/vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="~/Asset/admin/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="~/Asset/admin/vendor/slick/slick.css" rel="stylesheet" media="all">
+    <link href="~/Asset/admin/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="~/Asset/admin/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+    <link href="~/Asset/admin/css/theme.css" rel="stylesheet" media="all">
+</head>
+<body class="template-index belle home8-jewellery">
+    <div id="pre-loader">
+        <img src="~/Asset/assets/images/loader.gif" alt="Loading..." />
+    </div>
+    <div class="pageWrapper">
+
+        
+        <div class="top-header home8-jewellery-top">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12 d-none d-lg-none d-md-block d-lg-block">
+                        <div class="text-center"><p class="top-header_middle-text"> Quản Lý Hệ Thống</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+        <div class="animated d-flex">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="logo col-md-2 col-lg-2 d-none d-lg-block">
+                        <a href="~/Admin/HomeAdmin/Index">
+                            <img src="/Asset/assets/images/logo.jpg" alt="" title="" style="height:40px" />
+                        </a>
+                    </div>
+                    <div class="col-2 col-sm-3 col-md-3 col-lg-8">
+                        <div class="d-block d-lg-none">
+                            <button type="button" class="btn--link site-header__menu js-mobile-nav-toggle mobile-nav--open">
+                                <i class="icon anm anm-times-l"></i>
+                                <i class="anm anm-bars-r"></i>
+                            </button>
+                        </div>
+                        <nav class="grid__item" id="AccessibleNav" role="navigation">
+                            <ul id="siteNav" class="site-nav medium center hidearrow">
+                                <li class="lvl1 parent megamenu">
+                                    <a href="~/Admin/HomeAdmin" id="1">Trang chủ <i class="anm anm-angle-down-l"></i></a>
+                                </li>
+                                <li class="lvl1 parent megamenu">
+                                    <a href="~/Admin/Category">Danh mục <i class="anm anm-angle-down-l"></i></a>
+                                </li>
+                                <li class="lvl1 parent dropdown">
+                                    <a href="~/Admin/ProductAdmin">Sản phẩm<i class="anm anm-angle-down-l"></i></a>
+                                </li>
+                                <li class="lvl1 parent dropdown">
+                                    <a href="~/Admin/Order">Đơn hàng <i class="anm anm-angle-down-l"></i></a>
+                                </li>
+                                <li class="lvl1 parent dropdown">
+                                    <a href="~/Admin/UserData">Dữ liệu người dùng<i class="anm anm-angle-down-l"></i></a>
+                                </li>
+                                <li class="lvl1 parent dropdown">
+                                    <a href="~/Admin/CartShop">Bán hàng<i class="anm anm-angle-down-l"></i></a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    @{
+                        string user_role = "";
+                        string user_name = Session["user_name"].ToString();
+                        string user_gmail = Session["user_gmail"].ToString(); ;
+                        if (Session["group_id"].ToString() == "ADMIN")
+                        {
+                            user_role = "Quản trị viên";
+                            user_name = "Quản trị viên";
+                        }
+                        else if (Session["group_id"].ToString() == "EMPLOYEE")
+                        {
+                            user_role = "Nhân viên";
+                        }
+                        <div class="col-2 col-sm-3 col-md-3 col-lg-2 d-none d-lg-block">
+                            <div class="account-wrap">
+                                <div class="account-item account-item--style2 clearfix js-item-menu">
+                                    <div class="content">
+                                        <a class="js-acc-btn" href="#">Xin chào @user_name</a>
+                                    </div>
+                                    <div class="account-dropdown js-dropdown" style="z-index:300">
+                                        <div class="info clearfix">
+                                            <div class="content">
+                                                <h5 class="name">
+                                                    <a href="#">@user_role</a>
+                                                </h5>
+                                                <span class="email">@user_gmail</span>
+                                            </div>
+                                        </div>
+                                        <div class="account-dropdown__body">
+                                            <div class="account-dropdown__item">
+                                                <a href="#">
+                                                    <i class="zmdi zmdi-account"></i>Tài khoản
+                                                </a>
+                                            </div>
+                                            <div class="account-dropdown__item">
+                                                <a href="#">
+                                                    <i class="zmdi zmdi-settings"></i>Cài đặt
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="account-dropdown__footer">
+                                            <a href="~/Sales/Login/Logout">
+                                                <i class="zmdi zmdi-power"></i>Đăng xuất
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+                </div>
+            </div>
+        </div>
+        <div class="mobile-nav-wrapper" role="navigation">
+            <div class="closemobileMenu"><i class="icon anm anm-times-l pull-right"></i> Close Menu</div>
+            <ul id="MobileNav" class="mobile-nav">
+                <li class="lvl1 parent megamenu">
+                    <a href="~/Admin/HomeAdmin">Trang chủ <i class="anm anm-plus-l"></i></a>
+                </li>
+                <li class="lvl1 parent megamenu">
+                    <a href="~/Admin/Category">Danh mục <i class="anm anm-plus-l"></i></a>
+                </li>
+                <li class="lvl1 parent megamenu">
+                    <a href="~/Admin/ProductAdmin">Sản phẩm <i class="anm anm-plus-l"></i></a>
+                </li>
+                <li class="lvl1 parent megamenu">
+                    <a href="~/Admin/Order">Đơn hàng <i class="anm anm-plus-l"></i></a>
+                </li>
+                <li class="lvl1 parent megamenu">
+                    <a href="~/Admin/UserData">Dữ liệu người dùng <i class="anm anm-plus-l"></i></a>
+                </li>
+            </ul>
+        </div>      
+        <div id="page-content">
+            @RenderBody()
+        </div>       
+        <footer id="footer" class="footer-3">
+            <div class="site-footer">
+                <div class="container">
+                    <div class="footer-bottom">
+                        <div class="row">                          
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 copyright text-center"><span></span> <a href="~/Admin/HomeAdmin">Trang chủ</a></div>                          
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+     
+        <span id="site-scroll"><i class="icon anm anm-angle-up-r"></i></span>     
+
+        <script src="~/Asset/assets/js/vendor/jquery-3.3.1.min.js"></script>
+        <script src="~/Asset/assets/js/vendor/modernizr-3.6.0.min.js"></script>
+        <script src="~/Asset/assets/js/vendor/jquery.cookie.js"></script>
+        <script src="~/Asset/assets/js/vendor/wow.min.js"></script>
+        <script src="~/Asset/assets/js/vendor/masonry.js"></script>
+
+        <script src="~/Asset/assets/js/bootstrap.min.js"></script>
+        <script src="~/Asset/assets/js/plugins.js"></script>
+        <script src="~/Asset/assets/js/popper.min.js"></script>
+        <script src="~/Asset/assets/js/lazysizes.js"></script>
+        <script src="~/Asset/assets/js/main.js"></script>
+
+        <script src="~/Asset/admin/vendor/slick/slick.min.js"></script>
+        <script src="~/Asset/admin/vendor/wow/wow.min.js"></script>
+        <script src="~/Asset/admin/vendor/animsition/animsition.min.js"></script>
+        <script src="~/Asset/admin/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+        <script src="~/Asset/admin/vendor/counter-up/jquery.waypoints.min.js"></script>
+        <script src="~/Asset/admin/vendor/counter-up/jquery.counterup.min.js"></script>
+        <script src="~/Asset/admin/vendor/circle-progress/circle-progress.min.js"></script>
+        <script src="~/Asset/admin/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+        <script src="~/Asset/admin/vendor/chartjs/Chart.bundle.min.js"></script>
+        <script src="~/Asset/admin/vendor/select2/select2.min.js"></script>
+
+        <script src="~/Asset/admin/js/main.js"></script>
+       
+    </div>
+</body>
+</html>

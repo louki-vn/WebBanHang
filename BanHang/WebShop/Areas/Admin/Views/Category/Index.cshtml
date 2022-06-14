@@ -1,0 +1,250 @@
+﻿@model List<WebShop.Models.CATEGORY>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{
+    if (ViewBag.is_logined == 1)
+    {
+        <div class="row m-t-30">
+            <div class=" col-sm-12 col-md-12 col-lg-12">
+                <!-- USER DATA-->
+                <div class="user-data col-sm-12 col-md-12 col-lg-12 m-b-30">
+                    <h3 class="title-3 text-center m-b-30">
+                        <i class="zmdi zmdi-view-list"></i>Danh Mục Sản Phẩm
+                    </h3>
+                    <div class="table-data__tool">
+                        @using (Html.BeginForm("Filter", "Category", FormMethod.Post))
+                        {
+                            <div class="table-data__tool-left">
+                                <div class="rs-select2--light rs-select2--md">
+                                    <select class="js-select2" name="filter">
+                                        <option selected="selected" value="3">Phân loại</option>
+                                        <option value="1">Trang sức</option>
+                                        <option value="2">Đồ da</option>
+                                    </select>
+                                    <div class="dropDownSelect2"></div>
+                                </div>
+                                <button class="au-btn-filter">
+                                    <i class="zmdi zmdi-filter-list"></i>Lọc
+                                </button>
+                            </div>
+                        }
+                        <div class="table-data__tool-right">
+                            @using (Html.BeginForm("AddCategory", "Category", FormMethod.Post))
+                            {
+                                <div id="exampleModal" class="modal" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Thêm danh mục mới</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label for="category" class=" form-control-label">Tên danh mục</label>
+                                                    <input type="text" id="category" name="category" placeholder="Nhập tên danh mục" class="form-control">
+                                                </div>
+                                                <div class="rs-select2--light rs-select2--md">
+                                                    <select class="js-select2" name="group_id">
+                                                        <option selected="selected">Loại sản phẩm</option>
+                                                        <option value="1">Trang Sức</option>
+                                                        <option value="2">Đồ Da</option>
+                                                    </select>
+                                                    <div class="dropDownSelect2"></div>
+                                                </div>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary">Thêm</button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            <button class="au-btn au-btn-icon au-btn--green au-btn--small" data-toggle="modal" data-target="#exampleModal">
+                                <i class="zmdi zmdi-plus"></i>Thêm danh mục sản phẩm
+                            </button>
+                        </div>
+                    </div>
+                    <div class="table-responsive table-responsive-data2">
+                        <table class="table table-data2">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>ID</th>
+                                    <th>Tên danh mục</th>
+                                    <th>Nhóm sản phẩm</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="spacer"></tr>
+                                @foreach (var item in Model)
+                                {
+                                    <tr class="spacer"></tr>
+                                    <tr class="tr-shadow">
+                                        <td> </td>
+                                        <td id="id @item.category_id">@item.category_id</td>
+                                        <td id="name @item.category_id">@item.name</td>
+                                        @if (item.group_id == 1)
+                                        {
+                                            <td id="group @item.category_id">Trang Sức</td>
+                                        }
+                                        else
+                                        {
+                                            <td id="group @item.category_id">Đồ Da</td>
+                                        }
+                                        <td>
+                                            <div class="table-data-feature">
+                                                <div id="editcategory" class="modal" tabindex="-1" role="dialog" style="position:center">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">Chỉnh sửa danh mục @item.name</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body edit">
+                                                                <div class="form-group">
+                                                                    <label for="category_id" class=" form-control-label">Mã danh mục</label>
+                                                                    <input type="text" id="category_id" name="category_id" placeholder="" disabled="" class="form-control">
+
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="name" class=" form-control-label">Tên danh mục</label>
+                                                                    <input type="text" id="name" name="name" placeholder="" class="form-control">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="group_id" class=" form-control-label">Nhom san pham</label>
+                                                                    <input type="text" id="group_id" name="group_id" placeholder="" disabled="" class="form-control">
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="submit" class="btn btn-primary" onclick="EditCategory()">Lưu thay đổi</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button class="item" data-toggle="modal" data-target="#editcategory" onclick="edit(@item.category_id)" data-placement="top" title="Edit">
+                                                    <i class="zmdi zmdi-edit"></i>
+                                                </button>
+                                                <div id="deletecategory" class="modal" tabindex="-1" role="dialog">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">Cảnh báo!</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="form-group">
+                                                                    <label for="delete_id" class=" form-control-label">Xóa danh mục  </label>
+                                                                    <input id="delete_id" name="delete_id" type="hidden" placeholder="" disabled="" class="form-control">
+                                                                    <input id="delete_name" name="delete_name" placeholder="" disabled="" class="form-control" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="submit" class="btn btn-primary" onclick="DeleteCategory()">Xóa</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button class="item" data-toggle="modal" data-target="#deletecategory" onclick="Delcategory(@item.category_id)" data-placement="top" title="Delete">
+                                                    <i class="zmdi zmdi-delete"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <h1>Bạn phải đăng nhập bằng quyền Admin để sử dụng chức năng này</h1>
+        <a href="@Url.Action("Login", null, new { area = "Sales", controller = "Login"}, Request.Url.Scheme) ">Đăng nhập ngay</a>
+    }
+}
+
+
+<script>
+
+
+    function EditCategory() {
+        var name = $("#editcategory").find('input[name="name"]').val();
+        var id = $("#editcategory").find('input[name="category_id"]').val();
+        console.log(name)
+        console.log(id)
+        $.ajax({
+            type: "GET",
+            data: { tran_id: id },
+            url: "/Category/EditCategory",
+            success: function (e) {
+
+            }
+        });
+        window.location.reload();
+    }
+
+    function edit(category_id) {
+        var id = document.getElementById(String("id " + category_id)).innerText;
+        var name = document.getElementById(String("name " + category_id)).innerText;
+        var group = document.getElementById(String("group " + category_id)).innerText;
+        $("#editcategory").find('input[name="category_id"]').val(id);
+        $("#editcategory").find('input[name="name"]').val(name);
+        $("#editcategory").find('input[name="group_id"]').val(group);
+    };
+
+    function Delcategory(category_id) {
+        var id = document.getElementById(String("id " + category_id)).innerText;
+        var name = document.getElementById(String("name " + category_id)).innerText;
+        console.log(name)
+        console.log(id)
+        $("#deletecategory").find('input[name="delete_name"]').val(name);
+        $("#deletecategory").find('input[name="delete_id"]').val(id);
+    };
+
+    function DeleteCategory() {
+        var id = $("#deletecategory").find('input[name="delete_id"]').val();
+        $.ajax({
+            type: "GET",
+            data: { delete_id: id },
+            url: "/Category/DeleteCategory",
+            success: function (e) {
+
+            }
+        });
+        window.location.reload();
+    }
+
+    function EditCategory() {
+        var name = $("#editcategory").find('input[name="name"]').val();
+        var id = $("#editcategory").find('input[name="category_id"]').val();
+        console.log(name)
+        console.log(id)
+        $.ajax({
+            type: "GET",
+            data: { category_id: id, category_name: name },
+            url: "/Category/EditCategory",
+            success: function (e) {
+
+            }
+        });
+        window.location.reload();
+    }
+</script>

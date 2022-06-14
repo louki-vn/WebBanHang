@@ -1,0 +1,293 @@
+﻿@model List<WebShop.Models.TRANSACTION>
+@{
+    ViewBag.Title = "Report";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{
+    var tran = Model[0];
+}
+
+<!--Body Content-->
+<div id="page-content">
+    <!--Page Title-->
+    <div class="page section-header text-center">
+        <div class="page-title">
+            <div class="wrapper"><h1 class="page-width">Xác nhận đơn hàng</h1></div>
+        </div>
+    </div>
+    <!--End Page Title-->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-6 col-md-6 col-lg-6 main-col">
+                <form action="#" method="post" class="cart style2">
+                    <table>
+                        <thead class="cart__row cart__header">
+                            <tr>
+                                <th colspan="2" class="text-center">Sản phẩm</th>
+                                <th class="text-center">Đơn giá</th>
+                                <th class="text-center">Số lượng</th>
+                                <th class="text-right">Tổng</th>
+                                <th class="action">&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in (List<WebShop.Models.Order_Products>)ViewBag.Product_List)
+                            {
+                                <tr class="cart__row border-bottom line1 cart-flex border-top">
+                                    <td class="cart__image-wrapper cart-flex-item">
+                                        <a href="#"><img class="cart__image" src="@item.image_link" alt="@item.name"></a>
+                                    </td>
+                                    <td class="cart__meta small--text-left cart-flex-item">
+                                        <div class="list-view-item__title">
+                                            <a href="#">@item.name</a>
+                                        </div>
+                                        <div class="cart__meta-text">
+                                            Color: <br>Size: @item.size<br>
+                                        </div>
+                                    </td>
+                                    <td class="cart__price-wrapper cart-flex-item">
+                                        <span class="money">@item.price VND</span>
+                                    </td>
+                                    <td class="cart__update-wrapper cart-flex-item text-right">
+                                        <div class="cart__qty text-center">
+                                            <div class="qtyField">
+                                                <input class="cart__qty-input qty" type="text" name="updates[]" id="qty" value="@item.qty" pattern="[0-9]*">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-right small--hide cart-price">
+                                        @{
+                                            int sum = 0;
+                                            sum = item.price * item.qty;
+                                        }
+                                        <div><span class="money">@sum VND</span></div>
+                                    </td>
+                                    <td class="text-center small--hide"><a href="#" class="btn btn--secondary cart__remove" title="Remove tem"><i class="icon icon anm anm-times-l"></i></a></td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+
+                        </tfoot>
+                    </table>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 main-col" id="sum_money">
+                        <div class="solid-border">
+                            @{
+                                int total = 0;
+                                foreach (var item in (List<WebShop.Models.Order_Products>)ViewBag.Product_List)
+                                {
+                                    total = total + item.price * item.qty;
+                                }
+                            }
+                            <div class="row border-bottom pb-2">
+                                <span class="col-12 col-sm-6 cart__subtotal-title">Tổng tạm tính</span>
+                                <span class="col-12 col-sm-6 text-right"><span class="money">@total VND</span></span>
+                            </div>
+                            <div class="row border-bottom pb-2 pt-2">
+                                <span class="col-12 col-sm-6 cart__subtotal-title">Giảm giá</span>
+                                <span class="col-12 col-sm-6 text-right">0 VND</span>
+                            </div>
+                            <div class="row border-bottom pb-2 pt-2">
+                                <span class="col-12 col-sm-6 cart__subtotal-title">Phí vận chuyển</span>
+                                <span class="col-12 col-sm-6 text-right">Miễn phí vận chuyển</span>
+                            </div>
+                            <div class="row border-bottom pb-2 pt-2">
+                                <span class="col-12 col-sm-6 cart__subtotal-title"><strong>Tổng thanh toán</strong></span>
+                                <span class="col-12 col-sm-6 cart__subtotal-title cart__subtotal text-right"><span class="money" id="amount" name="amount">@total</span> VND</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 main-col">
+                        <div class="alert alert-success text-uppercase" role="alert">
+                            <i class="icon anm anm-truck-l icon-large"></i> &nbsp;Tinh trang don hang:
+                            @if (tran.status == 0)
+                            {
+                                <strong><span class="status--process">Chờ xử lý</span></strong>
+                            }
+                            else if (tran.status == 1)
+                            {
+                                <strong><span class="status--process">Đa tiep nhan</span></strong>
+                            }
+                            else if (tran.status == 2)
+                            {
+                                <strong><span class="status--process">Đang giao hang</span></strong>
+                            }
+                            else if (tran.status == 4)
+                            {
+                                <strong><span class="status--process">Đa huy</span></strong>
+                            }
+                            else
+                            {
+                                <strong><span class="status--denied">Đã giao hàng</span></strong>
+                            }
+                            <span class="status--denied" hidden="" id="tran_status" name="tran_status">@tran.status</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 sm-margin-30px-bottom">
+                <div class="create-ac-content bg-light-gray padding-20px-all">
+                    <form>
+                        <fieldset>
+                            <h4 class="login-title mb-3">Thông tin khách hàng</h4>
+                            <div class="row">
+                                <div class="form-group col-md-12 col-lg-12 col-xl-12 required">
+                                    <label for="input-firstname">Tên khách hàng</label>
+                                    <input name="firstname" value="@tran.member_name" disabled="" id="input-firstname" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                    <label for="input-email">E-Mail </label>
+                                    <input name="email" value="@ViewBag.Email" id="input-email" disabled="" type="email" class="form-control">
+                                </div>
+                                <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                    <label for="input-telephone">Số điện thoại </label>
+                                    <input name="telephone" value="@tran.member_phone_number" disabled="" id="input-telephone" type="tel" class="form-control">
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <div class="row">
+                                <div class="form-group col-md-12 col-lg-12 col-xl-12 required">
+                                    <label for="input-address-1">Địa chỉ giao hàng </label>
+                                    <input name="address_1" value="@tran.delivery" disabled="" id="input-address-1" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                    <label for="input-postcode">Mã giảm giá</label>
+                                    <input name="postcode" value="" id="input-postcode" disabled="" type="text" class="form-control">
+                                </div>
+                                <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                    <label for="input-postcode">Phương thức thanh toán </label>
+                                    <input name="postcode" value="Thanh toan qua the tin dung" id="input-postcode" type="text" class="form-control" disabled="">
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <div class="row">
+                                <div class="form-group col-md-12 col-lg-12 col-xl-12">
+                                    <label for="input-company">Ghi chú của khách hàng</label>
+                                    <textarea class="form-control resize-both" rows="3" disabled=""></textarea>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+
+                <div class="create-ac-content bg-light-gray padding-20px-all" id="emp_infor">
+                    <form method="post">
+                        <fieldset>
+                            <h4 class="login-title mb-3">Thông tin nhân viên tiếp nhận đơn hàng</h4>
+                            <div class="row">
+                                <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                    <label for="input-firstname">Nhập ID nhân viên <span class="required-f">*</span></label>
+                                    <input name="employee_id" value="" id="employee_id" required type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                    <label for="input-country">Tình trạng đơn hàng<span class="required-f">*</span></label>
+                                    <select name="status" id="status" class="form-control">
+                                        <option value=""> --- Vui lòng chọn --- </option>
+                                        <option value="1">Đã tiếp nhận</option>
+                                        <option value="2">Đang giao hàng</option>
+                                        <option value="3">Đã giao hàng</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                    <label>Ngày xác nhận<span class="required-f">*</span></label>
+                                    <input type="date" id="date" name="date" class="form-control">
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <div class="row">
+                                <div class="form-group col-md-12 col-lg-12 col-xl-12">
+                                    <label for="input-company">Ghi chú </label>
+                                    <textarea class="form-control resize-both" rows="3"></textarea>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <div class="order-button-payment">
+                            <button class="btn" value="Place order" type="button" onclick="addreport(@tran.transaction_id)">Báo cáo</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--End Body Content-->
+
+
+<script>
+
+    function DelOrder(tran_id) {
+        var id = document.getElementById(String("id " + tran_id)).innerText;
+        var name = document.getElementById(String("name " + tran_id)).innerText;
+        console.log(name)
+        console.log(id)
+        $("#deleteorder").find('input[name="delete_name"]').val(name);
+        $("#deleteorder").find('input[name="delete_id"]').val(id);
+    };
+
+    function Change(tran_id) {
+        var id = document.getElementById(String("id " + tran_id)).innerText;
+        $("#editorder").find('input[name="change_tran_id"]').val(id);
+    };
+
+    function ChangeStatus() {
+        var id = $("#editorder").find('input[name="change_tran_id"]').val();
+        $.ajax({
+            type: "GET",
+            data: { tran_id: id },
+            url: "/Order/EditOrder",
+            success: function (e) {
+
+            }
+        });
+        window.location.reload();
+    }
+
+    function addreport(id) {
+        var status = document.getElementById("status").value;
+        var amount = document.querySelector("#amount").innerHTML;
+        var tran_status = document.querySelector("#tran_status").innerHTML;
+        var employee_id = document.getElementById("employee_id").value;
+        var date = document.getElementById("date").value;
+        console.log(id)
+        console.log(status)
+        console.log(employee_id)
+        console.log(tran_status)
+        if (status == "" || employee_id == "" || date == "") {
+            alert("Vui long nhap day du thong tin!!");
+        }
+        else if (status <= tran_status) {
+            alert("Sai thong tin trang thai don hang!!");
+        }
+        else {
+            $.ajax({
+                type: "GET",
+                data: {
+                    tran_id: id,
+                    amount: amount,
+                    employee_id: employee_id,
+                    date: date,
+                    status: status
+                },
+                url: "/Order/AddReport",
+                success: function (e) {
+
+                }
+            });
+        }
+        window.location.reload();
+    }
+</script>

@@ -1,0 +1,60 @@
+D:\Năm 4\Công nghệ Web\Project\WebShop\bin\WebShop.dll.config
+D:\Năm 4\Công nghệ Web\Project\WebShop\bin\WebShop.dll
+D:\Năm 4\Công nghệ Web\Project\WebShop\bin\WebShop.pdb
+D:\Năm 4\Công nghệ Web\Project\WebShop\bin\Antlr3.Runtime.dll
+D:\Năm 4\Công nghệ Web\Project\WebShop\bin\EntityFramework.dll
+D:\Năm 4\Công nghệ Web\Project\WebShop\bin\EntityFramework.SqlServer.dll
+D:\Năm 4\Công nghệ Web\Project\WebShop\bin\Microsoft.Web.Infrastructure.dll
+D:\Năm 4\Công nghệ Web\Project\WebShop\bin\System.Web.Helpers.dll
+D:\Năm 4\Công nghệ Web\Project\WebShop\bin\System.Web.Mvc.dll
+D:\Năm 4\Công nghệ Web\Project\WebShop\bin\System.Web.Optimization.dll
+D:\Năm 4\Công nghệ Web\Project\WebShop\bin\System.Web.Razor.dll
+D:\Năm 4\Công nghệ Web\Project\WebShop\bin\System.Web.WebPages.Deployment.dll
+D:\Năm 4\Công nghệ Web\Project\WebShop\bin\System.Web.WebPages.dll
+D:\Năm 4\Công nghệ Web\Project\WebShop\bin\System.Web.WebPages.Razor.dll
+D:\Năm 4\Công nghệ Web\Project\WebShop\bin\WebGrease.dll
+D:\Năm 4\Công nghệ Web\Project\WebShop\bin\EntityFramework.xml
+D:\Năm 4\Công nghệ Web\Project\WebShop\bin\EntityFramework.SqlServer.xml
+D:\Năm 4\Công nghệ Web\Project\WebShop\bin\System.Web.Helpers.xml
+D:\Năm 4\Công nghệ Web\Project\WebShop\bin\System.Web.Mvc.xml
+D:\Năm 4\Công nghệ Web\Project\WebShop\bin\System.Web.Optimization.xml
+D:\Năm 4\Công nghệ Web\Project\WebShop\bin\System.Web.Razor.xml
+D:\Năm 4\Công nghệ Web\Project\WebShop\bin\System.Web.WebPages.xml
+D:\Năm 4\Công nghệ Web\Project\WebShop\bin\System.Web.WebPages.Deployment.xml
+D:\Năm 4\Công nghệ Web\Project\WebShop\bin\System.Web.WebPages.Razor.xml
+D:\Năm 4\Công nghệ Web\Project\WebShop\bin\Antlr3.Runtime.pdb
+D:\Năm 4\Công nghệ Web\Project\WebShop\obj\Debug\WebShop.csproj.AssemblyReference.cache
+D:\Năm 4\Công nghệ Web\Project\WebShop\obj\Debug\WebShop.csproj.CoreCompileInputs.cache
+D:\Năm 4\Công nghệ Web\Project\WebShop\obj\Debug\WebShop.csproj.CopyComplete
+D:\Năm 4\Công nghệ Web\Project\WebShop\obj\Debug\WebShop.dll
+D:\Năm 4\Công nghệ Web\Project\WebShop\obj\Debug\WebShop.pdb
+D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\WebShop.dll.config
+D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\WebShop.dll
+D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\WebShop.pdb
+D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\Antlr3.Runtime.dll
+D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\EntityFramework.dll
+D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\EntityFramework.SqlServer.dll
+D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\Microsoft.Web.Infrastructure.dll
+D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\System.Web.Helpers.dll
+D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\System.Web.Mvc.dll
+D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\System.Web.Optimization.dll
+D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\System.Web.Razor.dll
+D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\System.Web.WebPages.Deployment.dll
+D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\System.Web.WebPages.dll
+D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\System.Web.WebPages.Razor.dll
+D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\WebGrease.dll
+D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\EntityFramework.xml
+D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\EntityFramework.SqlServer.xml
+D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\System.Web.Helpers.xml
+D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\System.Web.Mvc.xml
+D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\System.Web.Optimization.xml
+D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\System.Web.Razor.xml
+D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\System.Web.WebPages.xml
+D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\System.Web.WebPages.Deployment.xml
+D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\System.Web.WebPages.Razor.xml
+D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\Antlr3.Runtime.pdb
+D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\obj\Debug\WebShop.csproj.AssemblyReference.cache
+D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\obj\Debug\WebShop.csproj.CoreCompileInputs.cache
+D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\obj\Debug\WebShop.csproj.CopyComplete
+D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\obj\Debug\WebShop.dll
+D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\obj\Debug\WebShop.pdb

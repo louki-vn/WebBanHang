@@ -1,0 +1,349 @@
+﻿@using WebShop.Models;
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Siêu Website</title>
+    <meta name="description" content="description">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="~/Asset/assets/images/logo.jpg" />
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="~/Asset/assets/css/plugins.css">
+    <link rel="stylesheet" href="~/Asset/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Asset/assets/css/style.css">
+    <link href="~/Asset/assets/css/duy.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Asset/assets/css/responsive.css">
+    <script type="text/javascript" src="~/Asset/assets/js/nhat22.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body class="page-template belle">
+    <div class="pageWrapper">        
+        <div class="search">
+            <div class="search__form">
+                <form class="search-bar__form" action="~/Sales/ProductSales/Search">
+                    <button class="go-btn search__button" type="submit"><i class="icon anm anm-search-l"></i></button>
+                    <input class="search__input" type="search" name="key_word" value="" placeholder="Tìm kiếm trong cửa hàng..." aria-label="Search" autocomplete="off">
+                    <ul class="autocom-box">
+                        <li></li>
+                    </ul>
+                </form>
+                <button type="button" class="search-trigger close-btn"><i class="icon anm anm-times-l"></i></button>
+            </div>
+        </div>
+        <div class="top-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-10 col-sm-8 col-md-5 col-lg-4">
+                        <p class="phone-no"><i class="anm anm-phone-s"></i> +84 987135188</p>
+                    </div>
+                    <div class="col-sm-4 col-md-4 col-lg-4 d-none d-lg-none d-md-block d-lg-block">
+                        <div class="text-center"><p class="top-header_middle-text"> Giao hàng toàn quốc</p></div>
+                    </div>
+                    <div class="col-2 col-sm-4 col-md-3 col-lg-4 text-right">
+                        <span class="user-menu d-block d-lg-none"><i class="anm anm-user-al" aria-hidden="true"></i></span>
+                        @if (ViewBag.is_logined == 1)
+                        {
+                            <ul class="customer-links list-inline">
+                                <li>Xin chào <a href="~/Sales/UserInformation/UserInformation">@ViewBag.user_logined</a> </li>
+                                <li><a href="~/Sales/Login/Logout">Đăng xuất</a></li>
+                            </ul>
+                        }
+                        else
+                        {
+                            <ul class="customer-links list-inline">
+                                <li><a href="~/Sales/Login/Login">Đăng nhập</a></li>
+                                <li><a href="~/Sales/CreateAccount/CreateAccount">Tạo tài khoản</a></li>
+                            </ul>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-wrap animated d-flex">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="logo col-md-2 col-lg-2 d-none d-lg-block">
+                        <a href="~/Sales/HomeSales/Home">
+                            <img src="/Asset/assets/images/logo.jpg" alt="" title="" style="height:40px"/>
+                        </a>
+                    </div>
+                    <div class="col-2 col-sm-3 col-md-3 col-lg-8">
+                        <div class="d-block d-lg-none">
+                            <button type="button" class="btn--link site-header__menu js-mobile-nav-toggle mobile-nav--open">
+                                <i class="icon anm anm-times-l"></i>
+                                <i class="anm anm-bars-r"></i>
+                            </button>
+                        </div>
+                        <nav class="grid__item" id="AccessibleNav" role="navigation">
+                            <ul id="siteNav" class="site-nav medium center hidearrow">
+                                <li class="lvl1 parent megamenu">
+                                    <a href="~/Sales/HomeSales/Home" id="1">Trang chủ <i class="anm anm-angle-down-l"></i></a>
+                                </li>
+                                <li class="lvl1 parent megamenu">
+                                    <a href="~/Sales/ProductSales/Product">Sản phẩm <i class="anm anm-angle-down-l"></i></a>
+                                </li>
+                                <li class="lvl1 parent dropdown">
+                                    <a href="~/Sales/ProductSales/Get_Product_Base_On_Product_Group/2">Đồ da <i class="anm anm-angle-down-l"></i></a>
+                                    <ul class="dropdown">
+                                        <li><a href="~/Sales/ProductSales/Get_Product_Base_On_Category/Ví" class="site-nav">Ví</a></li>
+                                        <li><a href="~/Sales/ProductSales/Get_Product_Base_On_Category/Dây lưng" class="site-nav">Dây lưng<span class="lbl nm_label1">New</span> </a></li>
+                                        <li><a href="~/Sales/ProductSales/Get_Product_Base_On_Category/Túi xách" class="site-nav">Túi xách</a></li>
+                                        <li><a href="~/Sales/ProductSales/Get_Product_Base_On_Category/Giày">Giày</a></li>
+                                    </ul>
+                                </li>
+                                <li class="lvl1 parent dropdown">
+                                    <a href="~/Sales/ProductSales/Get_Product_Base_On_Product_Group/1">Trang sức <i class="anm anm-angle-down-l"></i></a>
+                                    <ul class="dropdown">
+                                        <li><a href="~/Sales/ProductSales/Get_Product_Base_On_Category/Vòng cổ" class="site-nav">Vòng cổ</a></li>
+                                        <li><a href="~/Sales/ProductSales/Get_Product_Base_On_Category/Bông tai" class="site-nav">Bông tai <span class="lbl nm_label1">New</span> </a></li>
+                                        <li><a href="~/Sales/ProductSales/Get_Product_Base_On_Category/Đồng hồ" class="site-nav">Đồng hồ</a></li>
+                                        <li><a href="~/Sales/ProductSales/Get_Product_Base_On_Category/Vòng tay" class="site-nav">Vòng tay</a></li>
+                                        <li><a href="~/Sales/ProductSales/Get_Product_Base_On_Category/Nhẫn" class="site-nav">Nhẫn</a></li>
+                                    </ul>
+                                </li>
+                                <li class="lvl1 parent dropdown">
+                                    <a href="#">Liên hệ <i class="anm anm-angle-down-l"></i></a>
+                                    <ul class="dropdown">
+                                        <li><a href="blog-left-sidebar.html" class="site-nav">Gửi phản hồi</a></li>
+                                        <li><a href="~/Sales/RespondComplain/RespondComplain" class="site-nav">Khiếu nại</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-2 d-block d-lg-none mobile-logo">
+                        <div class="logo">
+                            <a href="~/Sales/HomeSales/Home">
+                                <img src="/Asset/assets/images/logo.jpg" alt="" title="" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-4 col-sm-3 col-md-3 col-lg-2">
+                        @if (ViewBag.is_logined == 1)
+                        {
+                            <div class="site-cart">
+                                <a href="#" class="site-header__cart" title="Giỏ hàng">
+                                    <i class="icon-2x anm anm-bag-l"></i>
+                                    <span id="CartCount" class="site-header__cart-count" data-cart-render="item_count"></span>
+                                </a>
+                                <div id="header-cart" class="block block-cart">
+                                    <ul class="mini-products-list">
+                                        @{
+                                            int sum = 0;
+                                        }
+                                        @foreach (ItemInCart item in (List<WebShop.Models.ItemInCart>)ViewBag.ItemInCart)
+                                        {
+                                            <li class="item">
+                                                <a class="product-image" href="~/Sales/ProductSales/Product_Detail/@item.product_id">
+                                                    <img src="@item.image_link" alt="" title="" />
+                                                </a>
+                                                <div class="product-details">
+                                                    <a @*href="~/Sales/Cart/Remove_Item/@item.product_id"*@ onclick="RemoveItemInCart(@item.product_id, '@item.size')" class="remove" style="cursor:pointer"><i class="anm anm-times-l" aria-hidden="true"></i></a>
+                                                    <a class="pName" href="~/Sales/ProductSales/Product_Detail/@item.product_id">@item.name</a>
+                                                    <div class="variant-cart">Size: @item.size</div>
+                                                    @*<div class="wrapQtyBtn">
+                                                            <div class="qtyField">
+                                                                <span class="label">Số lượng:</span>
+                                                                <a class="qtyBtn minus" href="javascript:void(0);"><i class="fa anm anm-minus-r" aria-hidden="true"></i></a>
+                                                                <input type="text" id="Quantity" name="quantity" value="@item.qty" class="product-form__input qty">
+                                                                <a class="qtyBtn plus" href="javascript:void(0);"><i class="fa anm anm-plus-r" aria-hidden="true"></i></a>
+                                                            </div>
+                                                        </div>*@
+                                                    <div class="priceRow">
+                                                        <div class="product-price">
+                                                            @{
+                                                                int amount = item.price * item.qty;
+                                                                sum = sum + amount;
+                                                            }
+                                                            <span class="money">Giá: <span class="total__money_cart">@amount</span> VNĐ</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        }
+                                    </ul>
+                                    <div class="total">
+                                        @*<div class="total-in">
+                                                <span class="label">Tổng tạm tính:</span><span class="product-price"><span class="All__total_money">@sum  </span>VNĐ</span>
+                                            </div>*@
+                                        <div class="buttonSet text-center">
+                                            <a href="~/Sales/Cart/Cart" class="btn btn-secondary btn--small">Xem giỏ hàng</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <div class="site-header__search">
+                            <button type="button" class="search-trigger"><i class="icon anm anm-search-l"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mobile-nav-wrapper" role="navigation">
+            <div class="closemobileMenu"><i class="icon anm anm-times-l pull-right"></i> Close Menu</div>
+            <ul id="MobileNav" class="mobile-nav">
+                <li class="lvl1 parent megamenu">
+                    <a href="~/Sales/HomeSales/Home">Trang chủ <i class="anm anm-plus-l"></i></a>
+                </li>
+                <li class="lvl1 parent megamenu">
+                    <a href="#">Sản phẩm <i class="anm anm-plus-l"></i></a>
+                </li>
+                <li class="lvl1 parent megamenu">
+                    <a href="product-layout-1.html">Đồ da <i class="anm anm-plus-l"></i></a>
+                    <ul>
+                        <li><a href="#" class="site-nav">Ví</a></li>
+                        <li><a href="#" class="site-nav">Dây lưng</a></li>
+                        <li><a href="#" class="site-nav">Túi xách</a></li>
+                        <li><a href="#" class="site-nav">Quai đồng hồ</a></li>
+                    </ul>
+                </li>
+                <li class="lvl1 parent megamenu">
+                    <a href="product-layout-1.html">Trang sức <i class="anm anm-plus-l"></i></a>
+                    <ul>
+                        <li><a href="#" class="site-nav">Vòng cổ</a></li>
+                        <li><a href="#" class="site-nav">Bông tai</a></li>
+                        <li><a href="#" class="site-nav">Đồng hồ</a></li>
+                        <li><a href="#" class="site-nav">Nhẫn</a></li>
+                        <li><a href="#" class="site-nav">Vòng tay</a></li>
+                    </ul>
+                </li>
+                <li class="lvl1 parent megamenu">
+                    <a href="blog-left-sidebar.html">Liên hệ <i class="anm anm-plus-l"></i></a>
+                    <ul>
+                        <li><a href="#" class="site-nav">Gửi phản hồi</a></li>
+                        <li><a href="#" class="site-nav">Khiếu nại</a></li>
+                    </ul>
+                </li>
+                <li class="lvl1">
+                    <a href="#"><b>Blog</b></a>
+                </li>
+            </ul>
+        </div>
+        @RenderBody();
+        <footer id="footer">
+            <div class="newsletter-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-7 w-100 d-flex justify-content-start align-items-center">
+                            <div class="display-table">
+                                <div class="display-table-cell footer-newsletter">
+                                    <div class="section-header text-center">
+                                        <label class="h2"><span>Đăng kí để nhận tin</span> mới nhất</label>
+                                    </div>
+                                    <form action="#" method="post">
+                                        <div class="input-group">
+                                            <input type="email" class="input-group__field newsletter__input" name="EMAIL" value="" placeholder="Địa chỉ email" required="">
+                                            <span class="input-group__btn">
+                                                <button type="submit" class="btn newsletter__submit" name="commit" id="Subscribe"><span class="newsletter__submit-text--large">Nhậnthôngbáo</span></button>
+                                            </span>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-5 d-flex justify-content-end align-items-center">
+                            <div class="footer-social">
+                                <ul class="list--inline site-footer__social-icons social-icons">
+                                    <li><a class="social-icons__link" href="#" target="_blank" title="Belle Multipurpose Bootstrap 4 Template on Facebook"><i class="icon icon-facebook"></i></a></li>
+                                    <li><a class="social-icons__link" href="#" target="_blank" title="Belle Multipurpose Bootstrap 4 Template on Twitter"><i class="icon icon-twitter"></i> <span class="icon__fallback-text">Twitter</span></a></li>
+                                    <li><a class="social-icons__link" href="#" target="_blank" title="Belle Multipurpose Bootstrap 4 Template on Pinterest"><i class="icon icon-pinterest"></i> <span class="icon__fallback-text">Pinterest</span></a></li>
+                                    <li><a class="social-icons__link" href="#" target="_blank" title="Belle Multipurpose Bootstrap 4 Template on Instagram"><i class="icon icon-instagram"></i> <span class="icon__fallback-text">Instagram</span></a></li>
+                                    <li><a class="social-icons__link" href="#" target="_blank" title="Belle Multipurpose Bootstrap 4 Template on Tumblr"><i class="icon icon-tumblr-alt"></i> <span class="icon__fallback-text">Tumblr</span></a></li>
+                                    <li><a class="social-icons__link" href="#" target="_blank" title="Belle Multipurpose Bootstrap 4 Template on YouTube"><i class="icon icon-youtube"></i> <span class="icon__fallback-text">YouTube</span></a></li>
+                                    <li><a class="social-icons__link" href="#" target="_blank" title="Belle Multipurpose Bootstrap 4 Template on Vimeo"><i class="icon icon-vimeo-alt"></i> <span class="icon__fallback-text">Vimeo</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="site-footer">
+                <div class="container">
+                    <div class="footer-top">
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-3 col-lg-3 footer-links">
+                                <h4 class="h4">Chọn nhanh</h4>
+                                <ul>
+                                    <li><a href="#">Đồ da</a></li>
+                                    <li><a href="#">Trang sức</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-3 col-lg-3 footer-links">
+                                <h4 class="h4">Thông tin</h4>
+                                <ul>
+                                    <li><a href="#">Về chúng tôi</a></li>
+                                    <li><a href="#">Việc làm</a></li>
+                                    <li><a href="#">Chính sách hoàn trả</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-3 col-lg-3 footer-links">
+                                <h4 class="h4">Dịch vụ khác</h4>
+                                <ul>
+                                    <li><a href="#">Giao hàng gấp</a></li>
+                                    <li><a href="#">Đặt hàng theo yêu cầu</a></li>
+                                    <li><a href="#">Chế tạo sản phẩm theo yêu cầu</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-3 col-lg-3 contact-box">
+                                <h4 class="h4">Liên hệ</h4>
+                                <ul class="addressFooter">
+                                    <li><i class="icon anm anm-map-marker-al"></i><p>p511 512 Tòa nhà S11,<br>HVKTQS</p></li>
+                                    <li class="phone"><i class="icon anm anm-phone-s"></i><p>(+84) 987135188</p></li>
+                                    <li class="email"><i class="icon anm anm-envelope-l"></i><p>lethenhatt@gmail.com</p></li>
+                                    <li class="email"><i class="icon anm anm-envelope-l"></i><p>minhhieu@gmail.com</p></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>-->
+                    <hr>
+                    
+                </div>
+            </div>
+        </footer>
+
+        <span id="site-scroll"><i class="icon anm anm-angle-up-r"></i></span>
+
+        <script src="~/Asset/assets/js/vendor/jquery-3.3.1.min.js"></script>
+        <script src="~/Asset/assets/js/vendor/jquery.cookie.js"></script>
+        <script src="~/Asset/assets/js/vendor/modernizr-3.6.0.min.js"></script>
+        <script src="~/Asset/assets/js/vendor/wow.min.js"></script>
+        <script src="~/Asset/assets/js/scripts.js"></script>
+        <script src="~/Asset/assets/js/bootstrap.min.js"></script>
+        <script src="~/Asset/assets/js/plugins.js"></script>
+        <script src="~/Asset/assets/js/popper.min.js"></script>
+        <script src="~/Asset/assets/js/lazysizes.js"></script>
+        <script src="~/Asset/assets/js/main.js"></script>
+        
+        <script>
+            function RemoveItemInCart(id, size) {
+                var form = new FormData();
+                form.append("product_id", id);
+                form.append("size", size);
+
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", '@Request.Url.Scheme://@Request.Url.Host:@Request.Url.Port/Cart/Remove_Item0', true);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        var content = xhr.responseText;
+                        var json_xl = JSON.parse(content);
+                        if (json_xl.Data.status == "OK") {
+                            window.location = "@Request.Url.Scheme://@Request.Url.Host:@Request.Url.Port/Sales/Cart/Cart";
+                        }
+                        else {
+                            alert("Lỗi xử lý!");
+                            return;
+                        }
+                    }
+                }
+                xhr.send(form);
+
+            }
+        </script>
+
+    </div>
+</body>
+</html>

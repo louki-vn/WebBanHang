@@ -1,0 +1,279 @@
+﻿     @model IEnumerable<WebShop.Models.PRODUCT_Plus>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Sales/Views/Shared/_Layout.cshtml";
+}
+
+<!--Body Content-->
+<div id="page-content">
+    <!--Home slider-->
+    <div class="slideshow slideshow-wrapper pb-section">
+        <div class="home-slideshow">
+            <div class="slide">
+                <div class="blur-up lazyload">
+                    <img class="blur-up lazyload" data-src="/Asset/assets/images/slideshow-banners/home8-jewelry-banner1.jpg" src="/Asset/assets/images/slideshow-banners/home8-jewelry-banner1.jpg" alt="Wedding bands" title="Wedding bands" />
+                    <div class="slideshow__text-wrap slideshow__overlay classic middle">
+                        <div class="slideshow__text-content middle">
+                            <div class="container">
+                                <div class="wrap-caption right">
+                                    <a href="~/Sales/ProductSales/Product"><span class="btn">Mua ngay</span> </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="blur-up lazyload">
+                    <img class="blur-up lazyload" data-src="/Asset/assets/images/slideshow-banners/home8-jewelry-banner2.jpg" src="/Asset/assets/images/slideshow-banners/home8-jewelry-banner2.jpg" alt="Shop New Collection" title="Shop New Collection" />
+                    <div class="slideshow__text-wrap slideshow__overlay classic middle">
+                        <div class="slideshow__text-content middle">
+                            <div class="container">
+                                <div class="wrap-caption left">
+                                    <a href="~/Sales/ProductSales/Product_Detail"><span class="btn">Mua ngay</span> </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Home slider-->
+    <!--Small Banners-->
+    <div class="section imgBanners">
+        <div class="container">
+            <div class="imgBnrOuter">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="section-header text-center">
+                            <h2 class="h2 heading-font">Bộ sưu tập mới</h2>
+                            <p>Phong cách hiện đại và cổ điển cho mọi lứa tuổi</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-6 pl-0">
+                        <div class="inner btmleft">
+                            <a href="~/Sales/ProductSales/Product_Detail/28">
+                                <img data-src="/Asset/assets/images/collection/jewellery-collection1.jpg" src="/Asset/assets/images/collection/jewellery-collection1.jpg" alt="" class="blur-up lazyload" />
+                                <span class="ttl">SỰ SANG TRỌNG QUÝ PHÁI</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-6 pr-0">
+                        <div class="inner center">
+                            <a href="~/Sales/ProductSales/Product_Detail/30">
+                                <img data-src="/Asset/assets/images/collection/jewellery-collection2.jpg" src="/Asset/assets/images/collection/jewellery-collection2.jpg" alt="" class="blur-up lazyload" />
+                                <span class="ttl">QUÀ CHO NGƯỜI ẤY</span>
+                            </a>
+                        </div>
+                        <div class="inner btmright mt-4">
+                            <a href="~/Sales/ProductSales/Product_Detail/29">
+                                <img data-src="/Asset/assets/images/collection/jewellery-collection3.jpg" src="/Asset/assets/images/collection/jewellery-collection3.jpg" alt="" class="blur-up lazyload" />
+                                <span class="ttl">DÀNH CHO TÌNH YÊU CỦA ĐỜI BẠN</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Small Banners-->
+    <!--Hot picks-->
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="section-header text-center">
+                        <h2 class="h2 heading-font">Đồ da nổi bật</h2>
+                        <p>Top những sản phẩm đồ da bán chạy nhất</p>
+                    </div>
+                </div>
+            </div>
+            <div class="productSlider-style2 grid-products">
+                @{
+                    int[] populartest = new int[ViewBag.qty];
+                    populartest[0] = 0;
+                    int s = 0;
+                    foreach (var a in Model)
+                    {
+                        populartest[s] = a.sold;
+                        s++;
+                    }
+                    for (int i = 0; i < 3; i++)
+                    {
+                        int biggest = populartest[0];
+                        int biggest_index = 0;
+                        for (int k = 0; k < populartest.Length; k++)
+                        {
+                            if (populartest[k] > biggest)
+                            {
+                                biggest_index = k;
+                                biggest = populartest[k];
+                            }
+                        }
+                        foreach (var a in Model)
+                        {
+                            if (a.sold == populartest[biggest_index])
+                            {
+                                <div class="col-12 item">
+                                    <!-- start product image -->
+                                    <div class="product-image">
+                                        <!-- start product image -->
+                                        <a href="~/Sales/ProductSales/Product_Detail/@a.product_id" class="grid-view-item__link">
+                                            <!-- image -->
+                                            <img class="primary blur-up lazyload" data-src="@a.image_link" src="@a.image_link" alt="image" title="product">
+                                            <!-- End image -->
+                                            <!-- Hover image -->
+                                            <img class="hover blur-up lazyload" data-src="@a.image_link" src="@a.image_link" alt="image" title="product">
+                                            <!-- End hover image -->
+                                        </a>
+                                        <!-- end product image -->
+                                        <!-- Start product button -->
+                                        <div class="variants add" onclick="Add_to_Cart('@ViewBag.is_logined', @a.product_id);">
+                                            <button class="btn btn-addto-cart" type="button" tabindex="0">Thêm vào giỏ hàng</button>
+                                        </div>
+                                        <!-- end product button -->
+                                    </div>
+                                    <!-- end product image -->
+                                    <!--start product details -->
+                                    <div class="product-details text-center">
+                                        <!-- product name -->
+                                        <div class="product-name">
+                                            <a href="~/Sales/ProductSales/Product_Detail/@a.product_id">@a.name</a>
+                                        </div>
+                                        <!-- End product name -->
+                                        <!-- product price -->
+                                        <div class="product-price">
+                                            <span class="price">@a.price VND</span>
+                                        </div>
+                                        <!-- End product price -->
+                                    </div>
+                                    <!-- End product details -->
+                                </div>
+                            }
+                        }
+                        populartest[biggest_index] = 0;
+                    }
+                }
+            </div>
+        </div>
+    </div>
+    <!--End Hot picks-->
+    <!--Store Feature-->
+    <div class="store-feature section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                    <ul class="display-table store-info">
+                        <li class="display-table-cell">
+                            <i class="icon anm anm-truck-l"></i>
+                            <h5>Giao hàng miễn phí toàn quốc</h5>
+                            <span class="sub-text">
+                                Vận chuyển nhanh chóng và miễn phí
+                            </span>
+                        </li>
+                        <li class="display-table-cell">
+                            <i class="icon anm anm-money-bill-ar"></i>
+                            <h5>Đổi trả dễ dàng</h5>
+                            <span class="sub-text">
+                                Chính sách đổi trả nhanh gọn, dễ dàng
+                            </span>
+                        </li>
+                        <li class="display-table-cell">
+                            <i class="icon anm anm-comments-l"></i>
+                            <h5>Hỗ trợ 24/7</h5>
+                            <span class="sub-text">
+                                Trung tâm hỗ trợ mua hàng, đặt hàng 24/7
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Store Feature-->
+    <!--Hero Banner With Text-->
+    <div class="section hero hero--medium hero__overlay bg-size">
+        <img class="bg-img" src="/Asset/assets/images/parallax-banners/jewellery-parallax.jpg" alt="" />
+        <div class="hero__inner">
+            <div class="container">
+                <div class="wrap-text right text-medium font-bold">
+                    <h2 class="h2 mega-title">Biến nó thành của bạn</h2>
+                    <div class="rte-setting mega-subtitle">Khiến món trang sức của bạn thêm ý nghĩa<br> bằng cách tự tay thiết kế chúng, biến chúng trở thành món trang sức duy nhất trên thế giới</div>
+                    <a href="#" class="btn">Tính năng này đang được phát triển</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Hero Banner With Text-->
+    <p id="hiden_text" style="display:none">@ViewBag.Number</p>
+</div>
+<!--End Body Content-->
+
+<script>
+        window.onload = function () {
+            const hiden_text = $('#hiden_text').html();
+            $('#CartCount').html(hiden_text);
+        }
+
+        function Add_to_Cart(is_Login, product_id) {
+            if (is_Login == "1") {
+                var count = Number($('#CartCount').html());
+                var alltotal = $('.All__total_money');
+                var total = document.querySelectorAll('.total__money_cart');
+                var form = new FormData();
+                form.append("product_id", product_id);
+
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", '@Request.Url.Scheme://@Request.Url.Host:@Request.Url.Port/HomeSales/HandleAdd_Cart', true);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        var content = xhr.responseText;
+                        var json_xl = JSON.parse(content);
+                        if (json_xl.Data.status == "OK") {
+                            alert("Thêm sản phẩm vào giỏ hàng thành công!");
+
+                            var li = `
+
+                            <li class="item">
+                                                <a class="product-image" href="~/Sales/ProductSales/Product_Detail/`+ product_id +`">
+                                                    <img src="`+ json_xl.Data.image_link + `" alt="" title="" />
+                                                </a>
+                                                <div class="product-details">
+                                                    <a href="@Request.Url.Scheme://@Request.Url.Host:@Request.Url.Port/Sales/Cart/Remove_Item/`+ product_id +`" class="remove"><i class="anm anm-times-l" aria-hidden="true"></i></a>
+                                                    <a class="pName" href="~/Sales/ProductSales/Product_Detail/`+product_id+`">`+ json_xl.Data.name + `</a>
+                                                    <div class="variant-cart">Size: `+ json_xl.Data.size + `</div>
+
+                                                    <div class="priceRow">
+                                                        <div class="product-price">
+                                                            <span class="money">Giá: <span class="total__money_cart">`+ json_xl.Data.amount + `</span> VNĐ</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                            </li>
+
+                            `;
+                            if (json_xl.Data.no_add == 1) {
+
+                            } else {
+                                $('#header-cart .mini-products-list').append(li);
+                                count++;
+                                $('#CartCount').html(count);
+                            }
+
+                        }
+                        else {
+
+                            return;
+                        }
+                    }
+                }
+                xhr.send(form);
+            }
+            else {
+                alert("Bạn chưa đăng nhập!!");
+            }
+        }
+</script>

@@ -1,0 +1,137 @@
+﻿@model List<WebShop.Models.TRANSACTION>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            /**/
+            alert("Giao dịch này đã được báo cáo!");
+            /**/
+        };
+    </script>
+}
+
+@{
+    if (ViewBag.is_logined == 1)
+    {
+        <div class="row m-t-30">
+            <div class="col-md-12">
+                <!-- USER DATA-->
+                <div class="user-data m-b-30">
+                    <!-- DATA TABLE -->
+                    <h3 class="title-3 text-center m-b-30">
+                        <i class="zmdi zmdi-shopping-cart"></i>Giao dịch
+                    </h3>
+                    <div class="table-data__tool">
+                        @using (Html.BeginForm("Filter", "Order", FormMethod.Post))
+                        {
+                            <div class="table-data__tool-left">
+                                <div class="rs-select2--light rs-select2--md">
+                                    <select class="js-select2" name="filter">
+                                        <option selected="selected" value="3">Phân loại</option>
+                                        <option value="0">Chờ xử lí</option>
+                                        <option value="1">Đang xử lý</option>
+                                        <option value="2">Đã giao hàng</option>
+                                    </select>
+                                    <div class="dropDownSelect2"></div>
+                                </div>
+                                <button class="au-btn-filter">
+                                    <i class="zmdi zmdi-filter-list"></i>Lọc
+                                </button>
+                            </div>
+                        }
+                    </div>
+                    <div class="table-responsive table-responsive-data2">
+                        <table class="table table-data2">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Mã giao dịch</th>
+                                    <th>MÃ khách hàng</th>
+                                    <th>Tên khách hàng</th>
+                                    <th>Gia tri</th>
+                                    <th>Địa chỉ giao hàng</th>
+                                    <th>Số điện thoại</th>
+                                    <th>Phương thức thanh toán</th>
+
+                                    <th>Tình trạng</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr class="tr-shadow">
+                                        <td></td>
+                                        <td id="id @item.transaction_id">@item.transaction_id</td>
+                                        <td id="mem_id @item.transaction_id">@item.member_id</td>
+                                        <td>@item.member_name</td>
+                                        <td id="amount @item.transaction_id">@item.amount</td>
+                                        <td id="delivery @item.transaction_id">@item.delivery</td>
+                                        <td id="id @item.transaction_id">@item.member_phone_number</td>
+                                        <td id="payment @item.transaction_id">@item.payment</td>
+                                        <td>
+                                            @if (item.status == 0)
+                                            {
+                                                <span class="status--process">Chờ xử lý</span>
+                                            }
+                                            else if (item.status == 1)
+                                            {
+                                                <span class="status--process">Đa tiep nhan</span>
+                                            }
+                                            else if (item.status == 2)
+                                            {
+                                                <span class="status--process">Đang giao hang</span>
+                                            }
+                                            else if (item.status == 4)
+                                            {
+                                                <span class="status--process">Đa huy</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="status--denied">Đã giao hàng</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (@item.status != 3)
+                                            {
+                                                <div class="table-data-feature">
+
+                                                    <a href="~/Admin/Order/Report/@item.transaction_id">
+                                                        <button class="item" data-toggle="tooltip" data-target="#" data-placement="top" title="Report">
+                                                            <i class="zmdi zmdi-archive"></i>
+                                                        </button>
+                                                    </a>
+
+                                                    @*<button class="item" data-toggle="modal" data-placement="top" title="Edit" data-target="#">
+                                                        <i class="zmdi zmdi-edit"></i>
+                                                    </button>
+
+                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                        <i class="zmdi zmdi-delete"></i>
+                                                    </button>*@
+                                                </div>
+                                            }
+
+                                        </td>
+                                    </tr>
+                                    <tr class="spacer"></tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- END DATA TABLE -->
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <h1>Bạn phải đăng nhập bằng quyền Admin để sử dụng chức năng này</h1>
+        <a href="@Url.Action("Login", null, new { area = "Sales", controller = "Login"}, Request.Url.Scheme) ">Đăng nhập ngay</a>
+    }
+}

@@ -1,0 +1,530 @@
+﻿@model List<WebShop.Models.ItemInCart>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<style>
+    /*--thank you pop starts here--*/
+    .thank-you-pop {
+        width: 100%;
+        padding: 20px;
+        text-align: center;
+    }
+
+        .thank-you-pop img {
+            width: 76px;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+            margin-bottom: 25px;
+        }
+
+        .thank-you-pop h1 {
+            font-size: 42px;
+            margin-bottom: 25px;
+            color: #5C5C5C;
+        }
+
+        .thank-you-pop p {
+            font-size: 20px;
+            margin-bottom: 27px;
+            color: #5C5C5C;
+        }
+
+        .thank-you-pop h3.cupon-pop {
+            font-size: 25px;
+            margin-bottom: 40px;
+            color: #222;
+            display: inline-block;
+            text-align: center;
+            padding: 10px 20px;
+            border: 2px dashed #222;
+            clear: both;
+            font-weight: normal;
+        }
+
+            .thank-you-pop h3.cupon-pop span {
+                color: #03A9F4;
+            }
+
+        .thank-you-pop a {
+            display: inline-block;
+            margin: 0 auto;
+            padding: 9px 20px;
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 14px;
+            background-color: #8BC34A;
+            border-radius: 17px;
+        }
+
+            .thank-you-pop a i {
+                margin-right: 5px;
+                color: #fff;
+            }
+
+    #ignismyModal .modal-header {
+        border: 0px;
+    }
+    /*--thank you pop ends here--*/
+
+    th {
+        background-color: #f2f2f2;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
+    .modal__info {
+        position: fixed;
+        width: 600px;
+        height: 600px;
+        background-color: #ffff;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        top: 150px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 200;
+        border-radius: 8px;
+        display: none;
+    }
+
+    .layout__page {
+        z-index: 101;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.7);
+        display: none;
+    }
+
+    .modal__info h3 {
+        text-align: center;
+        margin-top: 24px;
+    }
+
+    .modal__info .fa-times {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        font-size: 18px;
+        cursor: pointer;
+    }
+
+    .input__info {
+        width: 400px;
+        margin: 0 auto;
+        margin-top: 80px;
+    }
+
+        .input__info input {
+            margin-bottom: 12px;
+        }
+</style>
+
+
+<!--Body Content-->
+<div id="page-content">
+    <!--Page Title-->
+    <div class="page section-header text-center">
+        <div class="page-title">
+            <div class="wrapper"><h1 class="page-width">Bán hàng</h1></div>
+        </div>
+    </div>
+    <!--End Page Title-->
+
+    <div class="container" style="height:800px">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 main-col">
+
+                <div style="display:flex; justify-content:space-between; align-items:center">
+                    <form class="GetProductShop mt-2 col-lg-6" method="post" action="~/Admin/CartShop/GetProduct">
+                        <input type="text" name="id" required class="col-lg-6" placeholder="Nhập id sản phẩm..." id="idVal" style="border: 1px solid #ccc" />
+                        <input class="btn btn-secondary ml-4" id="Getproduct" type="submit" value="Lấy sản phẩm" onclick="Getsp();" />
+                    </form>
+
+                    <div class="col-lg-6 mt-2" style="text-transform:uppercase; font-size:15px;">
+                        <h5>Thông tin người mua hàng</h5>
+                        <div class="row mt-2">
+                            <div class="col-lg-6">
+                                <input type="text" class="usename" style="border: 1px solid #ccc" required placeholder="Nhập tên người mua hàng..." /> <br />
+                                <input class="mt-2 numberphone" type="text" style="border: 1px solid #ccc" required placeholder="Nhập số điện thoại người mua..." />
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div style="display: flex;">
+                                    <span class=""><strong>Tổng số tiền:</strong></span>
+                                    &nbsp;
+                                    &nbsp;
+                                    <span class=""><span class="AllBuy"></span> VND</span>
+                                </div>
+
+                                <div class="btn btn-secondary ml-4 mt-3" id="Pay">Thanh toán</div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <form action="#" method="post" class="cart style2 mt-3" style="height:600px; overflow-y:auto">
+                    <table style="text-align:left;position:relative">
+                        <thead class="cart__row cart__header">
+                            <tr>
+                                <th colspan="2" class="text-center">Sản phẩm</th>
+                                <th class="text-center">Giá</th>
+                                <th class="text-center">Số lượng</th>
+                                <th class="text-right">Tổng tiền</th>
+                                <th class="action">&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                foreach (var a in Model)
+                                {
+
+                                    <tr class="cart__row border-bottom line1 cart-flex border-top">
+                                        <td class="cart__image-wrapper cart-flex-item">
+                                            <a href="~/Sales/ProductSales/Product_Detail/@a.product_id"><img class="cart__image" src="@a.image_link.ToString()" alt="Image"></a>
+                                        </td>
+                                        <td class="cart__meta small--text-left cart-flex-item">
+                                            <div class="list-view-item__title">
+                                                <a href="~/Sales/ProductSales/Product_Detail/@a.product_id">@a.name </a>
+                                            </div>
+
+                                            <div class="cart__meta-text">
+                                                Size: @a.size
+                                            </div>
+                                        </td>
+                                        <td class="cart__price-wrapper cart-flex-item" style="text-align:center">
+                                            <p id="price_@a.product_id" style="display:inline">@a.price</p>
+                                            <span class="price"> VND</span>
+                                        </td>
+                                        <td class="cart__update-wrapper cart-flex-item text-right">
+                                            <div class="cart__qty text-center">
+                                                <div class="qtyField">
+                                                    <a class="qtyBtn minus" href="javascript:void(0);" onclick="MinusSL(@a.product_id);"><i class="icon icon-minus"></i></a>
+                                                    <input class="cart__qty-input qty" type="text" name="updates[]" id="qty_@a.product_id" value="@a.qty" pattern="[0-9]*">
+                                                    <a class="qtyBtn plus" href="javascript:void(0);" onclick="AddSL(@a.product_id);"><i class="icon icon-plus"></i></a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="text-right small--hide cart-price">
+                                            @{
+                                                int amount = a.price * a.qty;
+                                            }
+                                            <div class="mr-3"><span class="total_money_@a.product_id" id="total_money">@amount</span>   VND </div>
+                                        </td>
+                                        @*remove button*@
+                                        <td class="text-center small--hide"><a href="~/Admin/CartShop/RemoveItem/@a.product_id" class="btn btn--secondary cart__remove" title="Xoá sản phẩm"><i id="remove_button_id" class="icon icon anm anm-times-l"></i></a></td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                        <tfoot>
+
+                        </tfoot>
+                    </table>
+                </form>
+                <a href="~/Admin/CartShop/RemoveAllItem" class="btn btn-secondary btn--small  small--hide mt-3" style="position:relative; left: 980px;">Xóa tất cả</a>
+            </div>
+
+            <!--<div class="container mt-4">
+                <h5 class="ml-3">Thông tin người mua hàng</h5>
+                <div class="row">
+                    <div class="col-10 col-sm-12 col-md-4 col-lg-6 mb-4">
+                        <form action="~/Admin/CartShop/SaveInfomationUser" method="post">
+                            <div class="card-body">
+                                <fieldset>
+                                    <div>
+                                        <label>Tên người mua*</label>
+                                        <input name="name" required placeholder="Tên người mua" id="input-cardname" class="form-control" type="text">
+                                    </div>
+                                    <div>
+                                        <label>Số điện thoại người mua*</label>
+                                        <input name="numberphone" value="" required placeholder="Số điện thoại người mua" id="input-cardname" class="form-control" type="text">
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                            <input type="submit" class="btn btn-secondary btn--small small--hide mt-3" id="saveinfo" value="Lưu thông tin" />
+                                        </div>
+                                        <div class="form-group col-md-6 col-lg-6 col-xl-6 required mt-3">
+                                            <img class="padding-25px-top xs-padding-5px-top" src="/Asset/assets/images/payment-img.jpg" alt="card" title="card" />
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </form>
+
+
+                    </div>
+
+
+
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 cart__footer">
+                        <h5 class="mb-4">Thanh toán</h5>
+                        <div class="solid-border">
+                            <div class="row border-bottom pb-2">
+                                <span class="col-12 col-sm-6 cart__subtotal-title">Tiền sản phẩm</span>
+                                @{
+
+                                }
+                                <span class="col-12 col-sm-6 text-right"><span class="All_Total_Money"></span>VND</span>
+                            </div>-->
+            @*<div class="row border-bottom pb-2 pt-2">
+                    <span class="col-12 col-sm-6 cart__subtotal-title">Chiết khấu</span>
+                    <span class="col-12 col-sm-6 text-right"> VND</span>
+                </div>*@
+            <!--<div class="row border-bottom pb-2 pt-2">
+                                <span class="col-12 col-sm-6 cart__subtotal-title">Giao hàng</span>
+                                <span class="col-12 col-sm-6 text-right">Miễn phí</span>
+                            </div>
+                            <div class="row border-bottom pb-2 pt-2">
+                                <span class="col-12 col-sm-6 cart__subtotal-title"><strong>Tổng số tiền</strong></span>
+                                <span class="col-12 col-sm-6 cart__subtotal-title cart__subtotal text-right"><span class="AllBuy"></span> VND</span>
+                            </div>
+                            <a class="btn btn-block checkout mt-3" data-toggle="modal" href="#ignismyModal" style="background-color: #6c757d" onclick="Payment();">Thanh toán</a>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+        </div>
+    </div>
+
+
+    <div class="modal fade mt-lg-5" id="ignismyModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label=""><span>×</span></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="thank-you-pop">
+                        <img src="http://goactionstations.co.uk/wp-content/uploads/2017/03/Green-Round-Tick.png" alt="">
+                        <h1>Thank You!</h1>
+                        <p>Bạn đã thanh toán thành công!</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    @*Layout xác nhận thanh toán*@
+    <div class="layout__page"></div>
+    <div class="modal__info">
+        <h3>Thông tin mua hàng</h3>
+        <i class="fas fa-times"></i>
+        <div class="input__info">
+            <label>Tên người mua:</label><br />
+            <input type="text" style="border: 1px solid #ccc" class="modal__usename" disabled />
+            <label>Số điện thoại người mua:</label><br />
+            <input type="text" style="border: 1px solid #ccc" class="modal__numberphone" disabled />
+            <label>Số tiền thanh toán:</label><br />
+            <input type="text" class="modal__price" style="border: 1px solid #ccc" disabled />
+            <span class="type_monney" style="position:absolute; font-size: 18px; right:112px; top:332px">VND</span>
+            <a class="btn btn-block checkout mt-3" data-toggle="modal" href="#ignismyModal" style="background-color: #6c757d" onclick="Payment();">Xác nhận thanh toán</a>
+        </div>
+    </div>
+
+</div>
+<!--End Body Content-->
+
+<script>
+    window.onload = function () {
+        const AllTotal = document.querySelectorAll('#total_money');
+        const All_Total_Money = $('.All_Total_Money');
+        const AllBuy = $('.AllBuy');
+
+        var t = 0;
+        //tính tổng số tiền của tất cả các món hàng
+        for (let i = 0; i < AllTotal.length; i++) {
+            t = t + Number(AllTotal[i].textContent);
+        }
+        All_Total_Money.html(t);
+        AllBuy.html(t);
+    }
+    //Xử lý tăng số lượng sản phẩm
+    function AddSL(product_id) {
+        const str1 = '#qty_' + product_id.toString();
+        const str2 = '#price_' + product_id.toString();
+        const str3 = '.total_money_' + product_id.toString();
+        const AllTotal = document.querySelectorAll('#total_money');
+        const All_Total_Money = $('.All_Total_Money');
+        const AllBuy = $('.AllBuy');
+
+        const value_qty = Number($(str1).val()) + 1;
+        const value_money = Number($(str2).html());
+        const value_total = $(str3);
+
+        const total = value_qty * value_money;
+        value_total.html(total);
+
+        var t = 0;
+        //tính tổng số tiền của tất cả các món hàng
+        for (let i = 0; i < AllTotal.length; i++) {
+            t = t + Number(AllTotal[i].textContent);
+        }
+        All_Total_Money.html(t);
+        AllBuy.html(t);
+
+        //Lưu dữ liệu vào session sự kiện số lượng sản phẩm thay đổi đã xảy ra
+        // Sử dụng AJAX để truyền dữ liệu
+        var form = new FormData();
+        form.append("qty", value_qty);
+        form.append("product_id", product_id);
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", '@Request.Url.Scheme://@Request.Url.Host:@Request.Url.Port/CartShop/Handle_qty', true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                var content = xhr.responseText;
+                var json_dt = JSON.parse(content);
+                if (json_dt.Data.status == "OK") {
+                    // Xử lý sự kiện
+
+                }
+                else {
+                    //alert(json_dt.Data.message);
+                    return;
+                }
+            }
+        }
+        xhr.send(form);
+    }
+
+    //Xử lý giảm số lượng sản phẩm
+    function MinusSL(product_id) {
+        const str1 = '#qty_' + product_id.toString();
+        const str2 = '#price_' + product_id.toString();
+        const str3 = '.total_money_' + product_id.toString();
+        const AllTotal = document.querySelectorAll('#total_money');
+        const All_Total_Money = $('.All_Total_Money');
+        const AllBuy = $('.AllBuy');
+
+        const value_qty = Number($(str1).val()) - 1;
+        const value_money = Number($(str2).html());
+        const value_total = $(str3);
+
+        // Không cho số lượng sản phẩm <= 0
+        if (value_qty > 0) {
+            const total = value_qty * value_money;
+            value_total.html(total);
+        }
+
+        var t = 0;
+        //tính tổng số tiền của tất cả các món hàng
+        for (let i = 0; i < AllTotal.length; i++) {
+            t = t + Number(AllTotal[i].textContent);
+        }
+        All_Total_Money.html(t);
+        AllBuy.html(t);
+
+
+        var form = new FormData();
+        form.append("qty", value_qty);
+        form.append("product_id", product_id);
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", '@Request.Url.Scheme://@Request.Url.Host:@Request.Url.Port/CartShop/Handle_qty', true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                var content = xhr.responseText;
+                var json_dt = JSON.parse(content);
+                if (json_dt.Data.status == "OK") {
+                    // Xử lý sự kiện
+
+                }
+                else {
+                    //alert(json_dt.Data.message);
+                    return;
+                }
+            }
+        }
+        xhr.send(form);
+
+    }
+
+    // Sự kiện ấn nút thanh toán
+    document.querySelector('#Pay').onclick = function () {
+        var amount = Number($('.AllBuy').html());
+        if (amount == 0) {
+            alert("Bạn chưa mua hàng!")
+        }
+        else {
+                 //Sử dụng Ajax truyền dữ liệu
+            const usename = $('.usename').val();
+            const numberphone = $('.numberphone').val();
+
+            var form = new FormData();
+            form.append("usename", usename);
+            form.append("numberphone", numberphone);
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", '@Request.Url.Scheme://@Request.Url.Host:@Request.Url.Port/CartShop/SaveInfomationUser', true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var content = xhr.responseText;
+                    var json_xl = JSON.parse(content);
+                    if (json_xl.Data.status == "OK") {
+                        //Hàm xử lý
+                        $('.layout__page').fadeIn();
+                        $('.modal__info').fadeIn();
+                    } else {
+                        alert(json_xl.Data.message);
+                        return;
+                    }
+                }
+            }
+
+            xhr.send(form);
+            const allbuy = $('.AllBuy').html();
+            // Truyền data vào modal__form
+            $('.modal__usename').val(usename);
+            $('.modal__numberphone').val(numberphone);
+            $('.modal__price').val(allbuy);
+        }
+
+    }
+
+    document.querySelector('.fas.fa-times').onclick = function () {
+        $('.layout__page').fadeOut();
+        $('.modal__info').fadeOut();
+    };
+
+    //Lưu thông tin thanh toán các sản phẩm
+    function Payment() {
+        var amount = $('.AllBuy').html();
+        var form = new FormData();
+        form.append("amount", amount);
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", '@Request.Url.Scheme://@Request.Url.Host:@Request.Url.Port/CartShop/SaveInfoPayment', true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                var content = xhr.responseText;
+                var json_xl = JSON.parse(content);
+                if (json_xl.Data.status == "OK") {
+                    //Hàm xử lý
+                    $('.layout__page').fadeOut();
+                    $('.modal__info').fadeOut();
+                    setTimeout(function () {
+                        window.location.reload();
+                    },2000)
+
+                } else {
+                    alert(json_xl.Data.message);
+                    return;
+                }
+            }
+        }
+
+        xhr.send(form);
+    }
+
+</script>

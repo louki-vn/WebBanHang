@@ -1,0 +1,240 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{
+    if (ViewBag.is_logined == 1)
+    {
+        <!-- MAIN CONTENT content-->
+        <div class="main-content">
+            <div class="section__content section__content--p30">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="overview-wrap">
+                                <h2 class="title-1">Tổng Quan</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-t-25">
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="overview-item overview-item--c1">
+                                <div class="overview__inner">
+                                    <div class="overview-box clearfix">
+                                        <div class="icon">
+                                            <i class="zmdi zmdi-account-o"></i>
+                                        </div>
+                                        <div class="text">
+                                            <h2>@ViewBag.Member_count</h2>
+                                            <span>Khách hàng</span>
+                                        </div>
+                                    </div>
+                                    <div class="overview-chart">
+                                        <canvas id="widgetChart1"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="overview-item overview-item--c2">
+                                <div class="overview__inner">
+                                    <div class="overview-box clearfix">
+                                        <div class="icon">
+                                            <i class="zmdi zmdi-shopping-cart"></i>
+                                        </div>
+                                        <div class="text">
+                                            <h2>@ViewBag.Amount</h2>
+                                            <span>Sản phẩm đã bán</span>
+                                        </div>
+                                    </div>
+                                    <div class="overview-chart">
+                                        <canvas id="widgetChart2"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="overview-item overview-item--c3">
+                                <div class="overview__inner">
+                                    <div class="overview-box clearfix">
+                                        <div class="icon">
+                                            <i class="zmdi zmdi-calendar-note"></i>
+                                        </div>
+                                        <div class="text">
+                                            <h2>@ViewBag.Order_count</h2>
+                                            <span>Đơn hàng</span>
+                                        </div>
+                                    </div>
+                                    <div class="overview-chart">
+                                        <canvas id="widgetChart3"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="overview-item overview-item--c4">
+                                <div class="overview__inner">
+                                    <div class="overview-box clearfix">
+                                        <div class="icon">
+                                            <i class="zmdi zmdi-money"></i>
+                                        </div>
+                                        <div class="text">
+                                            <h2>@ViewBag.Total</h2>
+                                            <span>Tổng thu</span>
+                                        </div>
+                                    </div>
+                                    <div class="overview-chart">
+                                        <canvas id="widgetChart4"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="au-card recent-report">
+                                <div class="au-card-inner">
+                                    <h3 class="title-2">Biểu đồ</h3>
+                                    <div class="chart-info">
+                                        <div class="chart-info__left">
+                                            <div class="chart-note">
+                                                <span class="dot dot--blue"></span>
+                                                <span>Trang sức</span>
+                                            </div>
+                                            <div class="chart-note mr-0">
+                                                <span class="dot dot--green"></span>
+                                                <span>Đồ da</span>
+                                            </div>
+                                        </div>
+                                        <div class="chart-info__right">
+                                            <div class="chart-statis">
+                                                <span class="index incre">
+                                                    <i class="zmdi zmdi-long-arrow-up"></i>25%
+                                                </span>
+                                                <span class="label">Trang sức</span>
+                                            </div>
+                                            <div class="chart-statis mr-0">
+                                                <span class="index decre">
+                                                    <i class="zmdi zmdi-long-arrow-down"></i>10%
+                                                </span>
+                                                <span class="label">Đồ da</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="recent-report__chart">
+                                        <canvas id="recent-rep-chart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="au-card chart-percent-card">
+                                <div class="au-card-inner">
+                                    <h3 class="title-2 tm-b-5">Biểu đồ %</h3>
+                                    <div class="row no-gutters">
+                                        <div class="col-xl-6">
+                                            <div class="chart-note-wrap">
+                                                <div class="chart-note mr-0 d-block">
+                                                    <span class="dot dot--blue"></span>
+                                                    <span>Trang sức</span>
+                                                </div>
+                                                <div class="chart-note mr-0 d-block">
+                                                    <span class="dot dot--red"></span>
+                                                    <span>Đồ da</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6">
+                                            <div class="percent-chart">
+                                                <canvas id="percent-chart"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h2 class="title-1 m-b-25">Top sản phẩm bán chạy nhất</h2>
+                            <div class="table-responsive table--no-card m-b-40">
+                                <table class="table table-borderless table-striped table-earning">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Tên sản phẩm</th>
+                                            <th>Danh mục</th>
+                                            <th>Thương hiệu</th>
+                                            <th class="text-right">Số lượng đã bán</th>
+                                            <th class="text-right">Đơn giá</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in (List<WebShop.Models.PRODUCT>)ViewBag.TopProduct)
+                                        {
+                                        <tr>
+                                            <td>@item.product_id</td>
+                                            <td>@item.name</td>
+                                            @foreach (KeyValuePair<int, string> cate in (Dictionary<int, string>)ViewData["Category"])
+                                            {
+                                                if (@cate.Key == item.category_id)
+                                                {
+                                                    <td id="category @item.product_id">@cate.Value</td>
+                                                }
+                                            }
+                                            
+                                                @foreach (KeyValuePair<int, string> brand in (Dictionary<int, string>)ViewBag.Brand)
+                                                {
+                                                    if (@brand.Key == item.brand_id)
+                                                    {
+                                                    <td id="brand @item.product_id">@brand.Value</td>
+                                                }
+                                            }
+                                                <td class="text-right">@item.sold</td>
+                                                <td class="text-right">@item.price VNĐ</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <h2 class="title-1 m-b-25">Top khách hàng thường xuyên</h2>
+                            <div class="au-card au-card--bg-blue au-card-top-countries m-b-40">
+                                <div class="au-card-inner">
+                                    <div class="table-responsive">
+                                        <table class="table table-top-countries">
+                                            <thead>
+
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in (List<WebShop.Models.Mem_Cart>)ViewBag.TopMem)
+                                                {
+                                                    <tr>
+                                                        <td>@item.name</td>
+                                                        <td class="text-right">@item.amount VND</td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END MAIN CONTENT-->
+
+    }
+    else
+    {
+        <h1>Bạn phải đăng nhập bằng quyền Admin để sử dụng chức năng này</h1>
+        <a href="@Url.Action("Login", null, new { area = "Sales", controller = "Login"}, Request.Url.Scheme) ">Đăng nhập ngay</a>
+    }
+}
+
+

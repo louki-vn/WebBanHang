@@ -1,0 +1,516 @@
+﻿@model IEnumerable<WebShop.Models.PRODUCT_Plus>
+@{
+    ViewBag.Title = "Product_Detail";
+    Layout = "~/Areas/Sales/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    WebShop.Models.PRODUCT_Plus primary_product = new WebShop.Models.PRODUCT_Plus();
+    foreach (var a in Model)
+    {
+        if (a.product_id.ToString() == ViewBag.product_id)
+        {
+            primary_product = a;
+        }
+    }
+}
+
+
+<!--Body Content-->
+<div id="page-content">
+    <!--MainContent-->
+    <div id="MainContent" class="main-content" role="main">
+        <div id="ProductSection-product-template" class="product-template__container prstyle2 container">
+            <!--#ProductSection-product-template-->
+            <div class="product-single product-single-1">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="product-details-img product-single__photos bottom">
+                            <div class="zoompro-wrap product-zoom-right pl-20">
+                                <div class="zoompro-span">
+                                    <img class="blur-up lazyload zoompro" data-zoom-image="@primary_product.image_link" alt="" src="@primary_product.image_link" />
+                                </div>
+                            </div>
+                            <div class="product-thumb product-thumb-1">
+                            </div>
+                            <div class="lightboximages">
+                                <a href="/Asset/assets/images/product-detail-page/camelia-reversible-big1.jpg" data-size="1462x2048"></a>
+                                <a href="/Asset/assets/images/product-detail-page/camelia-reversible-big2.jpg" data-size="1462x2048"></a>
+                                <a href="/Asset/assets/images/product-detail-page/camelia-reversible-big3.jpg" data-size="1462x2048"></a>
+                                <a href="/Asset/assets/images/product-detail-page/camelia-reversible7-big.jpg" data-size="1462x2048"></a>
+                                <a href="/Asset/assets/images/product-detail-page/camelia-reversible-big4.jpg" data-size="1462x2048"></a>
+                                <a href="/Asset/assets/images/product-detail-page/camelia-reversible-big5.jpg" data-size="1462x2048"></a>
+                                <a href="/Asset/assets/images/product-detail-page/camelia-reversible-big6.jpg" data-size="731x1024"></a>
+                                <a href="/Asset/assets/images/product-detail-page/camelia-reversible-big7.jpg" data-size="731x1024"></a>
+                                <a href="/Asset/assets/images/product-detail-page/camelia-reversible-big8.jpg" data-size="731x1024"></a>
+                                <a href="/Asset/assets/images/product-detail-page/camelia-reversible-big9.jpg" data-size="731x1024"></a>
+                                <a href="/Asset/assets/images/product-detail-page/camelia-reversible-big10.jpg" data-size="731x1024"></a>
+                            </div>
+
+                        </div>
+                        <!--Product Feature-->
+                        <div class="prFeatures">
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-6 feature">
+                                    <img src="/Asset/assets/images/credit-card.png" alt="Safe Payment" title="Safe Payment" />
+                                    <div class="details"><h3>Thanh toán an toàn</h3>Thanh toán bằng những hình thức phổ biến, an toàn</div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-6 feature">
+                                    <img src="/Asset/assets/images/shield.png" alt="Confidence" title="Confidence" />
+                                    <div class="details"><h3>Confidence</h3>Bảo vệ tài khoản và thông tin cá nhân của bạn</div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-6 feature">
+                                    <img src="/Asset/assets/images/worldwide.png" alt="Worldwide Delivery" title="Worldwide Delivery" />
+                                    <div class="details"><h3>Giao hàng toàn quốc</h3>FREE &amp; giao hàng nhanh tới hơn 50 tỉnh thành.</div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-6 feature">
+                                    <img src="/Asset/assets/images/phone-call.png" alt="Hotline" title="Hotline" />
+                                    <div class="details"><h3>Hotline</h3>Liên hệ để được giải đáp những thắc mắc tại (+84) 987135188</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End Product Feature-->
+                    </div>
+                    <!--Primary Product Detail-->
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="product-single__meta">
+                            <h1 class="product-single__title">@primary_product.name</h1>
+                            <div class="product-nav clearfix">
+                                <a href="#" class="next" title="Next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                            </div>
+                            <div class="product-review">
+                                @{
+                                    int number_star = primary_product.sold / 50 + 1;
+                                    if (number_star < 5)
+                                    {
+                                        for (int sao = 0; sao < (primary_product.sold / 50 + 1); sao++)
+                                        {
+                                            <i class="font-13 fa fa-star"></i>
+                                        }
+                                        for (int ksao = 0; ksao < (5 - number_star); ksao++)
+                                        {
+                                            <i class="font-13 fa fa-star-o"></i>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <i class="font-13 fa fa-star"></i>
+                                        <i class="font-13 fa fa-star"></i>
+                                        <i class="font-13 fa fa-star"></i>
+                                        <i class="font-13 fa fa-star"></i>
+                                        <i class="font-13 fa fa-star"></i>
+                                    }
+                                }
+
+                                @{
+                                    int? bu_percent = 100 - primary_product.percent;
+
+                                    int? old_price = (primary_product.price) / bu_percent * 100;
+                                    int? save = old_price - primary_product.price;
+                                }
+                            </div>
+                            <p class="product-single__price product-single__price-product-template">
+                                <span class="visually-hidden">Regular price</span>
+                                <s id="ComparePrice-product-template"><span class="money">@old_price VNĐ</span></s>
+                                <span class="product-price__price product-price__price-product-template product-price__sale product-price__sale--single">
+                                    <span id="ProductPrice-product-template"><span class="money">@primary_product.price VND</span></span>
+                                </span>
+                                <span class="discount-badge">
+                                    <span class="devider">|</span>&nbsp;
+                                    <span>Tiết kiệm</span>
+                                    <span id="SaveAmount-product-template" class="product-single__save-amount">
+                                        <span class="money">@save</span>
+                                    </span>
+                                    <span class="off">(<span>@primary_product.percent</span>%)</span>
+                                </span>
+                            </p>
+                            <div class="product-single__description rte">
+                                <p>@primary_product.content</p>
+                            </div>
+                            <form method="post" action="~/Sales/ProductSales/Add_To_Cart2/@primary_product.product_id" id="product_form_10508262282" accept-charset="UTF-8" class="product-form product-form-product-template hidedropdown" enctype="multipart/form-data">
+                                <div class="swatch clearfix swatch-1 option2" data-option-index="1">
+                                    <div class="product-form__item">
+                                        @*<label class="header">Size: <span class="slVariant">XS</span></label>*@
+                                        <div data-value="XS" class="swatch-element xs available">
+                                            <input class="swatchInput" id="swatch-1-xs" type="radio" name="option-1" value="XS">
+                                            <label class="swatchLbl large rounded" for="swatch-1-xs" title="XS">XS</label>
+                                        </div>
+                                        <div data-value="S" class="swatch-element s available">
+                                            <input class="swatchInput" id="swatch-1-s" type="radio" name="option-1" value="S">
+                                            <label class="swatchLbl large rounded" for="swatch-1-s" title="S">S</label>
+                                        </div>
+                                        <div data-value="M" class="swatch-element m available">
+                                            <input class="swatchInput" id="swatch-1-m" type="radio" name="option-1" value="M">
+                                            <label class="swatchLbl large rounded" for="swatch-1-m" title="M">M</label>
+                                        </div>
+                                        <div data-value="L" class="swatch-element l available">
+                                            <input class="swatchInput" id="swatch-1-l" type="radio" name="option-1" value="L">
+                                            <label class="swatchLbl large rounded" for="swatch-1-l" title="L">L</label>
+                                        </div>
+                                        <div data-value="XL" class="swatch-element xl available">
+                                            <input class="swatchInput" id="swatch-1-xl" type="radio" name="option-1" value="XL">
+                                            <label class="swatchLbl large rounded" for="swatch-1-xl" title="XL">XL</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Product Action -->
+
+                                <div class="product-action clearfix">
+                                    <div class="product-form__item--quantity">
+                                        <div class="wrapQtyBtn">
+                                            <div class="qtyField">
+                                                <a class="qtyBtn minus" href="javascript:void(0);"><i class="fa anm anm-minus-r" aria-hidden="true"></i></a>
+                                                <input type="text" id="quantity" name="quantity" value="1" class="product-form__input qty">
+                                                <a class="qtyBtn plus" href="javascript:void(0);"><i class="fa anm anm-plus-r" aria-hidden="true"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="product-form__item--submit">
+                                        <button type="submit" onclick="Add_To_Cart_Click2(@ViewBag.is_logined)" id="add" name="add" class="btn product-form__cart-submit">
+                                            <span>Thêm vào giỏ hàng</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <!-- End Product Action -->
+                            </form>
+                        </div>
+                        <!--End Primary Product Detail-->
+                        <!--Product Tabs-->
+                        <div class="tabs-listing">
+                            <div class="tab-container">
+                                <h3 class="acor-ttl active" rel="tab1">Chi tiết sản phẩm</h3>
+                                <div id="tab1" class="tab-content">
+                                    <div class="product-description rte">
+                                        <h4>@primary_product.content</h4>
+                                    </div>
+                                </div>
+                                <h3 class="acor-ttl" rel="tab2">Đánh giá sản phẩm</h3>
+                                <div id="tab2" class="tab-content">
+                                    <div id="shopify-product-reviews">
+                                        <div class="spr-container">
+                                            <div class="spr-header clearfix">
+                                                <div class="spr-summary">
+                                                    
+                                                    <span class="spr-summary-actions">
+                                                        <a href="#" class="spr-summary-actions-newreview btn">Viết nhận xét</a>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="spr-content">
+                                                <div class="spr-form clearfix">
+                                                    <form method="post" action="#" id="new-review-form" class="new-review-form">
+                                                        <h3 class="spr-form-title">Viết đánh giá</h3>
+                                                        <fieldset class="spr-form-review">
+                                                            <div class="spr-form-review-rating">
+                                                                <div class="spr-form-input spr-starrating">
+                                                                    <div class="product-review"><a class="reviewLink" href="#"><i class="fa fa-star-o"></i><i class="font-13 fa fa-star-o"></i><i class="font-13 fa fa-star-o"></i><i class="font-13 fa fa-star-o"></i><i class="font-13 fa fa-star-o"></i></a></div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="spr-form-review-title">
+                                                                <label class="spr-form-label" for="review_title_10508262282">Tiêu đề</label>
+                                                                <input class="spr-form-input spr-form-input-text " id="review_title_10508262282" type="text" name="review[title]" value="" placeholder="Viết tiêu đề">
+                                                            </div>
+
+                                                            <div class="spr-form-review-body">
+                                                                <label class="spr-form-label" for="review_body_10508262282">Nội dung <span class="spr-form-review-body-charactersremaining">(1500)</span></label>
+                                                                <div class="spr-form-input">
+                                                                    <textarea class="spr-form-input spr-form-input-textarea " id="review_body_10508262282" data-product-id="10508262282" name="review[body]" rows="10" placeholder="Viết nhận xét của bạn ở đây"></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </fieldset>
+                                                        <fieldset class="spr-form-actions">
+                                                            <input type="submit" class="spr-button spr-button-primary button button-primary btn btn-primary" value="Đăng tải nhận xét">
+                                                        </fieldset>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h3 class="acor-ttl" rel="tab3">Bảng Size</h3>
+                                <div id="tab3" class="tab-content">
+                                    <h3>BẢNG SIZE CHO PHỤ NỮ</h3>
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <th>Size</th>
+                                                <th>XS</th>
+                                                <th>S</th>
+                                                <th>M</th>
+                                                <th>L</th>
+                                                <th>XL</th>
+                                            </tr>
+                                            <tr>
+                                                <td>Ngực</td>
+                                                <td>31" - 33"</td>
+                                                <td>33" - 35"</td>
+                                                <td>35" - 37"</td>
+                                                <td>37" - 39"</td>
+                                                <td>39" - 42"</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Eo</td>
+                                                <td>24" - 26"</td>
+                                                <td>26" - 28"</td>
+                                                <td>28" - 30"</td>
+                                                <td>30" - 32"</td>
+                                                <td>32" - 35"</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Hông</td>
+                                                <td>34" - 36"</td>
+                                                <td>36" - 38"</td>
+                                                <td>38" - 40"</td>
+                                                <td>40" - 42"</td>
+                                                <td>42" - 44"</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <h3>BẢNG SIZE CHO ĐÀN ÔNG</h3>
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <th>Size</th>
+                                                <th>XS</th>
+                                                <th>S</th>
+                                                <th>M</th>
+                                                <th>L</th>
+                                                <th>XL</th>
+                                                <th>XXL</th>
+                                            </tr>
+                                            <tr>
+                                                <td>Ngực</td>
+                                                <td>33" - 36"</td>
+                                                <td>36" - 39"</td>
+                                                <td>39" - 41"</td>
+                                                <td>41" - 43"</td>
+                                                <td>43" - 46"</td>
+                                                <td>46" - 49"</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Eo</td>
+                                                <td>27" - 30"</td>
+                                                <td>30" - 33"</td>
+                                                <td>33" - 35"</td>
+                                                <td>36" - 38"</td>
+                                                <td>38" - 42"</td>
+                                                <td>42" - 45"</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Hông</td>
+                                                <td>33" - 36"</td>
+                                                <td>36" - 39"</td>
+                                                <td>39" - 41"</td>
+                                                <td>41" - 43"</td>
+                                                <td>43" - 46"</td>
+                                                <td>46" - 49"</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <h3 class="acor-ttl" rel="tab4">Giao hàng &amp; Trả hàng</h3>
+                                <div id="tab4" class="tab-content">
+                                    <h4>Chính sách trả hàng</h4>
+                                    <p>Chỉ đổi trả hàng trong vòng 7 ngày sau khi nhận được hàng. Hàng phải nguyên vẹn và chưa qua giặt, ủi hay bị ngoại lực làm rách, sờn màu.</p>
+                                    <p>Mọi chi phí vận chuyện phục vụ cho việc đổi trả sẽ được hệ thống cửa hàng chi trả.</p>
+                                    <h4>Giao hàng</h4>
+                                    <p>Giao hàng trong ngày tại khu vực Hà Nội, trong vòng 3-4 ngày khi giao hàng trong khu vực ngoại thành và các tỉnh miền Trung, miền Nam</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End Product Tabs-->
+                    </div>
+                </div>
+                <!--End-product-single-->
+                <!--Related Product Slider-->
+                <div class="related-product grid-products">
+                    <header class="section-header">
+                        <h2 class="section-header__title text-center h2"><span>Sản phẩm bán chạy</span></h2>
+                        <p class="sub-heading">Những sản phẩm bán chạy nhất của hệ thống, xu hướng thời trang đang được ưa chuộng nhất!!</p>
+                    </header>
+                    <div class="productSlider-style2 grid-products">
+                        @{
+                            int[] populartest = new int[ViewBag.qty];
+                            populartest[0] = 0;
+                            int s = 0;
+                            foreach (var a in Model)
+                            {
+                                populartest[s] = a.sold;
+                                s++;
+                            }
+                            for (int j = 0; j < 3; j++)
+                            {
+                                int biggest = populartest[0];
+                                int biggest_index = 0;
+                                for (int k = 0; k < populartest.Length; k++)
+                                {
+                                    if (populartest[k] > biggest)
+                                    {
+                                        biggest_index = k;
+                                        biggest = populartest[k];
+                                    }
+                                }
+                                foreach (var a in Model)
+                                {
+                                    if (a.sold == populartest[biggest_index])
+                                    {
+                                        <div class="col-12 item">
+                                            <!-- start product image -->
+                                            <div class="product-image">
+                                                <!-- start product image -->
+                                                <a href="~/Sales/ProductSales/Product_Detail/@a.product_id" class="grid-view-item__link">
+                                                    <!-- image -->
+                                                    <img class="primary blur-up lazyload" data-src="@a.image_link" src="@a.image_link" alt="image" title="product">
+                                                    <!-- End image -->
+                                                    <!-- Hover image -->
+                                                    <img class="hover blur-up lazyload" data-src="@a.image_link" src="@a.image_link" alt="image" title="product">
+                                                    <!-- End hover image -->
+                                                </a>
+                                                <!-- end product image -->
+                                                <!-- Start product button -->
+                                                <div class="variants add" onclick="Add_to_Cart('@ViewBag.is_logined', @a.product_id);">
+                                                    <button class="btn btn-addto-cart" type="button" tabindex="0">Thêm vào giỏ hàng</button>
+                                                </div>
+                                                <!-- end product button -->
+                                            </div>
+                                            <!-- end product image -->
+                                            <!--start product details -->
+                                            <div class="product-details text-center">
+                                                <!-- product name -->
+                                                <div class="product-name">
+                                                    <a href="~/Sales/ProductSales/Product_Detail/@a.product_id">@a.name</a>
+                                                </div>
+                                                <!-- End product name -->
+                                                <!-- product price -->
+                                                <div class="product-price">
+                                                    <span class="price">@a.price VND</span>
+                                                </div>
+                                                <!-- End product price -->
+                                            </div>
+                                            <!-- End product details -->
+                                        </div>
+                                    }
+                                }
+                                populartest[biggest_index] = 0;
+                            }
+                        }
+                    </div>
+                </div>
+                <!--End Related Product Slider-->
+            </div>
+            <!--#ProductSection-product-template-->
+        </div>
+        <!--MainContent-->
+    </div>
+    <!--End Body Content-->
+    <p id="hiden_text" style="display:none">@ViewBag.Number</p>
+</div>
+
+<script>
+    window.onload = function () {
+        const hiden_text = $('#hiden_text').html();
+        $('#CartCount').html(hiden_text);
+    }
+
+    function Add_to_Cart(is_Login, product_id) {
+            if (is_Login == "1") {
+                var count = Number($('#CartCount').html());
+                var alltotal = $('.All__total_money');
+                var total = document.querySelectorAll('.total__money_cart');
+                var form = new FormData();
+                form.append("product_id", product_id);
+
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", '@Request.Url.Scheme://@Request.Url.Host:@Request.Url.Port/HomeSales/HandleAdd_Cart', true);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        var content = xhr.responseText;
+                        var json_xl = JSON.parse(content);
+                        if (json_xl.Data.status == "OK") {
+                            alert("Thêm sản phẩm vào giỏ hàng thành công!");
+                            count++;
+                            $('#CartCount').html(count);
+                            var li = `
+
+                            <li class="item">
+                                                <a class="product-image" href="#">
+                                                    <img src="`+ json_xl.Data.image_link + `" alt="" title="" />
+                                                </a>
+                                                <div class="product-details">
+                                                    <a href="~/Sales/Cart/Remove_Item/`+ product_id + `" class="remove"><i class="anm anm-times-l" aria-hidden="true"></i></a>
+                                                    <a class="pName" href="cart.html">`+ json_xl.Data.name + `</a>
+                                                    <div class="variant-cart">Size: `+ json_xl.Data.size + `</div>
+
+                                                    <div class="priceRow">
+                                                        <div class="product-price">
+                                                            <span class="money">Giá: <span class="total__money_cart">`+ json_xl.Data.amount + `</span> VNĐ</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                            </li>
+
+                            `;
+
+                            $('#header-cart .mini-products-list').append(li);
+                            var sum = 0;
+                            for (let i = 0; i < total.length; i++) {
+                                sum += Number(total[i].textContent);
+                            }
+                            sum += Number(json_xl.Data.price);
+                            alltotal.html(sum);
+                        }
+                        else {
+
+                            return;
+                        }
+                    }
+                }
+                xhr.send(form);
+            }
+            else {
+                alert("Bạn chưa đăng nhập!!");
+            }
+    }
+
+    function button_review_click() {
+        var e = document.getElementById("review_button")
+        e.addEventListener('click', function () {
+            var str = e.name
+            var arr = str.split(",")
+            var product_id = arr[0]
+            var username = arr[1]
+            $.ajax({
+                type: "GET",
+                data: {
+                    product_id: product_id,
+                    username: username
+                },
+                url: "/Product/Add_Review_Check",
+                success: function (e) {
+                    if (e == "1") {
+                        var input_e = document.getElementById("review_body_10508262282")
+                        var input_content = input_e.value
+                        input_e.value = "";
+                        $.ajax({
+                            type: "GET",
+                            data: {
+                                review: input_content,
+                                product_id: product_id,
+                                username: username
+                            },
+                            url: "/Product/Add_Review",
+                            success: function (e) {
+                                alert("Review của bạn sẽ được xét duyệt để đăng tải!!!")
+                            }
+                        })
+                    }
+                    else {
+                        alert("Bạn chưa mua sản phẩm, không thể đăng Review!!!")
+                    }
+                }
+            })
+        })
+    }
+
+</script>
