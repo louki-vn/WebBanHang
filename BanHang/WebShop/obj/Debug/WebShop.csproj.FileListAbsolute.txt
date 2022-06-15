@@ -58,3 +58,33 @@ D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\obj\Debug\WebShop.csproj.Core
 D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\obj\Debug\WebShop.csproj.CopyComplete
 D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\obj\Debug\WebShop.dll
 D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\obj\Debug\WebShop.pdb
+F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\WebShop.dll.config
+F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\WebShop.dll
+F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\WebShop.pdb
+F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\Antlr3.Runtime.dll
+F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\EntityFramework.dll
+F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\EntityFramework.SqlServer.dll
+F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\Microsoft.Web.Infrastructure.dll
+F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\System.Web.Helpers.dll
+F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\System.Web.Mvc.dll
+F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\System.Web.Optimization.dll
+F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\System.Web.Razor.dll
+F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\System.Web.WebPages.Deployment.dll
+F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\System.Web.WebPages.dll
+F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\System.Web.WebPages.Razor.dll
+F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\WebGrease.dll
+F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\EntityFramework.xml
+F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\EntityFramework.SqlServer.xml
+F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\System.Web.Helpers.xml
+F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\System.Web.Mvc.xml
+F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\System.Web.Optimization.xml
+F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\System.Web.Razor.xml
+F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\System.Web.WebPages.xml
+F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\System.Web.WebPages.Deployment.xml
+F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\System.Web.WebPages.Razor.xml
+F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\Antlr3.Runtime.pdb
+F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\obj\Debug\WebShop.csprojAssemblyReference.cache
+F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\obj\Debug\WebShop.csproj.CoreCompileInputs.cache
+F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\obj\Debug\WebShop.csproj.CopyComplete
+F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\obj\Debug\WebShop.dll
+F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\obj\Debug\WebShop.pdb

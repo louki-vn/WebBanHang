@@ -45,10 +45,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -156,10 +163,27 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BRAND.cs" />
+    <Compile Include="Models\CART.cs" />
+    <Compile Include="Models\CART_ITEM.cs" />
+    <Compile Include="Models\CATEGORY.cs" />
+    <Compile Include="Models\CREDENTIAL_S.cs" />
+    <Compile Include="Models\ITEM_SOLD.cs" />
+    <Compile Include="Models\MEMBER.cs" />
+    <Compile Include="Models\PRODUCT.cs" />
+    <Compile Include="Models\PRODUCT_GROUP.cs" />
+    <Compile Include="Models\REPORT.cs" />
+    <Compile Include="Models\REVIEW.cs" />
+    <Compile Include="Models\ROLE_S.cs" />
+    <Compile Include="Models\SALE.cs" />
+    <Compile Include="Models\Shop.cs" />
+    <Compile Include="Models\TRANSACTION.cs" />
+    <Compile Include="Models\USER_GROUP_S.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -215,7 +239,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

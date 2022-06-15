@@ -23,7 +23,6 @@ namespace WebShop.Areas.Sales.Controllers
         [HttpPost]
         public ActionResult Login(FormCollection fc)
         {
-
             string username = fc.Get("customer[email]").ToString();
             string pass = fc.Get("customer[password]").ToString();
             var u = new SqlParameter("@username", username);
