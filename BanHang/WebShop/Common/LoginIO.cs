@@ -8,7 +8,6 @@ namespace WebShop.Common
 {
     public class LoginIO
     {
-
         Shop db = new Shop();
         public List<string> GetListCredential(string userName)
         {
