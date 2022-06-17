@@ -20,6 +20,9 @@
     <DevExtremeCreateAsPartial>False</DevExtremeCreateAsPartial>
     <DevExtremeUseLayout>True</DevExtremeUseLayout>
     <DevExtremeSelectedDataContextName>Shop %28WebBanHang_API.Models%29</DevExtremeSelectedDataContextName>
+    <Area_SelectedScaffolderID>MvcAreaScaffolder</Area_SelectedScaffolderID>
+    <Area_SelectedScaffolderCategoryPath>root/Common/MVC</Area_SelectedScaffolderCategoryPath>
+    <WebStackScaffolding_AreaDialogWidth>600</WebStackScaffolding_AreaDialogWidth>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>

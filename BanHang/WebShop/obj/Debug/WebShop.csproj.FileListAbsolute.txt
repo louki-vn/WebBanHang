@@ -88,3 +88,33 @@ F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\obj\Debu
 F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\obj\Debug\WebShop.csproj.CopyComplete
 F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\obj\Debug\WebShop.dll
 F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\obj\Debug\WebShop.pdb
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\WebShop.dll.config
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\WebShop.dll
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\WebShop.pdb
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\Antlr3.Runtime.dll
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\EntityFramework.dll
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\EntityFramework.SqlServer.dll
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\Microsoft.Web.Infrastructure.dll
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Web.Helpers.dll
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Web.Mvc.dll
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Web.Optimization.dll
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Web.Razor.dll
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Web.WebPages.Deployment.dll
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Web.WebPages.dll
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Web.WebPages.Razor.dll
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\WebGrease.dll
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\EntityFramework.xml
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\EntityFramework.SqlServer.xml
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Web.Helpers.xml
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Web.Mvc.xml
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Web.Optimization.xml
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Web.Razor.xml
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Web.WebPages.xml
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Web.WebPages.Deployment.xml
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Web.WebPages.Razor.xml
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\Antlr3.Runtime.pdb
+D:\Code Visual 2019\LTTH\BanHang\WebShop\obj\Debug\WebShop.csprojAssemblyReference.cache
+D:\Code Visual 2019\LTTH\BanHang\WebShop\obj\Debug\WebShop.csproj.CoreCompileInputs.cache
+D:\Code Visual 2019\LTTH\BanHang\WebShop\obj\Debug\WebShop.csproj.CopyComplete
+D:\Code Visual 2019\LTTH\BanHang\WebShop\obj\Debug\WebShop.dll
+D:\Code Visual 2019\LTTH\BanHang\WebShop\obj\Debug\WebShop.pdb
