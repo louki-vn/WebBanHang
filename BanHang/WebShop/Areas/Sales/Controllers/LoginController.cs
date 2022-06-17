@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using RestSharp;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web.Mvc;
@@ -10,6 +11,12 @@ namespace WebShop.Areas.Sales.Controllers
     public class LoginController : Controller
     {
         Shop db = new Shop();
+        private readonly RestClient _client;
+
+        public LoginController()
+        {
+            _client = new RestClient("https://reqres.in/");
+        }
 
         // GET: Login
         [HttpGet]
