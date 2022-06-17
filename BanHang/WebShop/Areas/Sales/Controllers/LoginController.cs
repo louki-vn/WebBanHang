@@ -15,7 +15,7 @@ namespace WebShop.Areas.Sales.Controllers
 
         public LoginController()
         {
-            _client = new RestClient("https://reqres.in/");
+            _client = new RestClient("https://localhost:44396/");
         }
 
         // GET: Login
@@ -37,14 +37,18 @@ namespace WebShop.Areas.Sales.Controllers
 
             //----------------- TUYEN--------------------
             LoginIO lg = new LoginIO();
-            var res = lg.Login(username, Data.MD5Hash(pass), true);
-            if (res == 0)
+
+            var request = new RestRequest($"api/users/{username}/{pass}");
+            var res = _client.Execute<int>(request);
+
+            //var res = lg.Login(username, Data.MD5Hash(pass), true);
+            if (res.Data == 0)
             {
                 ViewBag.fall_login = "Tài khoản không tồn tại!";
                 return View("~/Areas/Sales/Views/Login/Login.cshtml");
 
             }
-            else if (res == -2)
+            else if (res.Data == -2)
             {
                 ViewBag.fall_login = "Mật khẩu không đúng!";
                 return View("~/Areas/Sales/Views/Login/Login.cshtml");
@@ -69,13 +73,13 @@ namespace WebShop.Areas.Sales.Controllers
                 Session["group_id"] = member.GroupId;
                 Session["user_name"] = member.name;
                 Session["user_gmail"] = member.username;
-                if (res == 1)
+                if (res.Data == 1)
                 {
                     var listCredentials = lg.GetListCredential(username);
                     //Session.Add(Constants.SS)
                     return RedirectToAction("Index", "HomeAdmin", new { area = "Admin" });
                 }
-                else if (res == 2)
+                else if (res.Data == 2)
 
                 {
                     var listCredentials = lg.GetListCredential(username);

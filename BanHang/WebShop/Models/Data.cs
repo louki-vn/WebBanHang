@@ -13,18 +13,20 @@ namespace WebShop.Models
     {
         Shop db = new Shop();      
 
-        public static string MD5Hash(string text)
+        public static string MD5Hash(string password)
         {
-            MD5 md5 = new MD5CryptoServiceProvider();   
-            md5.ComputeHash(ASCIIEncoding.ASCII.GetBytes(text));
-            byte[] result = md5.Hash;
-
-            StringBuilder strBuilder = new StringBuilder();
-            for (int i = 0; i < result.Length; i++)
+            MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
+            byte[] encrypt;
+            UTF8Encoding encode = new UTF8Encoding();
+            //encrypt the given password string into Encrypted data  
+            encrypt = md5.ComputeHash(encode.GetBytes(password));
+            StringBuilder encryptdata = new StringBuilder();
+            //Create a new string by using the encrypted data  
+            for (int i = 0; i < encrypt.Length; i++)
             {
-                strBuilder.Append(result[i].ToString("x2"));
+                encryptdata.Append(encrypt[i].ToString());
             }
-            return strBuilder.ToString();
+            return encryptdata.ToString();
         }
 
         public int GetItemInCart(List<ItemInCart> itemincartlist, string username)

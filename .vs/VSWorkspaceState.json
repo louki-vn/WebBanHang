@@ -1,7 +1,14 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\BanHang",
+    "\\BanHang\\WebShop",
+    "\\WebBanHang_API",
+    "\\WebBanHang_API\\Areas",
+    "\\WebBanHang_API\\Areas\\Admin",
+    "\\WebBanHang_API\\Areas\\Admin\\Controllers",
+    "\\WebBanHang_API\\Controllers"
   ],
-  "SelectedNode": "\\WebBanHang_API.sln",
+  "SelectedNode": "\\WebBanHang_API\\Controllers\\ValuesController.cs",
   "PreviewInSolutionExplorer": false
 }
