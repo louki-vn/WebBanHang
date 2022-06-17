@@ -59,5 +59,24 @@ namespace WebBanHang_API.Areas.Admin.Controllers
             db.Database.ExecuteSqlCommand("DeleteCategory @id", delete_id);
             return Ok(new { data = "Xóa thành công!" });
         }
+
+        [HttpGet]
+        [Route("api/admin/searchcategory")]
+
+        public IHttpActionResult seatchCategory(string filter)
+        {
+            //  Lọc danh mục theo nhóm sản phẩm
+            var type = new SqlParameter("@type", filter);
+            if (type.Value.ToString() == "3")
+            {
+                var result = db.CATEGORies.ToList();
+                return Ok( new { data=result});
+            }
+            else
+            {
+                var result = db.CATEGORies.SqlQuery("FilterCategory @type", type).ToList();
+                return Ok(new { data = result });
+            }
+        }
     }
 }
