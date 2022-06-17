@@ -18,7 +18,7 @@ namespace WebShop.Areas.Admin.Controllers
             ViewBag.user_logined = Session["user_logined"];
             ViewBag.is_logined = Session["is_logined"];
             var result = db.CATEGORies.ToList();
-            return Json(result);
+            return View(result);
         }
 
         [HttpPost]
