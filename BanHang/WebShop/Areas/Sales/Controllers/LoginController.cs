@@ -38,7 +38,7 @@ namespace WebShop.Areas.Sales.Controllers
             //----------------- TUYEN--------------------
             LoginIO lg = new LoginIO();
 
-            var request = new RestRequest($"api/users/{username}/{pass}");
+            var request = new RestRequest($"api/LoginCheck/{username}/{pass}");
             var res = _client.Execute<int>(request);
 
             //var res = lg.Login(username, Data.MD5Hash(pass), true);
