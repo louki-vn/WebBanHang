@@ -168,3 +168,23 @@ D:\WebBanHang\BanHang\WebShop\obj\Debug\WebShop.csproj.CoreCompileInputs.cache
 D:\WebBanHang\BanHang\WebShop\obj\Debug\WebShop.csproj.CopyComplete
 D:\WebBanHang\BanHang\WebShop\obj\Debug\WebShop.dll
 D:\WebBanHang\BanHang\WebShop\obj\Debug\WebShop.pdb
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\RestSharp.dll
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Buffers.dll
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Memory.dll
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Numerics.Vectors.dll
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Runtime.CompilerServices.Unsafe.dll
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Text.Encodings.Web.dll
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Text.Json.dll
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Threading.Tasks.Extensions.dll
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.ValueTuple.dll
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\Microsoft.Bcl.AsyncInterfaces.xml
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\RestSharp.xml
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Buffers.xml
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Memory.xml
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Numerics.Vectors.xml
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Runtime.CompilerServices.Unsafe.xml
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Text.Encodings.Web.xml
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Text.Json.xml
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Threading.Tasks.Extensions.xml
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.ValueTuple.xml

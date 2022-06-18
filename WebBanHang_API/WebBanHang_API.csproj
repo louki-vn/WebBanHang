@@ -179,6 +179,7 @@
     <Compile Include="Models\CREDENTIAL_S.cs" />
     <Compile Include="Models\ITEM_SOLD.cs" />
     <Compile Include="Models\MEMBER.cs" />
+    <Compile Include="Models\Mem_Cart.cs" />
     <Compile Include="Models\PRODUCT.cs" />
     <Compile Include="Models\PRODUCT_GROUP.cs" />
     <Compile Include="Models\REPORT.cs" />
