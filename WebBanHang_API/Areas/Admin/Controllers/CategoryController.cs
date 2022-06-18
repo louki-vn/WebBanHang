@@ -76,7 +76,7 @@ namespace WebBanHang_API.Areas.Admin.Controllers
             else
             {
                 var result = db.CATEGORies.SqlQuery("FilterCategory @type", type).ToList();
-                return Ok(new { data = result });
+                return Ok(result);
             }
         }
     }
