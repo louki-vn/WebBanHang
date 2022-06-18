@@ -39,7 +39,7 @@ namespace WebBanHang_API.Areas.Admin.Controllers
             var name = new SqlParameter("@name", cate.name);
             var group_id = new SqlParameter("@group_id", cate.group_id);
             db.Database.ExecuteSqlCommand("AddCategory @id, @name, @group_id", id, name, group_id);
-            return Ok(new { data = cate });
+            return Ok(cate);
         }
         [HttpPut]
         [Route("api/admin/updatecategory")]
