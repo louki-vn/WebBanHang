@@ -30,7 +30,7 @@ namespace WebShop.Areas.Admin.Controllers
             var request = new RestRequest("api/admin/getcategory", Method.Get);
 
             var result = _client.Execute<List<CATEGORY>>(request).Data;
-            //var cate = JsonSerializer.Deserialize<CATEGORY>(result.Content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
          
             return View(result);
         }
@@ -64,11 +64,9 @@ namespace WebShop.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult DeleteCategory(string delete_id)
         {
-            //var id = new SqlParameter("@id", delete_id);
-            //db.Database.ExecuteSqlCommand("DeleteCategory @id", id);
+            var id = new SqlParameter("@id", delete_id);
+            db.Database.ExecuteSqlCommand("DeleteCategory @id", id);
 
-            var request = new RestRequest($"api/admin/deletecategory?id={delete_id}", Method.Delete);
-            var result = _client.Execute(request);
             ViewBag.user_logined = Session["user_logined"];
             ViewBag.is_logined = Session["is_logined"];
             return RedirectToAction("Index");
@@ -80,24 +78,18 @@ namespace WebShop.Areas.Admin.Controllers
             ViewBag.user_logined = Session["user_logined"];
             ViewBag.is_logined = Session["is_logined"];
 
-            //  Lọc danh mục theo nhóm sản phẩm
-            //var type = new SqlParameter("@type", filter);
-            //if (type.Value.ToString() == "3")
-            //{
-            //    var result = db.CATEGORies.ToList();
-            //    return View("Index", result);
-            //}
-            //else
-            //{
-            //    var result = db.CATEGORies.SqlQuery("FilterCategory @type", type).ToList();
-            //    return View("Index", result);
-            //}
-
-            var request = new RestRequest($"api/admin/searchcategory?filter={filter}", Method.Get);
-            //var result = _client.Execute<List<CATEGORY>>(request).Content;
-            var result = _client.Execute(request);
-            var model = JsonConvert.DeserializeObject<List<CATEGORY>>(result.Content);
-            return View("Index", result);
+            Lọc danh mục theo nhóm sản phẩm
+          var type = new SqlParameter("@type", filter);
+            if (type.Value.ToString() == "3")
+            {
+                var result = db.CATEGORies.ToList();
+                return View("Index", result);
+            }
+            else
+            {
+                var result = db.CATEGORies.SqlQuery("FilterCategory @type", type).ToList();
+                return View("Index", result);
+            }                        
         }
     }
 }
