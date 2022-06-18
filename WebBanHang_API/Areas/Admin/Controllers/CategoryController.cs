@@ -11,7 +11,8 @@ namespace WebBanHang_API.Areas.Admin.Controllers
 {
     public class CategoryController : ApiController
 
-    {Shop db = new Shop();
+    {
+        Shop db = new Shop();
         public CategoryController()
         {
             db.Configuration.ProxyCreationEnabled = false;
