@@ -36,39 +36,29 @@ namespace WebShop.Areas.Admin.Controllers
         [HasCredential(RoleID = "ADD_CATEGORY_ADMIN")]
         public ActionResult AddCategory(FormCollection fc)
         {
-            var cate = db.CATEGORies.ToList();
-            var id = new SqlParameter("@id", cate.Last().category_id + 1);
-            var name = new SqlParameter("@name", fc["category"]);
-            var group_id = new SqlParameter("@group_id", fc["group_id"]);
-
-            db.Database.ExecuteSqlCommand("AddCategory @id, @name, @group_id", id,  name, group_id);
-
+            CATEGORY cate = new CATEGORY();
+            cate.name = fc["category"];
+            cate.group_id = int.Parse(fc["group_id"]);
+            var request = new RestRequest($"api/admin/insertcategory", Method.Post).AddObject(cate);
+            var res = _client.Execute(request);
             return RedirectToAction("Index");
         }
         [HasCredential(RoleID = "EDIT_CATEGORY_ADMIN")]
         [HttpGet]
         public ActionResult EditCategory(string category_id, string category_name)
         {
-
-            var request = new RestRequest($"api/admin/updatecategory");
-            
-            ViewBag.user_logined = Session["user_logined"];
-            ViewBag.is_logined = Session["is_logined"];
-            var result = db.CATEGORies.ToList();
+            CATEGORY cate = new CATEGORY();            
+            cate.name = category_name;
+            var request = new RestRequest($"api/admin/updatecategory?id={category_id}", Method.Put).AddObject(cate);
+            var res = _client.Execute(request);                     
             return RedirectToAction("Index");
         }
         [HasCredential(RoleID = "DELETE_CATEGORY_ADMIN")]
         [HttpGet]
         public ActionResult DeleteCategory(string delete_id)
         {
-            //var id = new SqlParameter("@id", delete_id);
-            //db.Database.ExecuteSqlCommand("DeleteCategory @id", id);
-
             var request = new RestRequest($"api/admin/deletecategory?id={delete_id}", Method.Delete);
             _client.Execute(request);
-
-            ViewBag.user_logined = Session["user_logined"];
-            ViewBag.is_logined = Session["is_logined"];
             return RedirectToAction("Index");
         }
 
@@ -78,21 +68,8 @@ namespace WebShop.Areas.Admin.Controllers
             ViewBag.user_logined = Session["user_logined"];
             ViewBag.is_logined = Session["is_logined"];
 
-            ////Lọc danh mục theo nhóm sản phẩm
-            //var type = new SqlParameter("@type", filter);
-            //if (type.Value.ToString() == "3")
-            //{
-            //    var result = db.CATEGORies.ToList();
-            //    return View("Index", result);
-            //}
-            //else
-            //{
-            //    var result = db.CATEGORies.SqlQuery("FilterCategory @type", type).ToList();
-            //    return View("Index", result);
-            //}
-
             var request = new RestRequest($"api/admin/searchcategory?filter={filter}", Method.Get);
-            var result = _client.Execute<List<CATEGORY>>(request).Data;
+            var result = _client.Execute<List<CATEGORY>>(request).Data;      
             return View("Index", result);
         }
     }
