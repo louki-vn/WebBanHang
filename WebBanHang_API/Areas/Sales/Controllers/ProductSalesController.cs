@@ -35,19 +35,19 @@ namespace WebBanHang_API.Areas.Sales.Controllers
             }
             return Json(p);
         }
-        [Route("api/productsales/getproductbybrand/{brand_name}")]
-        public IHttpActionResult GetProductByBrand(string brand_name)
+        [Route("api/productsales/getproductbybrand/{id}")]
+        public IHttpActionResult GetProductByBrand(string id)
         {
-            var u = new SqlParameter("@brand_name", brand_name);
-            var products_list = db.Database.SqlQuery<PRODUCT>("exec get_product_from_brand_name @brand_name", u).ToList();
+            var u = new SqlParameter("@brand_name", id);
+            var products_list = db.Database.SqlQuery<PRODUCT>("exec get_product_base_on_brand @brand_name", u).ToList();
             return Json(products_list);
         }
 
-        [Route("api/productsales/getproductbycategory/{id}")]
-        public IHttpActionResult GetProductByCategory(int id)
+        [Route("api/productsales/getproductbycategory/{name}")]
+        public IHttpActionResult GetProductByCategory(string name)
         {
-            var u = new SqlParameter("@id", id);
-            var products_list = db.Database.SqlQuery<PRODUCT>("exec get_product_from_category_id @id", u).ToList();
+            var u = new SqlParameter("@id", name);
+            var products_list = db.Database.SqlQuery<PRODUCT>("exec get_product_from_CATEGORY @id", u).ToList();
             return Json(products_list);
         }
     }
