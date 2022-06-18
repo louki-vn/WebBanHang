@@ -78,8 +78,8 @@ namespace WebShop.Areas.Admin.Controllers
             ViewBag.user_logined = Session["user_logined"];
             ViewBag.is_logined = Session["is_logined"];
 
-            Lọc danh mục theo nhóm sản phẩm
-          var type = new SqlParameter("@type", filter);
+            //Lọc danh mục theo nhóm sản phẩm
+            var type = new SqlParameter("@type", filter);
             if (type.Value.ToString() == "3")
             {
                 var result = db.CATEGORies.ToList();
