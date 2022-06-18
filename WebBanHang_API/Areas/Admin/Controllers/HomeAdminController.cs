@@ -50,19 +50,20 @@ namespace WebBanHang_API.Areas.Admin.Controllers
                 brand_count.Add(i.brand_id, i.brand_name);
             }
             var topmem = db.Database.SqlQuery<Mem_Cart>("exec SelectTopMember").ToList();
-            return Ok(new { data= count_mem, count_order, amount, total});
+            return Ok(new { count_mem, count_order, amount, total });
             //return con.THEMTHONGTINDANGKYCLVUKHITAU(id, mc) ?
             //    Request.CreateResponse(HttpStatusCode.Created, mc)
             //    : Request.CreateResponse(HttpStatusCode.BadRequest);
 
         }
+
         [HttpGet]
         [Route("api/admin/get_topProduct_HomeAdmin")]
         public IHttpActionResult getTopProductHomeAdmin()
         {
             var topproduct = db.PRODUCTs.SqlQuery("exec SelectTopProduct").ToList();
            
-            return Ok(new { data = topproduct });
+            return Ok(topproduct);
         }
         [HttpGet]
         [Route("api/admin/get_topMember_HomeAdmin")]
@@ -70,7 +71,7 @@ namespace WebBanHang_API.Areas.Admin.Controllers
         {
            
             var topmem = db.Database.SqlQuery<Mem_Cart>("exec SelectTopMember").ToList();
-            return Ok(new { data = topmem });
+            return Ok(topmem);
         }
     }
 }
