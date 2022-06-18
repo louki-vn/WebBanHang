@@ -1,7 +1,9 @@
-﻿using System;
+﻿using RestSharp;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text.Json;
 using System.Web.Mvc;
 using WebShop.Common;
 using WebShop.Models;
@@ -11,14 +13,25 @@ namespace WebShop.Areas.Admin.Controllers
     public class CategoryController : Controller
     {
         Shop db = new Shop();
+        private readonly RestClient _client;
+
+        public CategoryController()
+        {
+            _client = new RestClient("https://localhost:44396/");
+        }
+
         // GET: Admin/Category
         [HasCredential(RoleID = "VIEW_CATEGORY_ADMIN")]
         public ActionResult Index()
         {
             ViewBag.user_logined = Session["user_logined"];
             ViewBag.is_logined = Session["is_logined"];
-            var result = db.CATEGORies.ToList();
-            return View(result);
+            var request = new RestRequest("api/admin/getcategory");
+
+            var result = _client.Execute(request);
+            var cate = JsonSerializer.Deserialize<CATEGORY>(result.Content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+         
+            return View(cate);
         }
 
         [HttpPost]
