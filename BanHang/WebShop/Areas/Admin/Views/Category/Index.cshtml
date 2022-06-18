@@ -15,7 +15,7 @@
                         <i class="zmdi zmdi-view-list"></i>Danh Mục Sản Phẩm
                     </h3>
                     <div class="table-data__tool">
-                        @using (Html.BeginForm("Filter", "Category", FormMethod.Post))
+                        @using (Html.BeginForm("Filter", "Category", FormMethod.Get))
                         {
                             <div class="table-data__tool-left">
                                 <div class="rs-select2--light rs-select2--md">

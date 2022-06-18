@@ -9,12 +9,12 @@ namespace WebBanHang_API.Models
     [Table("PRODUCT")]
     public partial class PRODUCT
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+ /*       [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PRODUCT()
         {
             CART_ITEM = new HashSet<CART_ITEM>();
             REVIEWs = new HashSet<REVIEW>();
-        }
+        }*/
 
         [Key]
         public int product_id { get; set; }
@@ -48,7 +48,7 @@ namespace WebBanHang_API.Models
 
         public virtual BRAND BRAND { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+   /*     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CART_ITEM> CART_ITEM { get; set; }
 
         public virtual CATEGORY CATEGORY { get; set; }
@@ -56,6 +56,6 @@ namespace WebBanHang_API.Models
         public virtual SALE SALE { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<REVIEW> REVIEWs { get; set; }
+        public virtual ICollection<REVIEW> REVIEWs { get; set; }*/
     }
 }
