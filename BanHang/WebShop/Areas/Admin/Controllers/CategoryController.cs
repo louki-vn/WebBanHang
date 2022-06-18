@@ -1,4 +1,5 @@
-﻿using RestSharp;
+﻿using Newtonsoft.Json;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -26,12 +27,12 @@ namespace WebShop.Areas.Admin.Controllers
         {
             ViewBag.user_logined = Session["user_logined"];
             ViewBag.is_logined = Session["is_logined"];
-            var request = new RestRequest("api/admin/getcategory");
+            var request = new RestRequest("api/admin/getcategory", Method.Get);
 
-            var result = _client.Execute(request);
-            var cate = JsonSerializer.Deserialize<CATEGORY>(result.Content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            var result = _client.Execute<List<CATEGORY>>(request).Data;
+            //var cate = JsonSerializer.Deserialize<CATEGORY>(result.Content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
          
-            return View(cate);
+            return View(result);
         }
 
         [HttpPost]
@@ -51,11 +52,9 @@ namespace WebShop.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult EditCategory(string category_id, string category_name)
         {
-            var id = new SqlParameter("@id", category_id);
-            var name = new SqlParameter("@name", category_name);
-            //var group_id = new SqlParameter("@group_id", fc["group_id"]);
 
-            db.Database.ExecuteSqlCommand("EditCategory @id, @name", id, name);
+            var request = new RestRequest($"api/admin/updatecategory");
+            
             ViewBag.user_logined = Session["user_logined"];
             ViewBag.is_logined = Session["is_logined"];
             var result = db.CATEGORies.ToList();
@@ -65,32 +64,40 @@ namespace WebShop.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult DeleteCategory(string delete_id)
         {
-            var id = new SqlParameter("@id", delete_id);
-            db.Database.ExecuteSqlCommand("DeleteCategory @id", id);
+            //var id = new SqlParameter("@id", delete_id);
+            //db.Database.ExecuteSqlCommand("DeleteCategory @id", id);
 
+            var request = new RestRequest($"api/admin/deletecategory?id={delete_id}", Method.Delete);
+            var result = _client.Execute(request);
             ViewBag.user_logined = Session["user_logined"];
             ViewBag.is_logined = Session["is_logined"];
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult Filter(string filter)
         {
             ViewBag.user_logined = Session["user_logined"];
             ViewBag.is_logined = Session["is_logined"];
 
             //  Lọc danh mục theo nhóm sản phẩm
-            var type = new SqlParameter("@type", filter);
-            if (type.Value.ToString() == "3")
-            {
-                var result = db.CATEGORies.ToList();
-                return View("Index", result);
-            }
-            else
-            {
-                var result = db.CATEGORies.SqlQuery("FilterCategory @type", type).ToList();
-                return View("Index", result);
-            }
+            //var type = new SqlParameter("@type", filter);
+            //if (type.Value.ToString() == "3")
+            //{
+            //    var result = db.CATEGORies.ToList();
+            //    return View("Index", result);
+            //}
+            //else
+            //{
+            //    var result = db.CATEGORies.SqlQuery("FilterCategory @type", type).ToList();
+            //    return View("Index", result);
+            //}
+
+            var request = new RestRequest($"api/admin/searchcategory?filter={filter}", Method.Get);
+            //var result = _client.Execute<List<CATEGORY>>(request).Content;
+            var result = _client.Execute(request);
+            var model = JsonConvert.DeserializeObject<List<CATEGORY>>(result.Content);
+            return View("Index", result);
         }
     }
 }
