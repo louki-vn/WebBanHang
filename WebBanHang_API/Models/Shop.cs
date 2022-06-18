@@ -34,10 +34,10 @@ namespace WebBanHang_API.Models
                 .Property(e => e.size)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<CATEGORY>()
+       /*     modelBuilder.Entity<CATEGORY>()
                 .HasMany(e => e.PRODUCTs)
                 .WithRequired(e => e.CATEGORY)
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete(false);*/
 
             modelBuilder.Entity<CREDENTIAL_S>()
                 .Property(e => e.usergroup_id)
