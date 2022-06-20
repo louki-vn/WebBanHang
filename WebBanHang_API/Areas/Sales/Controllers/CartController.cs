@@ -65,6 +65,19 @@ namespace WebBanHang_API.Areas.Sales.Controllers
             return Json(itemincartlist);
 
         }
+        
+        // Api này thêm tham số username vì trong bản gốc có sử dụng username được lấy từ session.
+        
+        [HttpPut]
+        [Route("api/cart/removeitem/{username}/{id}")]
+        public IHttpActionResult Remove_Item(string username, string id)
+        {
+            var product_id_var = new SqlParameter("@product_id", id);
+            db.Database.ExecuteSqlCommand("exec remove_CART_ITEM_from_product_id @product_id", product_id_var);
+            List<ItemInCart> itemincartlist = new List<ItemInCart>();
+            itemincartlist = Get_Data(username, itemincartlist);
+            return Json(itemincartlist);
+        }
 
     }
 }
