@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -13,7 +13,7 @@ namespace WebBanHang_API.Areas.Sales.Controllers
     public class CreateAccountController : ApiController
     {
         Shop db = new Shop();
-        
+
         [HttpPost]
         [Route("api/createaccount/addmember/{username}/{name}/{password}/{phonenumber}/{address}")]
         public IHttpActionResult Add_Member(string username, string name, string password, string phonenumber, string address)
@@ -22,7 +22,7 @@ namespace WebBanHang_API.Areas.Sales.Controllers
             var u = new SqlParameter("@username", username);
             var result = db.Database.SqlQuery<MEMBER>("exec getMEMBERfromusername @username", u).ToList();
             int check = result.Count();
-            if(check == 0)
+            if (check == 0)
             {
                 var username2var = new SqlParameter("@username", username);
                 var passvar = new SqlParameter("@password", Data.MD5Hash(password));
