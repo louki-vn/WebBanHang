@@ -137,6 +137,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductAdminController.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
     <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />
@@ -253,6 +254,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Views\Geturl\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

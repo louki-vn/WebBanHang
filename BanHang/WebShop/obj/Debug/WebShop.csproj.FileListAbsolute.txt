@@ -190,3 +190,5 @@ D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Threading.Tasks.Extensions.x
 D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.ValueTuple.xml
 D:\WebBanHang\BanHang\WebShop\bin\Newtonsoft.Json.dll
 D:\WebBanHang\BanHang\WebShop\bin\Newtonsoft.Json.xml
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\Newtonsoft.Json.dll
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\Newtonsoft.Json.xml
