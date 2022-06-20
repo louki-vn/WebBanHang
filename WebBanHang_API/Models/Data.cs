@@ -1,17 +1,17 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
-
+using WebShop.Models;
 
 namespace WebBanHang_API.Models
 {
     public class Data
     {
-        Shop db = new Shop();      
+        Shop db = new Shop();
 
         public static string MD5Hash(string password)
         {
@@ -30,7 +30,7 @@ namespace WebBanHang_API.Models
         }
 
         public int GetItemInCart(List<ItemInCart> itemincartlist, string username)
-        {          
+        {
             var user = new SqlParameter("@username", username);
             var result_member = db.Database.SqlQuery<MEMBER>("exec get_MEMBER_from_username @username", user).ToList();
 

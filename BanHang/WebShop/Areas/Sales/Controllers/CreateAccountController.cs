@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using RestSharp;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web.Mvc;
@@ -9,6 +10,13 @@ namespace WebShop.Areas.Sales.Controllers
     public class CreateAccountController : Controller
     {
         Shop db = new Shop();
+        private readonly RestClient _client;
+
+        public CreateAccountController()
+        {
+            _client = new RestClient("https://localhost:44396/");
+        }
+
         // GET: CreateAccount
         [HttpGet]
         public ActionResult CreateAccount()
