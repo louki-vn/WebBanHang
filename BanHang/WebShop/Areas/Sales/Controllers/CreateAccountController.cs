@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using RestSharp;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web.Mvc;
@@ -9,6 +10,12 @@ namespace WebShop.Areas.Sales.Controllers
     public class CreateAccountController : Controller
     {
         Shop db = new Shop();
+        private readonly RestClient _client;
+
+        public CreateAccountController()
+        {
+            _client = new RestClient("https://localhost:44396/");
+        }
         // GET: CreateAccount
         [HttpGet]
         public ActionResult CreateAccount()
@@ -24,30 +31,22 @@ namespace WebShop.Areas.Sales.Controllers
             string address = form.Get("customer[address]").ToString();
             string phone = form.Get("customer[phone]").ToString();
             string name = form.Get("customer[name]").ToString();
-            var u = new SqlParameter("@username", username);            
+           
+            var request = new RestRequest($"api/createaccount/addmember/{username}/{name}/{pass}/{phone}/{address}");
+            var res = _client.Execute<int>(request);
 
-            var result = db.Database.SqlQuery<MEMBER>("exec getMEMBERfromusername @username", u).ToList();
-            int check = result.Count();
-            if (check != 0)
+            if (res.Data == 1)
             {
-                return View();
-            }
-            else
-            {
-                var username2var = new SqlParameter("@username", username);
-                var passvar = new SqlParameter("@password", Data.MD5Hash(pass));
-                var namevar = new SqlParameter("@name", name);
-                var phonevar = new SqlParameter("@phone", phone);
-                var addressvar = new SqlParameter("@address", address);
-                db.Database.ExecuteSqlCommand("exec AddMember @name, @username, @password, @phone, @address",
-                                                            namevar, username2var, passvar, phonevar, addressvar);
-
                 Session["user_logined"] = username;
                 Session["is_logined"] = 1;
                 ViewBag.user_logined = Session["user_logined"];
                 ViewBag.is_logined = Session["is_logined"];
 
                 return RedirectToAction("Home", "HomeSales", new { area = "Sales" });
+            }
+            else
+            {
+                return View();                
             }
         }       
     }
