@@ -39,54 +39,57 @@ namespace WebShop.Areas.Sales.Controllers
             LoginIO lg = new LoginIO();
 
             var request = new RestRequest($"api/LoginCheck/{username}/{pass}");
-            var res = _client.Execute<int>(request);
+            var response = _client.Execute<int>(request);
 
-            //var res = lg.Login(username, Data.MD5Hash(pass), true);
-            if (res.Data == 0)
+          
+            
+            if (response.Data == 1)
             {
-                ViewBag.fall_login = "Tài khoản không tồn tại!";
-                return View("~/Areas/Sales/Views/Login/Login.cshtml");
+                var res = lg.Login(username, Data.MD5Hash(pass), true);
+                if (res == -2)
+                {
+                    ViewBag.fall_login = "Mật khẩu không đúng!";
+                    return View("~/Areas/Sales/Views/Login/Login.cshtml");
 
-            }
-            else if (res.Data == -2)
-            {
-                ViewBag.fall_login = "Mật khẩu không đúng!";
-                return View("~/Areas/Sales/Views/Login/Login.cshtml");
+                }
+                else
+                {
+                    Session["user_logined"] = username;
+                    Session["is_logined"] = 1;
+                    ViewBag.user_logined = Session["user_logined"];
+                    ViewBag.is_logined = Session["is_logined"];
 
+                    var member = db.MEMBERs.Where(x => x.username == username).FirstOrDefault();
+                    var userSession = new UserLogin();
+                    userSession.username = member.username;
+                    userSession.member_id = member.member_id;
+                    var listcredential = lg.GetListCredential(username);
+                    Session.Add(CommonConstants.SESSION_CREDENTIALS, listcredential);
+                    Session.Add(CommonConstants.USER_SESSION, userSession);
+                    Session.Add(CommonConstants.SESSION_GROUPID, member.GroupId);
+                    Session["member_id"] = member.member_id;
+                    Session["group_id"] = member.GroupId;
+                    Session["user_name"] = member.name;
+                    Session["user_gmail"] = member.username;
+                    if (res == 1)
+                    {
+                        var listCredentials = lg.GetListCredential(username);
+                        //Session.Add(Constants.SS)
+                        return RedirectToAction("Index", "HomeAdmin", new { area = "Admin" });
+                    }
+                    else if (res == 2)
+                    {
+                        var listCredentials = lg.GetListCredential(username);
+                        return RedirectToAction("Home", "HomeSales", new { area = "Sales" });
+                    }
+                }
             }
             else
             {
-                Session["user_logined"] = username;
-                Session["is_logined"] = 1;
-                ViewBag.user_logined = Session["user_logined"];
-                ViewBag.is_logined = Session["is_logined"];
-
-                var member = db.MEMBERs.Where(x => x.username == username).FirstOrDefault();
-                var userSession = new UserLogin();
-                userSession.username = member.username;
-                userSession.member_id = member.member_id;
-                var listcredential = lg.GetListCredential(username);
-                Session.Add(CommonConstants.SESSION_CREDENTIALS, listcredential);
-                Session.Add(CommonConstants.USER_SESSION, userSession);
-                Session.Add(CommonConstants.SESSION_GROUPID, member.GroupId);
-                Session["member_id"] = member.member_id;
-                Session["group_id"] = member.GroupId;
-                Session["user_name"] = member.name;
-                Session["user_gmail"] = member.username;
-                if (res.Data == 1)
-                {
-                    var listCredentials = lg.GetListCredential(username);
-                    //Session.Add(Constants.SS)
-                    return RedirectToAction("Index", "HomeAdmin", new { area = "Admin" });
-                }
-                else if (res.Data == 2)
-
-                {
-                    var listCredentials = lg.GetListCredential(username);
-                    return RedirectToAction("Home", "HomeSales", new { area = "Sales" });
-                }
-            }
-
+                ViewBag.fall_login = "Tài khoản không tồn tại!";
+                return View("~/Areas/Sales/Views/Login/Login.cshtml");
+            }      
+           
             return View();
         }
         public ActionResult Logout()
