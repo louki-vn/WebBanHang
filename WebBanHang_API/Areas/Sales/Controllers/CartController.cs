@@ -14,6 +14,7 @@ namespace WebBanHang_API.Areas.Sales.Controllers
     public class CartController : ApiController
     {
         Shop db = new Shop();
+        // Get_data là hàm chức năng phục vụ cho API CART nhé ae, anh em call vào cái CART ấy
 
         [HttpGet]
         [Route("api/cart/get/{id}/{itemincartlist}")]
