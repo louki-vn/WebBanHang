@@ -24,7 +24,7 @@ namespace WebBanHang_API.Controllers
         {
             var user_list = db.MEMBERs.ToList();
             int check = 0;
-            password = encryption(password).Trim();
+            password = Data.MD5Hash(password).ToString().Trim();
             foreach (var a in user_list)
             {
                 if(a.username == username && (a.password.ToString().Contains(password) == true || password.Contains(a.password.ToString()) == true) )
