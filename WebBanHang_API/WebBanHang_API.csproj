@@ -165,6 +165,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Areas\Sales\Controllers\CartController.cs" />
     <Compile Include="Areas\Sales\Controllers\ProductSalesController.cs" />
     <Compile Include="Areas\Sales\SalesAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -179,6 +180,7 @@
     <Compile Include="Models\CART_ITEM.cs" />
     <Compile Include="Models\CATEGORY.cs" />
     <Compile Include="Models\CREDENTIAL_S.cs" />
+    <Compile Include="Models\ItemInCart.cs" />
     <Compile Include="Models\ITEM_SOLD.cs" />
     <Compile Include="Models\MEMBER.cs" />
     <Compile Include="Models\Mem_Cart.cs" />

@@ -71,7 +71,7 @@ namespace WebBanHang_API.Areas.Admin.Controllers
             if (type.Value.ToString() == "3")
             {
                 var result = db.CATEGORies.ToList();
-                return Ok( new { data=result});
+                return Ok(result);
             }
             else
             {

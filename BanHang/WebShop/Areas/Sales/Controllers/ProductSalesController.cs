@@ -19,18 +19,18 @@ namespace WebShop.Areas.Sales.Controllers
             _client = new RestClient("https://localhost:44396/");
         }
 
-        // GET: Product
-        //public JsonResult GetPro()
-        //{
-        //    List<PRODUCT> productlist = new List<PRODUCT>();
-        //    var result_product = db.Database.SqlQuery<PRODUCT>("exec selectallfromPRODUCT").ToList();
-        //    int qty = result_product.Count();
-        //    for (int i = 0; i < qty; i++)
-        //    {
-        //        productlist.Add(result_product[i]);
-        //    }
-        //    return Json(productlist, JsonRequestBehavior.AllowGet);
-        //}
+        //GET: Product
+        public JsonResult GetPro()
+        {
+            List<PRODUCT> productlist = new List<PRODUCT>();
+            var result_product = db.Database.SqlQuery<PRODUCT>("exec selectallfromPRODUCT").ToList();
+            int qty = result_product.Count();
+            for (int i = 0; i < qty; i++)
+            {
+                productlist.Add(result_product[i]);
+            }
+            return Json(productlist, JsonRequestBehavior.AllowGet);
+        }
 
         public ActionResult Product()
         {
