@@ -32,17 +32,23 @@ namespace WebShop.Areas.Sales.Controllers
             string address = form.Get("customer[address]").ToString();
             string phone = form.Get("customer[phone]").ToString();
             string name = form.Get("customer[name]").ToString();
-           
-            var request = new RestRequest($"api/createaccount/addmember/{username}/{name}/{pass}/{phone}/{address}", Method.Post);
-            var res = _client.Execute<int>(request);
 
-            if (res.Data == 1)
+            var req = new RestRequest($"api/get_member_by_username/{username}/", Method.Get);
+            var response = _client.Execute<List<MEMBER>>(req).Data;
+
+            if (response.Count() == 0)
             {
-                Session["user_logined"] = username;
-                Session["is_logined"] = 1;
-                ViewBag.user_logined = Session["user_logined"];
-                ViewBag.is_logined = Session["is_logined"];
-                return RedirectToAction("Home", "HomeSales", new { area = "Sales" });
+                var request = new RestRequest($"api/add_member/{username}/{name}/{pass}/{phone}/{address}", Method.Post);
+                var res = _client.Execute<int>(request);
+                if (res.Data == 1)
+                {
+                    Session["user_logined"] = username;
+                    Session["is_logined"] = 1;
+                    ViewBag.user_logined = Session["user_logined"];
+                    ViewBag.is_logined = Session["is_logined"];
+                    return RedirectToAction("Home", "HomeSales", new { area = "Sales" });
+                }
+                return View();
             }
             else
             {
