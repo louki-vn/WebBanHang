@@ -50,5 +50,14 @@ namespace WebBanHang_API.Areas.Sales.Controllers
             var products_list = db.Database.SqlQuery<PRODUCT>("exec get_product_from_CATEGORY @id", u).ToList();
             return Json(products_list);
         }
+
+        [HttpGet]
+        [Route("api/productsales/search/{keyword}")]
+        public IHttpActionResult Search(string keyword)
+        {
+            var key_word_var = new SqlParameter("@key_word", keyword);           
+            var result = db.Database.SqlQuery<PRODUCT>("exec get_PRODUCT_from_key_word @key_word", key_word_var).ToList();
+            return Json(result);
+        }
     }
 }

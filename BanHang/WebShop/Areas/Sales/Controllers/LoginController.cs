@@ -40,9 +40,7 @@ namespace WebShop.Areas.Sales.Controllers
 
             var request = new RestRequest($"api/LoginCheck/{username}/{pass}");
             var response = _client.Execute<int>(request);
-
-          
-            
+                 
             if (response.Data == 1)
             {
                 var res = lg.Login(username, Data.MD5Hash(pass), true);
@@ -89,9 +87,10 @@ namespace WebShop.Areas.Sales.Controllers
                 ViewBag.fall_login = "Tài khoản không tồn tại!";
                 return View("~/Areas/Sales/Views/Login/Login.cshtml");
             }      
-           
+            
             return View();
         }
+
         public ActionResult Logout()
         {
             Session["is_logined"] = 0;

@@ -21,11 +21,12 @@ namespace WebShop.Areas.Sales.Controllers
         {
             _client = new RestClient("https://localhost:44396/");
         }
+
         // GET: Cart
 
         public List<ItemInCart> Get_Data(string id, List<ItemInCart> itemincartlist)
         {
-            var request = new RestRequest($"api/cart/get/{id}/{itemincartlist}", Method.Get).AddBody(itemincartlist);
+            var request = new RestRequest($"api/cart/get/{id}/{itemincartlist}", Method.Get);
             var res = _client.Execute<List<ItemInCart>>(request).Data;
 
             //var user = new SqlParameter("@username", id);
@@ -67,6 +68,7 @@ namespace WebShop.Areas.Sales.Controllers
             ViewBag.Number = res.Count();
             return itemincartlist;
         }
+
         [HasCredential(RoleID = "VIEW_CART_USER")]
         public ActionResult Cart(string id)
         {
@@ -81,6 +83,7 @@ namespace WebShop.Areas.Sales.Controllers
             ViewBag.Number = response.Count();
             return View(response);
         }
+
         [HasCredential(RoleID = "DELETE_PRODUCT_IN_CART_USER")]
         public ActionResult Remove_Item(string id)
         {
@@ -94,6 +97,7 @@ namespace WebShop.Areas.Sales.Controllers
             ViewBag.Number = res.Count();
             return View("~/Areas/Sales/Views/Cart/Cart.cshtml", res);
         }
+
         [HasCredential(RoleID = "DELETE_ALL_PRODUCT_IN_CART_USER")]
         public ActionResult Remove_All_Item()
         {
@@ -107,6 +111,7 @@ namespace WebShop.Areas.Sales.Controllers
             Get_Data(username, itemincartlist);
             return View("~/Areas/Sales/Views/Cart/Cart.cshtml", itemincartlist);
         }
+
         [HasCredential(RoleID = "DELETE_PRODUCT_IN_CART_USER")]
         [HttpPost]
         public ActionResult Remove_Item0(FormCollection data)

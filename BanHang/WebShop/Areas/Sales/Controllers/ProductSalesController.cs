@@ -410,18 +410,17 @@ namespace WebShop.Areas.Sales.Controllers
             return View("~/Areas/Sales/Views/ProductSales/Product.cshtml", productlist);
         }
 
-        public ActionResult Search(string key_word)
+        public ActionResult Search(string keyword)
         {
-            var key_word_var = new SqlParameter("@key_word", key_word);
-            List<PRODUCT> productlist = new List<PRODUCT>();
+            var request = new RestRequest($"api/productsales/search/{keyword}/", Method.Get);
+            var result = _client.Execute<List<PRODUCT>>(request).Data;
+            //var key_word_var = new SqlParameter("@key_word", key_word);
+            //List<PRODUCT> productlist = new List<PRODUCT>();
             List<PRODUCT_Plus> productpluslist = new List<PRODUCT_Plus>();
-            var result = db.Database.SqlQuery<PRODUCT>("exec get_PRODUCT_from_key_word @key_word", key_word_var).ToList();
+            //var result = db.Database.SqlQuery<PRODUCT>("exec get_PRODUCT_from_key_word @key_word", key_word_var).ToList();
             int qty = result.Count();
-            for (int i = 0; i < qty; i++)
-            {
-                productlist.Add(result[i]);
-            }
-            Mix_PRODUCT_And_PRODUCT_Plus(productlist, productpluslist);
+    
+            Mix_PRODUCT_And_PRODUCT_Plus(result, productpluslist);
             ViewBag.qty = qty;
             if (ViewBag.is_logined == 1)
             {
