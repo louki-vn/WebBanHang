@@ -39,7 +39,9 @@ namespace WebShop.Areas.Admin.Controllers
             ViewBag.Amount = json.GetValue("amount");
             ViewBag.Total = json.GetValue("total");
 
-            var topproduct = db.PRODUCTs.SqlQuery("exec SelectTopProduct").ToList();
+            //var topproduct = db.PRODUCTs.SqlQuery("exec SelectTopProduct").ToList();
+            request = new RestRequest($"api/admin/get_topProduct_HomeAdmin");
+            var topproduct = _client.Execute<List<PRODUCT>>(request).Data;
             ViewBag.TopProduct = topproduct;
 
             var category = db.CATEGORies.ToArray();
@@ -58,7 +60,9 @@ namespace WebShop.Areas.Admin.Controllers
             }
             ViewBag.Brand = p1;
 
-            var topmem = db.Database.SqlQuery<Mem_Cart>("exec SelectTopMember").ToList();
+            request = new RestRequest($"api/admin/get_topMember_HomeAdmin");
+            //var topmem = db.Database.SqlQuery<Mem_Cart>("exec SelectTopMember").ToList();
+            var topmem = _client.Execute<List<Mem_Cart>>(request).Data;
             ViewBag.TopMem = topmem;
             return View();
         }
