@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -10,10 +10,35 @@ using WebShop.Models;
 
 namespace WebBanHang_API.Areas.Sales.Controllers
 {
-    [Route("api/homesales")]
+    [Route("api/Home")]
+
     public class HomeSalesController : ApiController
     {
         Shop db = new Shop();
+// API này lấy tất cả sản phẩm đồ da từ Database để gửi sang View
+        [HttpGet]
+        [Route("api/homesales/home/{username}")]
+        public IHttpActionResult Home(string username)
+        {
+            int doda = 2;
+            var id_var = new SqlParameter("@group_id", doda);
+            var result = db.Database.SqlQuery<PRODUCT>("exec get_product_from_PRODUCT_GROUP @group_id", id_var).ToList();
+            int qty = result.Count();
+            List<PRODUCT> product1list = new List<PRODUCT>();
+            List<PRODUCT_Plus> productpluslist = new List<PRODUCT_Plus>();
+            for (int i = 0; i < qty; i++)
+            {
+                product1list.Add(result[i]);
+            }
+            Mix_PRODUCT_And_PRODUCT_Plus(product1list, productpluslist);
+            Models.Data data = new Models.Data();
+            List<ItemInCart> itemincartlist = new List<ItemInCart>();
+            data.GetItemInCart(itemincartlist, username);
+            /*           ViewBag.ItemInCart = itemincartlist;
+                       ViewBag.Number = itemincartlist.Count();*/
+            return Json(productpluslist);
+        }
+
 
         public void Mix_PRODUCT_And_PRODUCT_Plus(List<PRODUCT> productlist, List<PRODUCT_Plus> productpluslist)
         {
@@ -42,37 +67,6 @@ namespace WebBanHang_API.Areas.Sales.Controllers
                 }
                 productpluslist.Add(c);
             }
-        }
-
-        // API lấy tất cả các sản phẩm đồ da, chuyển thành list dạng PRODUCT_Plus 
-        [HttpGet]
-        [Route("api/get_all_leather_products")]
-        public IHttpActionResult Get_All_Leather_Products()
-        {
-            int doda = 2;
-            var id_var = new SqlParameter("@group_id", doda);
-            var result = db.Database.SqlQuery<PRODUCT>("exec get_product_from_PRODUCT_GROUP @group_id", id_var).ToList();
-            int qty = result.Count();
-            List<PRODUCT> product1list = new List<PRODUCT>();
-            List<PRODUCT_Plus> productpluslist = new List<PRODUCT_Plus>();
-            for (int i = 0; i < qty; i++)
-            {
-                product1list.Add(result[i]);
-            }
-            Mix_PRODUCT_And_PRODUCT_Plus(product1list, productpluslist);
-            return Json(productpluslist);
-        }
-        
-
-        // API Lấy các sản phẩm trong giỏ hàng của người dùng từ username
-        [HttpGet]
-        [Route("api/get_item_from_cart_by_username/{username}")]
-        public IHttpActionResult Get_Item_From_Cart_By_Username(string username)
-        {
-            Models.Data data = new Models.Data();
-            List<ItemInCart> itemincartlist = new List<ItemInCart>();
-            data.GetItemInCart(itemincartlist, username);
-            return Json(itemincartlist);
         }
     }
 }
