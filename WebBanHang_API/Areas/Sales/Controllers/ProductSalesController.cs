@@ -10,7 +10,7 @@ using WebBanHang_API.Models;
 namespace WebBanHang_API.Areas.Sales.Controllers
 {
 
-    [Route("api/{controller}")]
+    //[Route("api/{controller}")]
     public class ProductSalesController : ApiController
     {
         Shop db = new Shop();
@@ -35,6 +35,7 @@ namespace WebBanHang_API.Areas.Sales.Controllers
             }
             return Json(p);
         }
+
         [Route("api/productsales/getproductbybrand/{id}")]
         public IHttpActionResult GetProductByBrand(string id)
         {
@@ -55,12 +56,12 @@ namespace WebBanHang_API.Areas.Sales.Controllers
         [Route("api/productsales/search/{keyword}")]
         public IHttpActionResult Search(string keyword)
         {
-            var key_word_var = new SqlParameter("@key_word", keyword);           
+            var key_word_var = new SqlParameter("@key_word", keyword);
             var result = db.Database.SqlQuery<PRODUCT>("exec get_PRODUCT_from_key_word @key_word", key_word_var).ToList();
             return Json(result);
         }
-        
-               public void Mix_PRODUCT_And_PRODUCT_Plus(List<PRODUCT> productlist, List<PRODUCT_Plus> productpluslist)
+
+        public void Mix_PRODUCT_And_PRODUCT_Plus(List<PRODUCT> productlist, List<PRODUCT_Plus> productpluslist)
         {
             var result_sale = db.Database.SqlQuery<SALE>("exec get_all_from_SALES").ToList();
             foreach (var a in productlist)
@@ -88,11 +89,9 @@ namespace WebBanHang_API.Areas.Sales.Controllers
             }
         }
 
-
-
         // Lấy Product_detail từ product_id
         [HttpGet]
-        [Route("api/product_detail/{id}")]
+        [Route("api/productsales/product_detail/{id}")]
         public IHttpActionResult Product_Detail(int id)
         {
             List<PRODUCT> productlist = new List<PRODUCT>();
@@ -101,9 +100,9 @@ namespace WebBanHang_API.Areas.Sales.Controllers
             Mix_PRODUCT_And_PRODUCT_Plus(productlist, productpluslist);
             return Json(productpluslist);
         }
-                                                                                                                                                                                                                                                                        
+
         [HttpGet]
-        [Route("api/get_product_base_on_product_group/{id}")]
+        [Route("api/productsales/get_product_base_on_product_group/{id}")]
         public IHttpActionResult Get_Product_Base_On_Product_Group(string id)
         {
             int id_int = Int32.Parse(id);
@@ -121,7 +120,7 @@ namespace WebBanHang_API.Areas.Sales.Controllers
         }
 
         [HttpGet]
-        [Route("api/get_product_base_on_price/{id}")]
+        [Route("api/productsales/get_product_base_on_price/{id}")]
         public IHttpActionResult Get_Product_Base_On_Price(int id)
         {
             var along_var = new SqlParameter("@along", id);
@@ -138,7 +137,7 @@ namespace WebBanHang_API.Areas.Sales.Controllers
         }
 
         [HttpGet]
-        [Route("api/get_product_base_on_brand/{id}")]
+        [Route("api/productsales/get_product_base_on_brand/{id}")]
         public IHttpActionResult Get_Product_Base_On_Brand(string id)
         {
             var brand_var = new SqlParameter("@brand", Int32.Parse(id));
@@ -156,7 +155,5 @@ namespace WebBanHang_API.Areas.Sales.Controllers
     }
 }
 
-    }
-}
 
 
