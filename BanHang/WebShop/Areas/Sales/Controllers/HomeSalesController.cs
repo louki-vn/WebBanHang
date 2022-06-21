@@ -27,33 +27,15 @@ namespace WebShop.Areas.Sales.Controllers
         
             var request = new RestRequest($"api/get_all_leather_products", Method.Get);
             var res = _client.Execute<List<PRODUCT_Plus>>(request).Data;
-
-            //int doda = 2;
-            //var id_var = new SqlParameter("@group_id", doda);
-            //var result = db.Database.SqlQuery<PRODUCT>("exec get_product_from_product_group @group_id", id_var).ToList();
-            //int qty = result.Count();
-            //List<PRODUCT> product1list = new List<PRODUCT>();
-            //List<PRODUCT_Plus> productpluslist = new List<PRODUCT_Plus>();
-            //for (int i = 0; i < qty; i++)
-            //{
-            //    product1list.Add(result[i]);
-            //}
             ViewBag.qty = res.Count();
-           // Mix_PRODUCT_And_PRODUCT_Plus(product1list, productpluslist);
 
             if (ViewBag.is_logined == 1)
             {
                 var request1 = new RestRequest($"api/get_item_from_cart_by_username/{Session["user_logined"].ToString()}/", Method.Get);
-                var response = _client.Execute<List<ItemInCart>>(request1).Data;
-                Models.Data data = new Models.Data();
-                List<ItemInCart> itemincartlist = new List<ItemInCart>();
-                data.GetItemInCart(itemincartlist, ViewBag.user_logined);
-                ViewBag.itemincart = itemincartlist;
-                ViewBag.number = itemincartlist.Count();
+                var response = _client.Execute<List<ItemInCart>>(request1).Data;                
+                ViewBag.itemincart = response;
+                ViewBag.number = response.Count();
             }
-
-           
-
             return View("~/Areas/Sales/Views/HomeSales/Home.cshtml", res);
         }
 

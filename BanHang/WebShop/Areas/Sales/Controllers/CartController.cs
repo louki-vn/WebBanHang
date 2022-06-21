@@ -26,7 +26,7 @@ namespace WebShop.Areas.Sales.Controllers
 
         public List<ItemInCart> Get_Data(string id, List<ItemInCart> itemincartlist)
         {
-            var request = new RestRequest($"api/cart/get/{id}/{itemincartlist}", Method.Get).AddBody(itemincartlist);
+            var request = new RestRequest($"api/cart/get/{id}/{itemincartlist}", Method.Get);
             var res = _client.Execute<List<ItemInCart>>(request).Data;
 
             //var user = new SqlParameter("@username", id);

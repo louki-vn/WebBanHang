@@ -200,8 +200,6 @@
     <Compile Include="Models\Shop.cs" />
     <Compile Include="Models\TRANSACTION.cs" />
     <Compile Include="Models\USER_GROUP_S.cs" />
-    <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
-    <Compile Include="obj\Release\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -468,8 +466,6 @@
     <Content Include=".vs\WebBanHang_API\FileContentIndex\read.lock" />
     <Content Include=".vs\WebBanHang_API\v16\.suo" />
     <Content Include=".vs\WebBanHang_API\v17\.suo" />
-    <Content Include="obj\Release\WebBanHang_API.csproj.AssemblyReference.cache" />
-    <Content Include="obj\Release\WebBanHang_API.csprojAssemblyReference.cache" />
     <Content Include="packages\Antlr.3.5.0.2\.signature.p7s" />
     <Content Include="packages\Antlr.3.5.0.2\Antlr.3.5.0.2.nupkg" />
     <Content Include="packages\bootstrap.3.4.1\.signature.p7s" />
