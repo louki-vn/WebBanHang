@@ -65,6 +65,7 @@ namespace WebBanHang_API.Areas.Sales.Controllers
             List<ItemInCart> itemincartlist = new List<ItemInCart>();
             itemincartlist = Get_Data(username, itemincartlist);
             return Json(itemincartlist);
+
         }
         
         // Api này thêm tham số username vì trong bản gốc có sử dụng username được lấy từ session.

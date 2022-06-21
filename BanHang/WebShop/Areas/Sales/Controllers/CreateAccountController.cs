@@ -16,6 +16,7 @@ namespace WebShop.Areas.Sales.Controllers
         {
             _client = new RestClient("https://localhost:44396/");
         }
+
         // GET: CreateAccount
         [HttpGet]
         public ActionResult CreateAccount()
