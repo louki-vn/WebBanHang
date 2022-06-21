@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -10,7 +10,7 @@ using WebBanHang_API.Models;
 namespace WebBanHang_API.Areas.Sales.Controllers
 {
 
-    //[Route("api/{controller}")]
+    [Route("api/productsales")]
     public class ProductSalesController : ApiController
     {
         Shop db = new Shop();
@@ -19,14 +19,20 @@ namespace WebBanHang_API.Areas.Sales.Controllers
         public IHttpActionResult GetAllProducts()
         {
             var products_list = db.PRODUCTs.ToList();
-            return Json(products_list);
+            List<PRODUCT_Plus> productpluslist = new List<PRODUCT_Plus>();
+            Mix_PRODUCT_And_PRODUCT_Plus(products_list, productpluslist);
+            return Json(productpluslist);
         }
+
+
         [Route("api/productsales/getproductbyid/{id}")]
         public IHttpActionResult GetProductById(int id)
         {
             var products_list = db.PRODUCTs.ToList();
-            PRODUCT p = new PRODUCT();
-            foreach (var a in products_list)
+            List<PRODUCT_Plus> productpluslist = new List<PRODUCT_Plus>();
+            Mix_PRODUCT_And_PRODUCT_Plus(products_list, productpluslist);
+            PRODUCT_Plus p = new PRODUCT_Plus();
+            foreach (var a in productpluslist)
             {
                 if (a.product_id == id)
                 {
@@ -35,13 +41,14 @@ namespace WebBanHang_API.Areas.Sales.Controllers
             }
             return Json(p);
         }
-
         [Route("api/productsales/getproductbybrand/{id}")]
         public IHttpActionResult GetProductByBrand(string id)
         {
             var u = new SqlParameter("@brand_name", id);
             var products_list = db.Database.SqlQuery<PRODUCT>("exec get_product_base_on_brand @brand_name", u).ToList();
-            return Json(products_list);
+            List<PRODUCT_Plus> productpluslist = new List<PRODUCT_Plus>();
+            Mix_PRODUCT_And_PRODUCT_Plus(products_list, productpluslist);
+            return Json(productpluslist);
         }
 
         [Route("api/productsales/getproductbycategory/{name}")]
@@ -49,7 +56,9 @@ namespace WebBanHang_API.Areas.Sales.Controllers
         {
             var u = new SqlParameter("@id", name);
             var products_list = db.Database.SqlQuery<PRODUCT>("exec get_product_from_CATEGORY @id", u).ToList();
-            return Json(products_list);
+            List<PRODUCT_Plus> productpluslist = new List<PRODUCT_Plus>();
+            Mix_PRODUCT_And_PRODUCT_Plus(products_list, productpluslist);
+            return Json(productpluslist);
         }
 
         [HttpGet]
@@ -58,7 +67,9 @@ namespace WebBanHang_API.Areas.Sales.Controllers
         {
             var key_word_var = new SqlParameter("@key_word", keyword);
             var result = db.Database.SqlQuery<PRODUCT>("exec get_PRODUCT_from_key_word @key_word", key_word_var).ToList();
-            return Json(result);
+            List<PRODUCT_Plus> productpluslist = new List<PRODUCT_Plus>();
+            Mix_PRODUCT_And_PRODUCT_Plus(result, productpluslist);
+            return Json(productpluslist);
         }
 
         public void Mix_PRODUCT_And_PRODUCT_Plus(List<PRODUCT> productlist, List<PRODUCT_Plus> productpluslist)
@@ -89,20 +100,10 @@ namespace WebBanHang_API.Areas.Sales.Controllers
             }
         }
 
-        // Lấy Product_detail từ product_id
-        [HttpGet]
-        [Route("api/productsales/product_detail/{id}")]
-        public IHttpActionResult Product_Detail(int id)
-        {
-            List<PRODUCT> productlist = new List<PRODUCT>();
-            List<PRODUCT_Plus> productpluslist = new List<PRODUCT_Plus>();
-            var result_product = db.Database.SqlQuery<PRODUCT>("exec selectallfromPRODUCT").ToList();
-            Mix_PRODUCT_And_PRODUCT_Plus(productlist, productpluslist);
-            return Json(productpluslist);
-        }
+
 
         [HttpGet]
-        [Route("api/productsales/get_product_base_on_product_group/{id}")]
+        [Route("api/get_product_base_on_product_group/{id}")]
         public IHttpActionResult Get_Product_Base_On_Product_Group(string id)
         {
             int id_int = Int32.Parse(id);
@@ -120,7 +121,7 @@ namespace WebBanHang_API.Areas.Sales.Controllers
         }
 
         [HttpGet]
-        [Route("api/productsales/get_product_base_on_price/{id}")]
+        [Route("api/get_product_base_on_price/{id}")]
         public IHttpActionResult Get_Product_Base_On_Price(int id)
         {
             var along_var = new SqlParameter("@along", id);
@@ -137,7 +138,7 @@ namespace WebBanHang_API.Areas.Sales.Controllers
         }
 
         [HttpGet]
-        [Route("api/productsales/get_product_base_on_brand/{id}")]
+        [Route("api/get_product_base_on_brand/{id}")]
         public IHttpActionResult Get_Product_Base_On_Brand(string id)
         {
             var brand_var = new SqlParameter("@brand", Int32.Parse(id));
@@ -154,6 +155,4 @@ namespace WebBanHang_API.Areas.Sales.Controllers
         }
     }
 }
-
-
 

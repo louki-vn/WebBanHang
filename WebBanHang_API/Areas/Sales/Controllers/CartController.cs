@@ -80,6 +80,21 @@ namespace WebBanHang_API.Areas.Sales.Controllers
             itemincartlist = Get_Data(username, itemincartlist);
             return Json(itemincartlist);
         }
+        
+        // API create cart_item
+        [HttpPost]
+        [Route("api/add_cart_item/{cart_id}/{product_id}/{qty}/{amount}/{price}/{size}")]
+        public IHttpActionResult Add_Cart_Item(int cart_id, int product_id, int qty, int amount,int price, string size)
+        {
+            var cart_id_var = new SqlParameter("@cart_id", cart_id);
+            var product_id_var = new SqlParameter("@product_id", product_id);
+            var qty_var = new SqlParameter("@qty", qty);
+            var amount_var = new SqlParameter("@amount", amount);
+            var price_var = new SqlParameter("@price", price);
+            var size_var = new SqlParameter("@size", size);
+            db.Database.ExecuteSqlCommand("exec create_CART_ITEM @cart_id @product_id @qty @amount @price @size", cart_id_var, product_id_var, qty_var, amount_var, price_var, size_var);
+            return Json(1);
+        }
 
     }
 }
