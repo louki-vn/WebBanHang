@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using WebBanHang_API.Models;
+using WebShop.Models;
 
 namespace WebBanHang_API.Areas.Sales.Controllers
 {
