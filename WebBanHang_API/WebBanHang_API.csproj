@@ -137,6 +137,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OderAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductAdminController.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
@@ -190,6 +191,7 @@
     <Compile Include="Models\ITEM_SOLD.cs" />
     <Compile Include="Models\MEMBER.cs" />
     <Compile Include="Models\Mem_Cart.cs" />
+    <Compile Include="Models\Order_Products.cs" />
     <Compile Include="Models\PRODUCT.cs" />
     <Compile Include="Models\PRODUCT_GROUP.cs" />
     <Compile Include="Models\PRODUCT_Plus.cs" />
@@ -200,8 +202,6 @@
     <Compile Include="Models\Shop.cs" />
     <Compile Include="Models\TRANSACTION.cs" />
     <Compile Include="Models\USER_GROUP_S.cs" />
-    <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
-    <Compile Include="obj\Release\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -468,8 +468,6 @@
     <Content Include=".vs\WebBanHang_API\FileContentIndex\read.lock" />
     <Content Include=".vs\WebBanHang_API\v16\.suo" />
     <Content Include=".vs\WebBanHang_API\v17\.suo" />
-    <Content Include="obj\Release\WebBanHang_API.csproj.AssemblyReference.cache" />
-    <Content Include="obj\Release\WebBanHang_API.csprojAssemblyReference.cache" />
     <Content Include="packages\Antlr.3.5.0.2\.signature.p7s" />
     <Content Include="packages\Antlr.3.5.0.2\Antlr.3.5.0.2.nupkg" />
     <Content Include="packages\bootstrap.3.4.1\.signature.p7s" />
@@ -648,6 +646,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Views\Geturl\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
