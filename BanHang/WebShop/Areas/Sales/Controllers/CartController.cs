@@ -1,8 +1,10 @@
-﻿using RestSharp;
+﻿using Newtonsoft.Json;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text.Json;
 using System.Web.Mvc;
 using WebShop.Common;
 using WebShop.Models;
@@ -70,14 +72,14 @@ namespace WebShop.Areas.Sales.Controllers
         {
             ViewBag.user_logined = Session["user_logined"];
             ViewBag.is_logined = Session["is_logined"];
+            string username = Session["user_logined"].ToString();
 
-            var request = new RestRequest($"api/cart/getdata/{Session["user_logined"].ToString()}", Method.Get);
-            var res = _client.Execute<List<ItemInCart>>(request).Data;
-
-            //List<ItemInCart> itemincartlist = new List<ItemInCart>();
-            //Get_Data(Session["user_logined"].ToString(), itemincartlist);
-
-            return View(res);
+            var request = new RestRequest($"api/cart/getdata/{username}/", Method.Get);
+            var res = _client.Execute(request);
+            var response = System.Text.Json.JsonSerializer.Deserialize<List<ItemInCart>>(res.Content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            ViewBag.ItemInCart = response;
+            ViewBag.Number = response.Count();
+            return View(response);
         }
         [HasCredential(RoleID = "DELETE_PRODUCT_IN_CART_USER")]
         public ActionResult Remove_Item(string id)
@@ -85,14 +87,12 @@ namespace WebShop.Areas.Sales.Controllers
             ViewBag.user_logined = Session["user_logined"];
             ViewBag.is_logined = Session["is_logined"];
 
-            var product_id_var = new SqlParameter("@product_id", id);
-            db.Database.ExecuteSqlCommand("exec remove_CART_ITEM_from_product_id @product_id", product_id_var);
-
             var username = Session["user_logined"].ToString();
-            List<ItemInCart> itemincartlist = new List<ItemInCart>();
-            Get_Data(username, itemincartlist);
-            return View("~/Areas/Sales/Views/Cart/Cart.cshtml", itemincartlist);
-
+            var request = new RestRequest($"api/cart/removeitem/{username}/{id}", Method.Put);
+            var res = _client.Execute<List<ItemInCart>>(request).Data;
+            ViewBag.ItemInCart = res;
+            ViewBag.Number = res.Count();
+            return View("~/Areas/Sales/Views/Cart/Cart.cshtml", res);
         }
         [HasCredential(RoleID = "DELETE_ALL_PRODUCT_IN_CART_USER")]
         public ActionResult Remove_All_Item()
@@ -109,24 +109,24 @@ namespace WebShop.Areas.Sales.Controllers
         }
         [HasCredential(RoleID = "DELETE_PRODUCT_IN_CART_USER")]
         [HttpPost]
-          public ActionResult Remove_Item0(FormCollection data)
-          {
-               JsonResult Js = new JsonResult();
-               string product_id = data["product_id"];
-               string size = data["size"];
-               SqlParameter[] pro_id = { new SqlParameter("@id", Int32.Parse(product_id)),
+        public ActionResult Remove_Item0(FormCollection data)
+        {
+            JsonResult Js = new JsonResult();
+            string product_id = data["product_id"];
+            string size = data["size"];
+            SqlParameter[] pro_id = { new SqlParameter("@id", Int32.Parse(product_id)),
                new SqlParameter("@size", size)
                };
-               db.Database.ExecuteSqlCommand("delete CART_ITEM where product_id = @id and size= @size", pro_id);
-                Js.Data = new
-                {
-                    status = "OK"
-                };
-               db.SaveChanges();
-                  
-               return Json(Js, JsonRequestBehavior.AllowGet);
-          }
-          public void CheckOut(FormCollection form)
+            db.Database.ExecuteSqlCommand("delete CART_ITEM where product_id = @id and size= @size", pro_id);
+            Js.Data = new
+            {
+                status = "OK"
+            };
+            db.SaveChanges();
+
+            return Json(Js, JsonRequestBehavior.AllowGet);
+        }
+        public void CheckOut(FormCollection form)
         {
 
         }

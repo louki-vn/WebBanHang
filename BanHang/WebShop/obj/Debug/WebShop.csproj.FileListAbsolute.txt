@@ -190,6 +190,7 @@ D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Threading.Tasks.Extensions.x
 D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.ValueTuple.xml
 D:\WebBanHang\BanHang\WebShop\bin\Newtonsoft.Json.dll
 D:\WebBanHang\BanHang\WebShop\bin\Newtonsoft.Json.xml
+<<<<<<< HEAD
 C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\WebShop.dll.config
 C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\WebShop.dll
 C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\WebShop.pdb
@@ -242,3 +243,7 @@ C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\obj\Debug\WebShop.csproj.CoreCompile
 C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\obj\Debug\WebShop.csproj.CopyComplete
 C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\obj\Debug\WebShop.dll
 C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\obj\Debug\WebShop.pdb
+=======
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\Newtonsoft.Json.dll
+D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\Newtonsoft.Json.xml
+>>>>>>> 4964e86ce317aa1edb457cc3095db04950c1c19b
