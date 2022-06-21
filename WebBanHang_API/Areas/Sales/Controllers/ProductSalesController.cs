@@ -102,18 +102,6 @@ namespace WebBanHang_API.Areas.Sales.Controllers
 
 
 
-        // Lấy Product_detail từ product_id
-        [HttpGet]
-        [Route("api/product_detail/{id}")]
-        public IHttpActionResult Product_Detail(int id)
-        {
-            List<PRODUCT> productlist = new List<PRODUCT>();
-            List<PRODUCT_Plus> productpluslist = new List<PRODUCT_Plus>();
-            var result_product = db.Database.SqlQuery<PRODUCT>("exec selectallfromPRODUCT").ToList();
-            Mix_PRODUCT_And_PRODUCT_Plus(productlist, productpluslist);
-            return Json(productpluslist);
-        }
-
         [HttpGet]
         [Route("api/get_product_base_on_product_group/{id}")]
         public IHttpActionResult Get_Product_Base_On_Product_Group(string id)
