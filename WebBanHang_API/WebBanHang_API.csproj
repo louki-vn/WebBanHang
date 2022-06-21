@@ -167,7 +167,11 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Areas\Sales\Controllers\CartController.cs" />
+    <Compile Include="Areas\Sales\Controllers\CreateAccountController.cs" />
+    <Compile Include="Areas\Sales\Controllers\HomeSalesController.cs" />
     <Compile Include="Areas\Sales\Controllers\ProductSalesController.cs" />
+    <Compile Include="Areas\Sales\Controllers\RespondComplainController.cs" />
+    <Compile Include="Areas\Sales\Controllers\UserInformationController.cs" />
     <Compile Include="Areas\Sales\SalesAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />

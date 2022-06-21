@@ -33,7 +33,7 @@ namespace WebShop.Areas.Sales.Controllers
             string phone = form.Get("customer[phone]").ToString();
             string name = form.Get("customer[name]").ToString();
            
-            var request = new RestRequest($"api/createaccount/addmember/{username}/{name}/{pass}/{phone}/{address}");
+            var request = new RestRequest($"api/createaccount/addmember/{username}/{name}/{pass}/{phone}/{address}", Method.Post);
             var res = _client.Execute<int>(request);
 
             if (res.Data == 1)
