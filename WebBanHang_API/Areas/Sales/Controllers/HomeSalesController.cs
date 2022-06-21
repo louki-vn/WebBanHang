@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using WebBanHang_API.Models;
+using WebShop.Models;
 
 namespace WebBanHang_API.Areas.Sales.Controllers
 {
@@ -36,7 +38,6 @@ namespace WebBanHang_API.Areas.Sales.Controllers
                        ViewBag.Number = itemincartlist.Count();*/
             return Json(productpluslist);
         }
-
 
 
         public void Mix_PRODUCT_And_PRODUCT_Plus(List<PRODUCT> productlist, List<PRODUCT_Plus> productpluslist)

@@ -137,6 +137,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductAdminController.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
     <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />
@@ -166,7 +167,11 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Areas\Sales\Controllers\CartController.cs" />
+    <Compile Include="Areas\Sales\Controllers\CreateAccountController.cs" />
+    <Compile Include="Areas\Sales\Controllers\HomeSalesController.cs" />
     <Compile Include="Areas\Sales\Controllers\ProductSalesController.cs" />
+    <Compile Include="Areas\Sales\Controllers\RespondComplainController.cs" />
+    <Compile Include="Areas\Sales\Controllers\UserInformationController.cs" />
     <Compile Include="Areas\Sales\SalesAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -187,6 +192,7 @@
     <Compile Include="Models\Mem_Cart.cs" />
     <Compile Include="Models\PRODUCT.cs" />
     <Compile Include="Models\PRODUCT_GROUP.cs" />
+    <Compile Include="Models\PRODUCT_Plus.cs" />
     <Compile Include="Models\REPORT.cs" />
     <Compile Include="Models\REVIEW.cs" />
     <Compile Include="Models\ROLE_S.cs" />
