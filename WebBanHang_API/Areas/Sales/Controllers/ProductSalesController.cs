@@ -59,5 +59,104 @@ namespace WebBanHang_API.Areas.Sales.Controllers
             var result = db.Database.SqlQuery<PRODUCT>("exec get_PRODUCT_from_key_word @key_word", key_word_var).ToList();
             return Json(result);
         }
+        
+               public void Mix_PRODUCT_And_PRODUCT_Plus(List<PRODUCT> productlist, List<PRODUCT_Plus> productpluslist)
+        {
+            var result_sale = db.Database.SqlQuery<SALE>("exec get_all_from_SALES").ToList();
+            foreach (var a in productlist)
+            {
+                PRODUCT_Plus c = new PRODUCT_Plus();
+                c.product_id = a.product_id;
+                c.category_id = a.category_id;
+                c.sale_id = a.sale_id;
+                c.name = a.name;
+                c.price = a.price;
+                c.brand_id = (int)a.brand_id;
+                c.sold = a.sold;
+                c.size = a.size;
+                c.content = a.content;
+                c.image_link = a.image_link;
+                foreach (var b in result_sale)
+                {
+                    if (b.sale_id == a.sale_id)
+                    {
+                        c.sale_name = b.sale_name;
+                        c.percent = b.percent;
+                    }
+                }
+                productpluslist.Add(c);
+            }
+        }
+
+
+
+        // Lấy Product_detail từ product_id
+        [HttpGet]
+        [Route("api/product_detail/{id}")]
+        public IHttpActionResult Product_Detail(int id)
+        {
+            List<PRODUCT> productlist = new List<PRODUCT>();
+            List<PRODUCT_Plus> productpluslist = new List<PRODUCT_Plus>();
+            var result_product = db.Database.SqlQuery<PRODUCT>("exec selectallfromPRODUCT").ToList();
+            Mix_PRODUCT_And_PRODUCT_Plus(productlist, productpluslist);
+            return Json(productpluslist);
+        }
+                                                                                                                                                                                                                                                                        
+        [HttpGet]
+        [Route("api/get_product_base_on_product_group/{id}")]
+        public IHttpActionResult Get_Product_Base_On_Product_Group(string id)
+        {
+            int id_int = Int32.Parse(id);
+            var id_var = new SqlParameter("@group_id", id_int);
+            List<PRODUCT> productlist = new List<PRODUCT>();
+            List<PRODUCT_Plus> productpluslist = new List<PRODUCT_Plus>();
+            var result = db.Database.SqlQuery<PRODUCT>("exec get_product_from_PRODUCT_GROUP @group_id", id_var).ToList();
+            int qty = result.Count();
+            for (int i = 0; i < qty; i++)
+            {
+                productlist.Add(result[i]);
+            }
+            Mix_PRODUCT_And_PRODUCT_Plus(productlist, productpluslist);
+            return Json(productpluslist);
+        }
+
+        [HttpGet]
+        [Route("api/get_product_base_on_price/{id}")]
+        public IHttpActionResult Get_Product_Base_On_Price(int id)
+        {
+            var along_var = new SqlParameter("@along", id);
+            List<PRODUCT> productlist = new List<PRODUCT>();
+            List<PRODUCT_Plus> productpluslist = new List<PRODUCT_Plus>();
+            var result = db.Database.SqlQuery<PRODUCT>("exec get_product_base_on_price @along", along_var).ToList();
+            int qty = result.Count();
+            for (int i = 0; i < qty; i++)
+            {
+                productlist.Add(result[i]);
+            }
+            Mix_PRODUCT_And_PRODUCT_Plus(productlist, productpluslist);
+            return Json(productpluslist);
+        }
+
+        [HttpGet]
+        [Route("api/get_product_base_on_brand/{id}")]
+        public IHttpActionResult Get_Product_Base_On_Brand(string id)
+        {
+            var brand_var = new SqlParameter("@brand", Int32.Parse(id));
+            List<PRODUCT> productlist = new List<PRODUCT>();
+            List<PRODUCT_Plus> productpluslist = new List<PRODUCT_Plus>();
+            var result = db.Database.SqlQuery<PRODUCT>("exec get_product_base_on_brand @brand", brand_var).ToList();
+            int qty = result.Count();
+            for (int i = 0; i < qty; i++)
+            {
+                productlist.Add(result[i]);
+            }
+            Mix_PRODUCT_And_PRODUCT_Plus(productlist, productpluslist);
+            return Json(productpluslist);
+        }
     }
 }
+
+    }
+}
+
+
