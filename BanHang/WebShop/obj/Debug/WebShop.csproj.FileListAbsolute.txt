@@ -1,123 +1,3 @@
-D:\Năm 4\Công nghệ Web\Project\WebShop\bin\WebShop.dll.config
-D:\Năm 4\Công nghệ Web\Project\WebShop\bin\WebShop.dll
-D:\Năm 4\Công nghệ Web\Project\WebShop\bin\WebShop.pdb
-D:\Năm 4\Công nghệ Web\Project\WebShop\bin\Antlr3.Runtime.dll
-D:\Năm 4\Công nghệ Web\Project\WebShop\bin\EntityFramework.dll
-D:\Năm 4\Công nghệ Web\Project\WebShop\bin\EntityFramework.SqlServer.dll
-D:\Năm 4\Công nghệ Web\Project\WebShop\bin\Microsoft.Web.Infrastructure.dll
-D:\Năm 4\Công nghệ Web\Project\WebShop\bin\System.Web.Helpers.dll
-D:\Năm 4\Công nghệ Web\Project\WebShop\bin\System.Web.Mvc.dll
-D:\Năm 4\Công nghệ Web\Project\WebShop\bin\System.Web.Optimization.dll
-D:\Năm 4\Công nghệ Web\Project\WebShop\bin\System.Web.Razor.dll
-D:\Năm 4\Công nghệ Web\Project\WebShop\bin\System.Web.WebPages.Deployment.dll
-D:\Năm 4\Công nghệ Web\Project\WebShop\bin\System.Web.WebPages.dll
-D:\Năm 4\Công nghệ Web\Project\WebShop\bin\System.Web.WebPages.Razor.dll
-D:\Năm 4\Công nghệ Web\Project\WebShop\bin\WebGrease.dll
-D:\Năm 4\Công nghệ Web\Project\WebShop\bin\EntityFramework.xml
-D:\Năm 4\Công nghệ Web\Project\WebShop\bin\EntityFramework.SqlServer.xml
-D:\Năm 4\Công nghệ Web\Project\WebShop\bin\System.Web.Helpers.xml
-D:\Năm 4\Công nghệ Web\Project\WebShop\bin\System.Web.Mvc.xml
-D:\Năm 4\Công nghệ Web\Project\WebShop\bin\System.Web.Optimization.xml
-D:\Năm 4\Công nghệ Web\Project\WebShop\bin\System.Web.Razor.xml
-D:\Năm 4\Công nghệ Web\Project\WebShop\bin\System.Web.WebPages.xml
-D:\Năm 4\Công nghệ Web\Project\WebShop\bin\System.Web.WebPages.Deployment.xml
-D:\Năm 4\Công nghệ Web\Project\WebShop\bin\System.Web.WebPages.Razor.xml
-D:\Năm 4\Công nghệ Web\Project\WebShop\bin\Antlr3.Runtime.pdb
-D:\Năm 4\Công nghệ Web\Project\WebShop\obj\Debug\WebShop.csproj.AssemblyReference.cache
-D:\Năm 4\Công nghệ Web\Project\WebShop\obj\Debug\WebShop.csproj.CoreCompileInputs.cache
-D:\Năm 4\Công nghệ Web\Project\WebShop\obj\Debug\WebShop.csproj.CopyComplete
-D:\Năm 4\Công nghệ Web\Project\WebShop\obj\Debug\WebShop.dll
-D:\Năm 4\Công nghệ Web\Project\WebShop\obj\Debug\WebShop.pdb
-D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\WebShop.dll.config
-D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\WebShop.dll
-D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\WebShop.pdb
-D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\Antlr3.Runtime.dll
-D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\EntityFramework.dll
-D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\EntityFramework.SqlServer.dll
-D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\Microsoft.Web.Infrastructure.dll
-D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\System.Web.Helpers.dll
-D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\System.Web.Mvc.dll
-D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\System.Web.Optimization.dll
-D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\System.Web.Razor.dll
-D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\System.Web.WebPages.Deployment.dll
-D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\System.Web.WebPages.dll
-D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\System.Web.WebPages.Razor.dll
-D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\WebGrease.dll
-D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\EntityFramework.xml
-D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\EntityFramework.SqlServer.xml
-D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\System.Web.Helpers.xml
-D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\System.Web.Mvc.xml
-D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\System.Web.Optimization.xml
-D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\System.Web.Razor.xml
-D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\System.Web.WebPages.xml
-D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\System.Web.WebPages.Deployment.xml
-D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\System.Web.WebPages.Razor.xml
-D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\bin\Antlr3.Runtime.pdb
-D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\obj\Debug\WebShop.csproj.AssemblyReference.cache
-D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\obj\Debug\WebShop.csproj.CoreCompileInputs.cache
-D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\obj\Debug\WebShop.csproj.CopyComplete
-D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\obj\Debug\WebShop.dll
-D:\Năm 4\Công nghệ Web\Nhóm 5\Project\WebShop\obj\Debug\WebShop.pdb
-F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\WebShop.dll.config
-F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\WebShop.dll
-F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\WebShop.pdb
-F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\Antlr3.Runtime.dll
-F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\EntityFramework.dll
-F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\EntityFramework.SqlServer.dll
-F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\Microsoft.Web.Infrastructure.dll
-F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\System.Web.Helpers.dll
-F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\System.Web.Mvc.dll
-F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\System.Web.Optimization.dll
-F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\System.Web.Razor.dll
-F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\System.Web.WebPages.Deployment.dll
-F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\System.Web.WebPages.dll
-F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\System.Web.WebPages.Razor.dll
-F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\WebGrease.dll
-F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\EntityFramework.xml
-F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\EntityFramework.SqlServer.xml
-F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\System.Web.Helpers.xml
-F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\System.Web.Mvc.xml
-F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\System.Web.Optimization.xml
-F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\System.Web.Razor.xml
-F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\System.Web.WebPages.xml
-F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\System.Web.WebPages.Deployment.xml
-F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\System.Web.WebPages.Razor.xml
-F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\bin\Antlr3.Runtime.pdb
-F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\obj\Debug\WebShop.csprojAssemblyReference.cache
-F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\obj\Debug\WebShop.csproj.CoreCompileInputs.cache
-F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\obj\Debug\WebShop.csproj.CopyComplete
-F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\obj\Debug\WebShop.dll
-F:\SENIOR2\CongNgheLapTrinhTichHop\THICUOIKY\WebBanHang\BanHang\WebShop\obj\Debug\WebShop.pdb
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\WebShop.dll.config
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\WebShop.dll
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\WebShop.pdb
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\Antlr3.Runtime.dll
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\EntityFramework.dll
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\EntityFramework.SqlServer.dll
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\Microsoft.Web.Infrastructure.dll
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Web.Helpers.dll
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Web.Mvc.dll
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Web.Optimization.dll
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Web.Razor.dll
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Web.WebPages.Deployment.dll
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Web.WebPages.dll
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Web.WebPages.Razor.dll
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\WebGrease.dll
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\EntityFramework.xml
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\EntityFramework.SqlServer.xml
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Web.Helpers.xml
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Web.Mvc.xml
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Web.Optimization.xml
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Web.Razor.xml
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Web.WebPages.xml
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Web.WebPages.Deployment.xml
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Web.WebPages.Razor.xml
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\Antlr3.Runtime.pdb
-D:\Code Visual 2019\LTTH\BanHang\WebShop\obj\Debug\WebShop.csprojAssemblyReference.cache
-D:\Code Visual 2019\LTTH\BanHang\WebShop\obj\Debug\WebShop.csproj.CoreCompileInputs.cache
-D:\Code Visual 2019\LTTH\BanHang\WebShop\obj\Debug\WebShop.csproj.CopyComplete
-D:\Code Visual 2019\LTTH\BanHang\WebShop\obj\Debug\WebShop.dll
-D:\Code Visual 2019\LTTH\BanHang\WebShop\obj\Debug\WebShop.pdb
 D:\WebBanHang\BanHang\WebShop\bin\WebShop.dll.config
 D:\WebBanHang\BanHang\WebShop\bin\WebShop.dll
 D:\WebBanHang\BanHang\WebShop\bin\WebShop.pdb
@@ -126,6 +6,7 @@ D:\WebBanHang\BanHang\WebShop\bin\EntityFramework.dll
 D:\WebBanHang\BanHang\WebShop\bin\EntityFramework.SqlServer.dll
 D:\WebBanHang\BanHang\WebShop\bin\Microsoft.Bcl.AsyncInterfaces.dll
 D:\WebBanHang\BanHang\WebShop\bin\Microsoft.Web.Infrastructure.dll
+D:\WebBanHang\BanHang\WebShop\bin\Newtonsoft.Json.dll
 D:\WebBanHang\BanHang\WebShop\bin\RestSharp.dll
 D:\WebBanHang\BanHang\WebShop\bin\System.Buffers.dll
 D:\WebBanHang\BanHang\WebShop\bin\System.Memory.dll
@@ -146,6 +27,7 @@ D:\WebBanHang\BanHang\WebShop\bin\WebGrease.dll
 D:\WebBanHang\BanHang\WebShop\bin\EntityFramework.xml
 D:\WebBanHang\BanHang\WebShop\bin\EntityFramework.SqlServer.xml
 D:\WebBanHang\BanHang\WebShop\bin\Microsoft.Bcl.AsyncInterfaces.xml
+D:\WebBanHang\BanHang\WebShop\bin\Newtonsoft.Json.xml
 D:\WebBanHang\BanHang\WebShop\bin\RestSharp.xml
 D:\WebBanHang\BanHang\WebShop\bin\System.Buffers.xml
 D:\WebBanHang\BanHang\WebShop\bin\System.Memory.xml
@@ -163,87 +45,8 @@ D:\WebBanHang\BanHang\WebShop\bin\System.Web.WebPages.xml
 D:\WebBanHang\BanHang\WebShop\bin\System.Web.WebPages.Deployment.xml
 D:\WebBanHang\BanHang\WebShop\bin\System.Web.WebPages.Razor.xml
 D:\WebBanHang\BanHang\WebShop\bin\Antlr3.Runtime.pdb
-D:\WebBanHang\BanHang\WebShop\obj\Debug\WebShop.csproj.AssemblyReference.cache
 D:\WebBanHang\BanHang\WebShop\obj\Debug\WebShop.csproj.CoreCompileInputs.cache
 D:\WebBanHang\BanHang\WebShop\obj\Debug\WebShop.csproj.CopyComplete
 D:\WebBanHang\BanHang\WebShop\obj\Debug\WebShop.dll
 D:\WebBanHang\BanHang\WebShop\obj\Debug\WebShop.pdb
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\Microsoft.Bcl.AsyncInterfaces.dll
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\RestSharp.dll
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Buffers.dll
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Memory.dll
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Numerics.Vectors.dll
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Runtime.CompilerServices.Unsafe.dll
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Text.Encodings.Web.dll
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Text.Json.dll
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Threading.Tasks.Extensions.dll
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.ValueTuple.dll
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\Microsoft.Bcl.AsyncInterfaces.xml
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\RestSharp.xml
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Buffers.xml
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Memory.xml
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Numerics.Vectors.xml
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Runtime.CompilerServices.Unsafe.xml
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Text.Encodings.Web.xml
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Text.Json.xml
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.Threading.Tasks.Extensions.xml
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\System.ValueTuple.xml
-D:\WebBanHang\BanHang\WebShop\bin\Newtonsoft.Json.dll
-D:\WebBanHang\BanHang\WebShop\bin\Newtonsoft.Json.xml
-<<<<<<< HEAD
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\WebShop.dll.config
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\WebShop.dll
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\WebShop.pdb
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\Antlr3.Runtime.dll
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\EntityFramework.dll
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\EntityFramework.SqlServer.dll
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\Microsoft.Bcl.AsyncInterfaces.dll
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\Microsoft.Web.Infrastructure.dll
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\Newtonsoft.Json.dll
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\RestSharp.dll
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\System.Buffers.dll
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\System.Memory.dll
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\System.Numerics.Vectors.dll
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\System.Runtime.CompilerServices.Unsafe.dll
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\System.Text.Encodings.Web.dll
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\System.Text.Json.dll
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\System.Threading.Tasks.Extensions.dll
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\System.ValueTuple.dll
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\System.Web.Helpers.dll
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\System.Web.Mvc.dll
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\System.Web.Optimization.dll
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\System.Web.Razor.dll
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\System.Web.WebPages.Deployment.dll
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\System.Web.WebPages.dll
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\System.Web.WebPages.Razor.dll
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\WebGrease.dll
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\EntityFramework.xml
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\EntityFramework.SqlServer.xml
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\Microsoft.Bcl.AsyncInterfaces.xml
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\Newtonsoft.Json.xml
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\RestSharp.xml
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\System.Buffers.xml
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\System.Memory.xml
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\System.Numerics.Vectors.xml
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\System.Runtime.CompilerServices.Unsafe.xml
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\System.Text.Encodings.Web.xml
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\System.Text.Json.xml
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\System.Threading.Tasks.Extensions.xml
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\System.ValueTuple.xml
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\System.Web.Helpers.xml
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\System.Web.Mvc.xml
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\System.Web.Optimization.xml
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\System.Web.Razor.xml
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\System.Web.WebPages.xml
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\System.Web.WebPages.Deployment.xml
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\System.Web.WebPages.Razor.xml
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\bin\Antlr3.Runtime.pdb
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\obj\Debug\WebShop.csproj.AssemblyReference.cache
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\obj\Debug\WebShop.csproj.CoreCompileInputs.cache
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\obj\Debug\WebShop.csproj.CopyComplete
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\obj\Debug\WebShop.dll
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\obj\Debug\WebShop.pdb
-=======
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\Newtonsoft.Json.dll
-D:\Code Visual 2019\LTTH\BanHang\WebShop\bin\Newtonsoft.Json.xml
->>>>>>> 4964e86ce317aa1edb457cc3095db04950c1c19b
+D:\WebBanHang\BanHang\WebShop\obj\Debug\WebShop.csproj.AssemblyReference.cache

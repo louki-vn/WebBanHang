@@ -42,7 +42,6 @@ namespace WebShop.Areas.Sales.Controllers
                 Session["is_logined"] = 1;
                 ViewBag.user_logined = Session["user_logined"];
                 ViewBag.is_logined = Session["is_logined"];
-
                 return RedirectToAction("Home", "HomeSales", new { area = "Sales" });
             }
             else
