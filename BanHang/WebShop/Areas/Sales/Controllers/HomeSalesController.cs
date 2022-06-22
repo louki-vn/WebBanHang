@@ -57,7 +57,6 @@ namespace WebShop.Areas.Sales.Controllers
             else
             {
                 int _product_id = int.Parse(product_id);
-
                 var request = new RestRequest($"api/productsales/getproductbyid/{_product_id}", Method.Get);
                 var res = _client.Execute<PRODUCT_Plus>(request).Data;
                 //var x = db.PRODUCTs.Where(p => p.product_id == _product_id).FirstOrDefault();
