@@ -68,19 +68,6 @@ namespace WebBanHang_API.Areas.Sales.Controllers
 
         }
         
-        // Api này thêm tham số username vì trong bản gốc có sử dụng username được lấy từ session.
-        
-        [HttpPut]
-        [Route("api/cart/removeitem/{username}/{id}")]
-        public IHttpActionResult Remove_Item(string username, string id)
-        {
-            var product_id_var = new SqlParameter("@product_id", id);
-            db.Database.ExecuteSqlCommand("exec remove_CART_ITEM_from_product_id @product_id", product_id_var);
-            List<ItemInCart> itemincartlist = new List<ItemInCart>();
-            itemincartlist = Get_Data(username, itemincartlist);
-            return Json(itemincartlist);
-        }
-        
         // API create cart_item
         [HttpPost]
         [Route("api/add_cart_item/{cart_id}/{product_id}/{qty}/{amount}/{price}/{size}")]
@@ -95,6 +82,20 @@ namespace WebBanHang_API.Areas.Sales.Controllers
             db.Database.ExecuteSqlCommand("exec create_CART_ITEM @cart_id @product_id @qty @amount @price @size", cart_id_var, product_id_var, qty_var, amount_var, price_var, size_var);
             return Json(1);
         }
-
+        
+        // Api này thêm tham số username vì trong bản gốc có sử dụng username được lấy từ session.
+        
+        [HttpPut]
+        [Route("api/cart/removeitem/{username}/{id}")]
+        public IHttpActionResult Remove_Item(string username, string id)
+        {
+            var product_id_var = new SqlParameter("@product_id", id);
+            db.Database.ExecuteSqlCommand("exec remove_CART_ITEM_from_product_id @product_id", product_id_var);
+            List<ItemInCart> itemincartlist = new List<ItemInCart>();
+            itemincartlist = Get_Data(username, itemincartlist);
+            return Json(itemincartlist);
+        }
+        
     }
 }
+
