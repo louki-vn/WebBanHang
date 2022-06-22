@@ -192,7 +192,7 @@ namespace WebBanHang_API.Areas.Sales.Controllers
             return Json(1);
         }
         
-                // Lấy các giao dịch của một user để xem user đó có mua SP này chưa, để xác định user có được phép review sản phẩm hay không
+        // Lấy các giao dịch của một user để xem user đó có mua SP này chưa, để xác định user có được phép review sản phẩm hay không
         [HttpGet]
         [Route("api/productsales/get_transaction_from_username/{username}")]
         public IHttpActionResult Get_Transaction_From_Username(string username)
