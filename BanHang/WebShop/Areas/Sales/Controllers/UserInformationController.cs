@@ -41,6 +41,7 @@ namespace WebShop.Areas.Sales.Controllers
 
             return View(user);
         }
+
         [HasCredential(RoleID = "UPDATE_INFORMATION_USER")]
         public ActionResult update_information(string member_id, string name, string phone, string address)
         {
@@ -82,7 +83,6 @@ namespace WebShop.Areas.Sales.Controllers
 
         [HasCredential(RoleID = "CHANGE_PASSWORD_USER")]
         [HttpPost]
-
         public JsonResult Change_Password(FormCollection form)
         {
             string old_pass = form["old_pass"];

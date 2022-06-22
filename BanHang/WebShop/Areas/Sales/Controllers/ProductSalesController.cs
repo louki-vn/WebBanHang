@@ -309,32 +309,29 @@ namespace WebShop.Areas.Sales.Controllers
             }
             ViewBag.qty = qty;
             ViewBag.product_id = product_id;
+
+            var request1 = new RestRequest($"api/productsales/getproductbyid/{product_id}", Method.Get);
+            var res1 = _client.Execute<PRODUCT_Plus>(request1).Data;
+
+            var request2 = new RestRequest($"api/get_member_by_username/{user}/", Method.Get);
+            var res2 = _client.Execute<List<MEMBER>>(request2).Data;
             //          Lấy thông tin member đang đăng nhập và product đã được chọn (để tạo item)
-            var product_id_var = new SqlParameter("@product_id", product_id);
-            var username = new SqlParameter("@username", System.Data.SqlDbType.NVarChar) { Value = user };
-            var result_product = db.Database.SqlQuery<PRODUCT>("exec get_PRODUCT_from_product_id @product_id", product_id_var).ToList();
-            var result_member = db.Database.SqlQuery<MEMBER>("exec get_MEMBER_from_username @username", username).ToList();
-            string price = result_product[0].price.ToString();
-            string cart_id = result_member[0].member_id.ToString();
+            string price = res1.price.ToString();
+            string cart_id = res2[0].member_id.ToString();
             ViewBag.cart_id = cart_id;
             //          Kiểm tra xem đã tồn tại sản phẩm đó trong giỏ hàng chưa
-            var product_id_var3 = new SqlParameter("@product_id", product_id);
-            var cart_id_var2 = new SqlParameter("@cart_id", cart_id);
-            var size_var1 = new SqlParameter("@size", size);
-            var result_check = db.Database.SqlQuery<CART_ITEM>("exec CheckProductInCart @cart_id, @product_id, @size", cart_id_var2, product_id_var3, size_var1).ToList();
-            if (result_check.Count() == 1)
+            var request3 = new RestRequest($"api/productsales/check_product_in_cart/{cart_id}/{product_id}/{size}", Method.Get);
+            var res3 = _client.Execute<List<CART_ITEM>>(request3).Data;
+            if (res3.Count() == 1)
             {
-                var product_id_var2 = new SqlParameter("@product_id", product_id);
-                var cart_id_var = new SqlParameter("@cart_id", cart_id);
-                var size_var = new SqlParameter("@size", size);
-                var qty_var = new SqlParameter("@qty", item_qty);
-                db.Database.ExecuteSqlCommand("UpdateNumberProductInCartItem @cart_id, @product_id, @size,@qty", cart_id_var, product_id_var2, size_var, qty_var);
+                var request4 = new RestRequest($"api/productsales/update_number_product_in_cart/{cart_id}/{product_id}/{size}/{qty}", Method.Get);
+                var res4 = _client.Execute<List<CART_ITEM>>(request4).Data;
             }
             else
             {
                 float amount = float.Parse(price) * item_qty;
-                var request1 = new RestRequest($"api/add_cart_item/{cart_id}/{product_id}/{qty}/{amount}/{price}/{size}", Method.Post);
-                var response = _client.Execute(request1);
+                var request5 = new RestRequest($"api/add_cart_item/{cart_id}/{product_id}/{qty}/{amount}/{price}/{size}", Method.Post);
+                var response = _client.Execute(request5);
             }
         }
 
@@ -379,19 +376,24 @@ namespace WebShop.Areas.Sales.Controllers
         public ActionResult Add_Review_Check(string product_id, string username)
         {
             bool check = false;
-            var username_var = new SqlParameter("@username", username);
-            var result_transaction = db.Database.SqlQuery<TRANSACTION>("exec get_TRANSACTION_from_username @username", username_var).ToList();
+            var request = new RestRequest($"api/productsales/get_transaction_by_username/{username}/", Method.Get);
+            var result = _client.Execute<List<TRANSACTION>>(request).Data;
+            //var username_var = new SqlParameter("@username", username);
+            //var result_transaction = db.Database.SqlQuery<TRANSACTION>("exec get_TRANSACTION_from_username @username", username_var).ToList();
             int[] check_arr = new int[20];
             for (int k = 0; k < 20; k++)
             {
                 check_arr[k] = 0;
             }
             int i = 0;
-            foreach (TRANSACTION a in result_transaction)
+            foreach (TRANSACTION a in result)
             {
-                var transaction_id_var = new SqlParameter("@transaction_id", a.transaction_id);
-                var product_id_var = new SqlParameter("@product_id", product_id);
-                check_arr[i] = db.Database.SqlQuery<int>("exec check_ITEM_in_TRANSACTION @transaction_id, @product_id", transaction_id_var, product_id_var).FirstOrDefault();
+                var request1 = new RestRequest($"api/productsales/get_item_from_transaction_by_id/{a.transaction_id}/{product_id}", Method.Get);
+                var result1 = _client.Execute<int>(request1).Data;
+                check_arr[i] = result1;
+                //var transaction_id_var = new SqlParameter("@transaction_id", a.transaction_id);
+                //var product_id_var = new SqlParameter("@product_id", product_id);
+                //check_arr[i] = db.Database.SqlQuery<int>("exec check_ITEM_in_TRANSACTION @transaction_id, @product_id", transaction_id_var, product_id_var).FirstOrDefault();
                 if (check_arr[i] == 1)
                 {
                     check = true;
@@ -412,11 +414,13 @@ namespace WebShop.Areas.Sales.Controllers
         {
             DateTime date = DateTime.Now;
             string a = date.ToString("dd/MM/yyyy");
-            var datetime_var = new SqlParameter("@date_post", a);
-            var username_var = new SqlParameter("@username", username);
-            var product_id_var = new SqlParameter("@product_id", product_id);
-            var review_var = new SqlParameter("@content", review);
-            var result = db.Database.ExecuteSqlCommand("exec create_REVIEW @content, @username, @product_id, @date_post", review_var, username_var, product_id_var, datetime_var);
+            var request = new RestRequest($"api/productsales/add_review/{review}/{username}/{product_id}/{a}", Method.Get);
+            var result = _client.Execute<int>(request).Data;
+            //var datetime_var = new SqlParameter("@date_post", a);
+            //var username_var = new SqlParameter("@username", username);
+            //var product_id_var = new SqlParameter("@product_id", product_id);
+            //var review_var = new SqlParameter("@content", review);
+            //var result = db.Database.ExecuteSqlCommand("exec create_REVIEW @content, @username, @product_id, @date_post", review_var, username_var, product_id_var, datetime_var);
             return Content("1");
         }
     }

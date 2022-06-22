@@ -110,7 +110,7 @@ namespace WebShop.Areas.Sales.Controllers
 
             db.Database.ExecuteSqlCommand("exec remove_all_CART_ITEM");
 
-            var username = Session["user_logined"].ToString();
+            //var username = Session["user_logined"].ToString();
             List<ItemInCart> itemincartlist = new List<ItemInCart>();
             ViewBag.ItemInCart = itemincartlist;
             ViewBag.Number = itemincartlist.Count();
@@ -125,17 +125,20 @@ namespace WebShop.Areas.Sales.Controllers
             JsonResult Js = new JsonResult();
             string product_id = data["product_id"];
             string size = data["size"];
-            SqlParameter[] pro_id = { new SqlParameter("@id", Int32.Parse(product_id)),
-               new SqlParameter("@size", size)
-               };
-            db.Database.ExecuteSqlCommand("delete CART_ITEM where product_id = @id and size= @size", pro_id);
-            Js.Data = new
-            {
-                status = "OK"
-            };
-            db.SaveChanges();
+            //SqlParameter[] pro_id = { new SqlParameter("@id", Int32.Parse(product_id)),
+            //   new SqlParameter("@size", size)
+            //   };
+            //db.Database.ExecuteSqlCommand("delete CART_ITEM where product_id = @id and size= @size", pro_id);
+            //Js.Data = new
+            //{
+            //    status = "OK"
+            //};
+            //db.SaveChanges();
 
-            return Json(Js, JsonRequestBehavior.AllowGet);
+            var request = new RestRequest($"api/cart/removeitem/{Session["user_logined"].ToString()}/{product_id}/{size}", Method.Put);
+            var res = _client.Execute<List<ItemInCart>>(request).Data;
+
+            return Json(res, JsonRequestBehavior.AllowGet);
         }
         public void CheckOut(FormCollection form)
         {
