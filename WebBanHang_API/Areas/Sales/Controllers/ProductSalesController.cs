@@ -188,7 +188,7 @@ namespace WebBanHang_API.Areas.Sales.Controllers
             var cart_id_var = new SqlParameter("@cart_id", cart_id);
             var size_var = new SqlParameter("@size", size);
             var qty_var = new SqlParameter("@qty", qty);
-            db.Database.ExecuteSqlCommand("UpdateNumberProductInCartItem @cart_id, @product_id, @size,@qty", cart_id_var, product_id_var2, size_var, qty_var);
+            db.Database.ExecuteSqlCommand("UpdateNumberProductInCartItem @cart_id, @product_id, @size,@qty", cart_id_var, product_id_var, size_var, qty_var);
             return Json(1);
         }
     }
