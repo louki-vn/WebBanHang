@@ -151,6 +151,19 @@ namespace WebBanHang_API.Areas.Sales.Controllers
             Mix_PRODUCT_And_PRODUCT_Plus(productlist, productpluslist);
             return Json(productpluslist);
         }
+        
+        // API thêm review
+        [HttpPost]
+        [Route("api/productsales/add_review/{content}/{username}/{product_id}/{date_post}")]
+        public IHttpActionResult Add_Review(string content, string username, string product_id, string datepost)
+        {
+            var datetime_var = new SqlParameter("@date_post", datepost);
+            var username_var = new SqlParameter("@username", username);
+            var product_id_var = new SqlParameter("@product_id", product_id);
+            var review_var = new SqlParameter("@content", content);
+            var result = db.Database.ExecuteSqlCommand("exec create_REVIEW @content, @username, @product_id, @date_post", review_var, username_var, product_id_var, datetime_var);
+            return Json(1);
+        }
     }
 }
 
