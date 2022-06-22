@@ -191,6 +191,16 @@ namespace WebBanHang_API.Areas.Sales.Controllers
             db.Database.ExecuteSqlCommand("UpdateNumberProductInCartItem @cart_id, @product_id, @size,@qty", cart_id_var, product_id_var, size_var, qty_var);
             return Json(1);
         }
+        
+                // Lấy các giao dịch của một user để xem user đó có mua SP này chưa, để xác định user có được phép review sản phẩm hay không
+        [HttpGet]
+        [Route("api/productsales/get_transaction_from_username/{username}")]
+        public IHttpActionResult Get_Transaction_From_Username(string username)
+        {
+            var username_var = new SqlParameter("@username", username);
+            var result_transaction = db.Database.SqlQuery<TRANSACTION>("exec get_TRANSACTION_from_username @username", username_var).ToList();
+            return Json(result_transaction);
+        }
     }
 }
 
