@@ -9,8 +9,7 @@ using WebShop.Models;
 namespace WebShop.Areas.Sales.Controllers
 {
     public class UserInformationController : Controller
-    {
-        Shop db = new Shop();
+    {       
         private readonly RestClient _client;
 
         public UserInformationController()

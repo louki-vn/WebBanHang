@@ -13,8 +13,6 @@ namespace WebShop.Areas.Sales.Controllers
 {
     public class CartController : Controller
     {
-        // GET: Sales/Cart
-        Shop db = new Shop();
         private readonly RestClient _client;
 
         public CartController()
@@ -56,8 +54,12 @@ namespace WebShop.Areas.Sales.Controllers
         {
             ViewBag.user_logined = Session["user_logined"];
             ViewBag.is_logined = Session["is_logined"];
-            db.Database.ExecuteSqlCommand("exec remove_all_CART_ITEM");
-           
+
+            var req = new RestRequest($"api/get_member_by_username/{Session["user_logined"].ToString()}/", Method.Get);
+            var response = _client.Execute<List<MEMBER>>(req).Data;
+
+            var request = new RestRequest($"api/cart/removeallitem/{response[0].cart_id}", Method.Post);
+            var res = _client.Execute<int>(request).Data;
             List<ItemInCart> itemincartlist = new List<ItemInCart>();
             ViewBag.ItemInCart = itemincartlist;
             ViewBag.Number = itemincartlist.Count();         

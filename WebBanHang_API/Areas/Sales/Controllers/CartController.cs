@@ -104,7 +104,7 @@ namespace WebBanHang_API.Areas.Sales.Controllers
         public IHttpActionResult Remove_Item(int cart_id)
         {
             var c = new SqlParameter("@cart_id", cart_id);
-            db.Database.ExecuteSqlCommand("exec remove_all_CART_ITEM @username", c);
+            db.Database.ExecuteSqlCommand("exec remove_all_CART_ITEM @cart_id", c);
             return Json(1);
         }
         
