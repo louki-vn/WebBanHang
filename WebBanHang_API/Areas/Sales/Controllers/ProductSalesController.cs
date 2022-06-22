@@ -192,14 +192,25 @@ namespace WebBanHang_API.Areas.Sales.Controllers
             return Json(1);
         }
         
-        // Lấy các giao dịch của một user để xem user đó có mua SP này chưa, để xác định user có được phép review sản phẩm hay không
+        // Lấy các giao dịch của một user 
         [HttpGet]
-        [Route("api/productsales/get_transaction_from_username/{username}")]
-        public IHttpActionResult Get_Transaction_From_Username(string username)
+        [Route("api/productsales/get_transaction_by_username/{username}")]
+        public IHttpActionResult Get_Transaction_By_Username(string username)
         {
             var username_var = new SqlParameter("@username", username);
             var result_transaction = db.Database.SqlQuery<TRANSACTION>("exec get_TRANSACTION_from_username @username", username_var).ToList();
             return Json(result_transaction);
+        }
+
+        // Lấy ra một item trong transaction, để xem người dùng đã mua sản phẩm đó chưa
+        [HttpGet]
+        [Route("api/productsales/get_item_from_transaction_by_id/{transaction_id}/{product_id}")]
+        public IHttpActionResult Get_Item_In_Transaction_By_Id(int transaction_id, int product_id)
+        {
+            var transaction_id_var = new SqlParameter("@transaction_id", a.transaction_id);
+            var product_id_var = new SqlParameter("@product_id", product_id);
+            var item_list = db.Database.SqlQuery<int>("exec check_ITEM_in_TRANSACTION @transaction_id, @product_id", transaction_id_var, product_id_var).ToList();
+            return Json(item_list);
         }
     }
 }
