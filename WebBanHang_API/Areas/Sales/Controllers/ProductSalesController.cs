@@ -180,7 +180,7 @@ namespace WebBanHang_API.Areas.Sales.Controllers
         
                 // API cập nhật số lượng sản phẩm trong giỏ hàng
 
-        [HttpPut]
+        [HttpGet]
         [Route("api/productsales/update_number_product_in_cart/{cart_id}/{product_id}/{size}/{qty}")]
         public IHttpActionResult Update_Number_Product_In_Cart(int cart_id, int product_id, string size, int qty)
         {
