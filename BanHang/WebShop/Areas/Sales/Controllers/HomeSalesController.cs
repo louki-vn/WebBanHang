@@ -39,33 +39,33 @@ namespace WebShop.Areas.Sales.Controllers
             return View("~/Areas/Sales/Views/HomeSales/Home.cshtml", res);
         }
 
-        public void Mix_PRODUCT_And_PRODUCT_Plus(List<PRODUCT> productlist, List<PRODUCT_Plus> productpluslist)
-        {
-            var result_sale = db.Database.SqlQuery<SALE>("exec get_all_from_SALES").ToList();
-            foreach (var a in productlist)
-            {
-                PRODUCT_Plus c = new PRODUCT_Plus();
-                c.product_id = a.product_id;
-                c.category_id = a.category_id;
-                c.sale_id = a.sale_id;
-                c.name = a.name;
-                c.price = a.price;
-                c.brand_id = (int)a.brand_id;
-                c.sold = a.sold;
-                c.size = a.size;
-                c.content = a.content;
-                c.image_link = a.image_link;
-                foreach (var b in result_sale)
-                {
-                    if (b.sale_id == a.sale_id)
-                    {
-                        c.sale_name = b.sale_name;
-                        c.percent = b.percent;
-                    }
-                }
-                productpluslist.Add(c);
-            }
-        }
+        //public void Mix_PRODUCT_And_PRODUCT_Plus(List<PRODUCT> productlist, List<PRODUCT_Plus> productpluslist)
+        //{
+        //    var result_sale = db.Database.SqlQuery<SALE>("exec get_all_from_SALES").ToList();
+        //    foreach (var a in productlist)
+        //    {
+        //        PRODUCT_Plus c = new PRODUCT_Plus();
+        //        c.product_id = a.product_id;
+        //        c.category_id = a.category_id;
+        //        c.sale_id = a.sale_id;
+        //        c.name = a.name;
+        //        c.price = a.price;
+        //        c.brand_id = (int)a.brand_id;
+        //        c.sold = a.sold;
+        //        c.size = a.size;
+        //        c.content = a.content;
+        //        c.image_link = a.image_link;
+        //        foreach (var b in result_sale)
+        //        {
+        //            if (b.sale_id == a.sale_id)
+        //            {
+        //                c.sale_name = b.sale_name;
+        //                c.percent = b.percent;
+        //            }
+        //        }
+        //        productpluslist.Add(c);
+        //    }
+        //}
 
 
         [HttpPost]
@@ -86,7 +86,10 @@ namespace WebShop.Areas.Sales.Controllers
             else
             {
                 int _product_id = int.Parse(product_id);
-                var x = db.PRODUCTs.Where(p => p.product_id == _product_id).FirstOrDefault();
+
+                var request = new RestRequest($"api/productsales/getproductbyid/{_product_id}", Method.Get);
+                var res = _client.Execute<PRODUCT_Plus>(request).Data;
+                //var x = db.PRODUCTs.Where(p => p.product_id == _product_id).FirstOrDefault();
                 var itemincart = db.CART_ITEM.Where(p => p.product_id == _product_id).ToList();
                 foreach (var it in itemincart)
                 {
@@ -110,7 +113,7 @@ namespace WebShop.Areas.Sales.Controllers
                 item.product_id = int.Parse(product_id);
                 item.qty = 1;
                 item.size = "S";
-                item.price = x.price;
+                item.price = res.price;
                 item.amount = item.price * item.qty;
 
                 db.CART_ITEM.Add(item);
@@ -119,8 +122,8 @@ namespace WebShop.Areas.Sales.Controllers
                 Js.Data = new
                 {
                     status = "OK",
-                    image_link = x.image_link,
-                    name = x.name,
+                    image_link = res.image_link,
+                    name = res.name,
                     size = item.size,
                     qty = item.qty,
                     amount = item.amount,

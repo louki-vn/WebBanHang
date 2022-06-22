@@ -79,7 +79,7 @@ namespace WebBanHang_API.Areas.Sales.Controllers
             var amount_var = new SqlParameter("@amount", amount);
             var price_var = new SqlParameter("@price", price);
             var size_var = new SqlParameter("@size", size);
-            db.Database.ExecuteSqlCommand("exec create_CART_ITEM @cart_id @product_id @qty @amount @price @size", cart_id_var, product_id_var, qty_var, amount_var, price_var, size_var);
+            db.Database.ExecuteSqlCommand("exec create_CART_ITEM @cart_id, @product_id, @qty, @amount, @price, @size", cart_id_var, product_id_var, qty_var, amount_var, price_var, size_var);
             return Json(1);
         }
         

@@ -24,7 +24,6 @@ namespace WebBanHang_API.Areas.Sales.Controllers
             return Json(productpluslist);
         }
 
-
         [Route("api/productsales/getproductbyid/{id}")]
         public IHttpActionResult GetProductById(int id)
         {
@@ -41,6 +40,7 @@ namespace WebBanHang_API.Areas.Sales.Controllers
             }
             return Json(p);
         }
+
         [Route("api/productsales/getproductbybrand/{id}")]
         public IHttpActionResult GetProductByBrand(string id)
         {
@@ -99,8 +99,6 @@ namespace WebBanHang_API.Areas.Sales.Controllers
                 productpluslist.Add(c);
             }
         }
-
-
 
         [HttpGet]
         [Route("api/productsales/get_product_base_on_product_group/{id}")]
