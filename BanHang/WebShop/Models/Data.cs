@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RestSharp;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -29,43 +30,47 @@ namespace WebShop.Models
             return encryptdata.ToString();
         }
 
-        public int GetItemInCart(List<ItemInCart> itemincartlist, string username)
-        {          
-            var user = new SqlParameter("@username", username);
-            var result_member = db.Database.SqlQuery<MEMBER>("exec get_MEMBER_from_username @username", user).ToList();
+        //public int GetItemInCart(List<ItemInCart> itemincartlist, string username)
+        //{
+        //    var request = new RestRequest($"api/productsales/getproductbyid/{id}", Method.Get);
+        //    var res = _client.Execute<List<ItemInCart>>(request).Data;
+        //    var user = new SqlParameter("@username", username);
+        //    var result_member = db.Database.SqlQuery<MEMBER>("exec get_MEMBER_from_username @username", user).ToList();
 
-            // Lấy cart của member đó và từ đó lấy ra những Item nằm trong cart đó.
-            var cart_id_var = new SqlParameter("@cart_id", result_member[0].member_id);
-            var result_cart_item = db.Database.SqlQuery<CART_ITEM>("exec get_CART_ITEM_from_cart_id @cart_id", cart_id_var).ToList();
+        //    // Lấy cart của member đó và từ đó lấy ra những Item nằm trong cart đó.
+        //    var cart_id_var = new SqlParameter("@cart_id", result_member[0].member_id);
+        //    var result_cart_item = db.Database.SqlQuery<CART_ITEM>("exec get_CART_ITEM_from_cart_id @cart_id", cart_id_var).ToList();
 
-            // Thêm những item đó vào 1 list rồi gửi sang View
-            List<CART_ITEM> cart_itemlist = new List<CART_ITEM>();
-            for (int i = 0; i < result_cart_item.Count(); i++)
-            {
-                cart_itemlist.Add(result_cart_item[i]);
-            }
+        //    // Thêm những item đó vào 1 list rồi gửi sang View
+        //    List<CART_ITEM> cart_itemlist = new List<CART_ITEM>();
+        //    for (int i = 0; i < result_cart_item.Count(); i++)
+        //    {
+        //        cart_itemlist.Add(result_cart_item[i]);
+        //    }
 
-            //          Tạo list product tương ứng với list cart_item
-            List<PRODUCT> productlist = new List<PRODUCT>();
-            foreach (var a in cart_itemlist)
-            {
-                var p1 = new SqlParameter("@product_id", a.product_id);
-                var result_product1 = db.Database.SqlQuery<PRODUCT>("exec get_PRODUCT_from_product_id @product_id", p1).ToList();
-                productlist.Add(result_product1[0]);
-            }
-            //          Tạo list ItemInCart để hiển thị trong cart     
-            for (int i = 0; i < cart_itemlist.Count(); i++)
-            {
-                ItemInCart a = new ItemInCart();
-                a.product_id = Int32.Parse(cart_itemlist[i].product_id.ToString());
-                a.price = productlist[i].price;
-                a.name = productlist[i].name;
-                a.qty = Int32.Parse(cart_itemlist[i].qty.ToString());
-                a.size = cart_itemlist[i].size;
-                a.image_link = productlist[i].image_link;
-                itemincartlist.Add(a);
-            }
-            return 1;
-        }
+        //    //          Tạo list product tương ứng với list cart_item
+        //    List<PRODUCT> productlist = new List<PRODUCT>();
+        //    foreach (var a in cart_itemlist)
+        //    {
+        //        var request = new RestRequest($"api/productsales/getproductbyid/{a.product_id}", Method.Get);
+        //        var res = _client.Execute<List<ItemInCart>>(request).Data;
+        //        //var p1 = new SqlParameter("@product_id", a.product_id);
+        //        //var result_product1 = db.Database.SqlQuery<PRODUCT>("exec get_PRODUCT_from_product_id @product_id", p1).ToList();
+        //        productlist.Add(result_product1[0]);
+        //    }
+        //    //          Tạo list ItemInCart để hiển thị trong cart     
+        //    for (int i = 0; i < cart_itemlist.Count(); i++)
+        //    {
+        //        ItemInCart a = new ItemInCart();
+        //        a.product_id = Int32.Parse(cart_itemlist[i].product_id.ToString());
+        //        a.price = productlist[i].price;
+        //        a.name = productlist[i].name;
+        //        a.qty = Int32.Parse(cart_itemlist[i].qty.ToString());
+        //        a.size = cart_itemlist[i].size;
+        //        a.image_link = productlist[i].image_link;
+        //        itemincartlist.Add(a);
+        //    }
+        //    return 1;
+        //}
     }
 }

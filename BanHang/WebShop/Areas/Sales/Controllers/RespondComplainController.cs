@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using RestSharp;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -10,6 +11,12 @@ namespace WebShop.Areas.Sales.Controllers
 {
     public class RespondComplainController : Controller
     {
+        private readonly RestClient _client;
+
+        public RespondComplainController()
+        {
+            _client = new RestClient("https://localhost:44396/");
+        }
         // GET: Sales/RespondComplain
         [HasCredential(RoleID = "RESPOND_USER")]
         public ActionResult RespondComplain()
@@ -19,11 +26,17 @@ namespace WebShop.Areas.Sales.Controllers
 
             if (ViewBag.is_logined == 1)
             {
-                Models.Data data = new Models.Data();
-                List<ItemInCart> itemincartlist = new List<ItemInCart>();
-                data.GetItemInCart(itemincartlist, Session["user_logined"].ToString());
-                ViewBag.ItemInCart = itemincartlist;
-                ViewBag.Number = itemincartlist.Count();
+                string username = Session["user_logined"].ToString();
+                var request6 = new RestRequest($"api/cart/getdata/{username}/");
+                var response6 = _client.Execute<List<ItemInCart>>(request6).Data;
+                ViewBag.ItemInCart = response6;
+                ViewBag.Number = response6.Count();
+
+                //Models.Data data = new Models.Data();
+                //List<ItemInCart> itemincartlist = new List<ItemInCart>();
+                //data.GetItemInCart(itemincartlist, Session["user_logined"].ToString());
+                //ViewBag.ItemInCart = itemincartlist;
+                //ViewBag.Number = itemincartlist.Count();
             }
 
             return View();

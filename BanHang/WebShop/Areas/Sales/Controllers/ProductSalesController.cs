@@ -45,11 +45,15 @@ namespace WebShop.Areas.Sales.Controllers
             ViewBag.qty = qty;
             if (ViewBag.is_logined == 1)
             {
-                Models.Data data = new Models.Data();
-                List<ItemInCart> itemincartlist = new List<ItemInCart>();
-                data.GetItemInCart(itemincartlist, Session["user_logined"].ToString());
-                ViewBag.ItemInCart = itemincartlist;
-                ViewBag.Number = itemincartlist.Count();
+                string username = Session["user_logined"].ToString();
+                var request6 = new RestRequest($"api/cart/getdata/{username}/");
+                var response6 = _client.Execute<List<ItemInCart>>(request6).Data;
+                ViewBag.ItemInCart = response6;
+                ViewBag.Number = response6.Count();
+                //Models.Data data = new Models.Data();
+                //List<ItemInCart> itemincartlist = new List<ItemInCart>();
+                //data.GetItemInCart(itemincartlist, Session["user_logined"].ToString());
+
             }
             return View(result_product);
         }
@@ -65,11 +69,17 @@ namespace WebShop.Areas.Sales.Controllers
             ViewBag.product_id = id;
             if (ViewBag.is_logined == 1)
             {
-                Models.Data data = new Models.Data();
-                List<ItemInCart> itemincartlist = new List<ItemInCart>();
-                data.GetItemInCart(itemincartlist, Session["user_logined"].ToString());
-                ViewBag.ItemInCart = itemincartlist;
-                ViewBag.Number = itemincartlist.Count();
+                string username = Session["user_logined"].ToString();
+                var request6 = new RestRequest($"api/cart/getdata/{username}/");
+                var response6 = _client.Execute<List<ItemInCart>>(request6).Data;
+                ViewBag.ItemInCart = response6;
+                ViewBag.Number = response6.Count();
+
+                //Models.Data data = new Models.Data();
+                //List<ItemInCart> itemincartlist = new List<ItemInCart>();
+                //data.GetItemInCart(itemincartlist, Session["user_logined"].ToString());
+                //ViewBag.ItemInCart = itemincartlist;
+                //ViewBag.Number = itemincartlist.Count();
             }
             return View("~/Areas/Sales/Views/ProductSales/Product_Detail.cshtml", result_product);
         }
@@ -96,11 +106,17 @@ namespace WebShop.Areas.Sales.Controllers
             ViewBag.qty = result.Count();           
             if (ViewBag.is_logined == 1)
             {
-                Models.Data data = new Models.Data();
-                List<ItemInCart> itemincartlist = new List<ItemInCart>();
-                data.GetItemInCart(itemincartlist, Session["user_logined"].ToString());
-                ViewBag.ItemInCart = itemincartlist;
-                ViewBag.Number = itemincartlist.Count();
+                string username = Session["user_logined"].ToString();
+                var request6 = new RestRequest($"api/cart/getdata/{username}/");
+                var response6 = _client.Execute<List<ItemInCart>>(request6).Data;
+                ViewBag.ItemInCart = response6;
+                ViewBag.Number = response6.Count();
+
+                //Models.Data data = new Models.Data();
+                //List<ItemInCart> itemincartlist = new List<ItemInCart>();
+                //data.GetItemInCart(itemincartlist, Session["user_logined"].ToString());
+                //ViewBag.ItemInCart = itemincartlist;
+                //ViewBag.Number = itemincartlist.Count();
             }
             if (ViewBag.is_logined == 1)
             {
@@ -136,11 +152,17 @@ namespace WebShop.Areas.Sales.Controllers
             ViewBag.qty = qty;
             if (ViewBag.is_logined == 1)
             {
-                Models.Data data = new Models.Data();
-                List<ItemInCart> itemincartlist = new List<ItemInCart>();
-                data.GetItemInCart(itemincartlist, Session["user_logined"].ToString());
-                ViewBag.ItemInCart = itemincartlist;
-                ViewBag.Number = itemincartlist.Count();
+                string username = Session["user_logined"].ToString();
+                var request6 = new RestRequest($"api/cart/getdata/{username}/");
+                var response6 = _client.Execute<List<ItemInCart>>(request6).Data;
+                ViewBag.ItemInCart = response6;
+                ViewBag.Number = response6.Count();
+
+                //Models.Data data = new Models.Data();
+                //List<ItemInCart> itemincartlist = new List<ItemInCart>();
+                //data.GetItemInCart(itemincartlist, Session["user_logined"].ToString());
+                //ViewBag.ItemInCart = itemincartlist;
+                //ViewBag.Number = itemincartlist.Count();
             }
             if (ViewBag.is_logined == 1)
             {
@@ -231,11 +253,17 @@ namespace WebShop.Areas.Sales.Controllers
             ViewBag.qty = result.Count();
             if (ViewBag.is_logined == 1)
             {
-                Models.Data data = new Models.Data();
-                List<ItemInCart> itemincartlist = new List<ItemInCart>();
-                data.GetItemInCart(itemincartlist, Session["user_logined"].ToString());
-                ViewBag.ItemInCart = itemincartlist;
-                ViewBag.Number = itemincartlist.Count();
+                string username = Session["user_logined"].ToString();
+                var request6 = new RestRequest($"api/cart/getdata/{username}/");
+                var response6 = _client.Execute<List<ItemInCart>>(request6).Data;
+                ViewBag.ItemInCart = response6;
+                ViewBag.Number = response6.Count();
+
+                //Models.Data data = new Models.Data();
+                //List<ItemInCart> itemincartlist = new List<ItemInCart>();
+                //data.GetItemInCart(itemincartlist, Session["user_logined"].ToString());
+                //ViewBag.ItemInCart = itemincartlist;
+                //ViewBag.Number = itemincartlist.Count();
             }
             return View("~/Areas/Sales/Views/ProductSales/Product.cshtml", result);
         }
@@ -250,11 +278,17 @@ namespace WebShop.Areas.Sales.Controllers
             ViewBag.qty = result.Count();
             if (ViewBag.is_logined == 1)
             {
-                Models.Data data = new Models.Data();
-                List<ItemInCart> itemincartlist = new List<ItemInCart>();
-                data.GetItemInCart(itemincartlist, Session["user_logined"].ToString());
-                ViewBag.ItemInCart = itemincartlist;
-                ViewBag.Number = itemincartlist.Count();
+                string username = Session["user_logined"].ToString();
+                var request6 = new RestRequest($"api/cart/getdata/{username}/");
+                var response6 = _client.Execute<List<ItemInCart>>(request6).Data;
+                ViewBag.ItemInCart = response6;
+                ViewBag.Number = response6.Count();
+
+                //Models.Data data = new Models.Data();
+                //List<ItemInCart> itemincartlist = new List<ItemInCart>();
+                //data.GetItemInCart(itemincartlist, Session["user_logined"].ToString());
+                //ViewBag.ItemInCart = itemincartlist;
+                //ViewBag.Number = itemincartlist.Count();
             }
             return View("~/Areas/Sales/Views/ProductSales/Product.cshtml", result);
         }
@@ -269,11 +303,17 @@ namespace WebShop.Areas.Sales.Controllers
             ViewBag.qty = result.Count();
             if (ViewBag.is_logined == 1)
             {
-                Models.Data data = new Models.Data();
-                List<ItemInCart> itemincartlist = new List<ItemInCart>();
-                data.GetItemInCart(itemincartlist, Session["user_logined"].ToString());
-                ViewBag.ItemInCart = itemincartlist;
-                ViewBag.Number = itemincartlist.Count();
+                string username = Session["user_logined"].ToString();
+                var request6 = new RestRequest($"api/cart/getdata/{username}/");
+                var response6 = _client.Execute<List<ItemInCart>>(request6).Data;
+                ViewBag.ItemInCart = response6;
+                ViewBag.Number = response6.Count();
+
+                //Models.Data data = new Models.Data();
+                //List<ItemInCart> itemincartlist = new List<ItemInCart>();
+                //data.GetItemInCart(itemincartlist, Session["user_logined"].ToString());
+                //ViewBag.ItemInCart = itemincartlist;
+                //ViewBag.Number = itemincartlist.Count();
             }
             return View("~/Areas/Sales/Views/ProductSales/Product.cshtml", result);
         }
@@ -288,11 +328,17 @@ namespace WebShop.Areas.Sales.Controllers
             ViewBag.qty = qty;
             if (ViewBag.is_logined == 1)
             {
-                Models.Data data = new Models.Data();
-                List<ItemInCart> itemincartlist = new List<ItemInCart>();
-                data.GetItemInCart(itemincartlist, Session["user_logined"].ToString());
-                ViewBag.ItemInCart = itemincartlist;
-                ViewBag.Number = itemincartlist.Count();
+                string username = Session["user_logined"].ToString();
+                var request6 = new RestRequest($"api/cart/getdata/{username}/");
+                var response6 = _client.Execute<List<ItemInCart>>(request6).Data;
+                ViewBag.ItemInCart = response6;
+                ViewBag.Number = response6.Count();
+
+                //Models.Data data = new Models.Data();
+                //List<ItemInCart> itemincartlist = new List<ItemInCart>();
+                //data.GetItemInCart(itemincartlist, Session["user_logined"].ToString());
+                //ViewBag.ItemInCart = itemincartlist;
+                //ViewBag.Number = itemincartlist.Count();
             }
             return View("~/Areas/Sales/Views/ProductSales/Product.cshtml", result);
         }
@@ -347,11 +393,17 @@ namespace WebShop.Areas.Sales.Controllers
             if (ViewBag.is_logined == 1)
             {
                 Add_To_Cart(user, Int32.Parse(id), item_qty, size, productlist);
-                Models.Data data = new Models.Data();
-                List<ItemInCart> itemincartlist = new List<ItemInCart>();
-                data.GetItemInCart(itemincartlist, Session["user_logined"].ToString());
-                ViewBag.ItemInCart = itemincartlist;
-                ViewBag.Number = itemincartlist.Count();
+                string username = Session["user_logined"].ToString();
+                var request6 = new RestRequest($"api/cart/getdata/{username}/");
+                var response6 = _client.Execute<List<ItemInCart>>(request6).Data;
+                ViewBag.ItemInCart = response6;
+                ViewBag.Number = response6.Count();
+
+                //Models.Data data = new Models.Data();
+                //List<ItemInCart> itemincartlist = new List<ItemInCart>();
+                //data.GetItemInCart(itemincartlist, Session["user_logined"].ToString());
+                //ViewBag.ItemInCart = itemincartlist;
+                //ViewBag.Number = itemincartlist.Count();
             }
             return View("~/Areas/Sales/Views/ProductSales/Product.cshtml", productlist);
         }
@@ -364,11 +416,17 @@ namespace WebShop.Areas.Sales.Controllers
             ViewBag.qty = qty;
             if (ViewBag.is_logined == 1)
             {
-                Models.Data data = new Models.Data();
-                List<ItemInCart> itemincartlist = new List<ItemInCart>();
-                data.GetItemInCart(itemincartlist, Session["user_logined"].ToString());
-                ViewBag.ItemInCart = itemincartlist;
-                ViewBag.Number = itemincartlist.Count();
+                string username = Session["user_logined"].ToString();
+                var request6 = new RestRequest($"api/cart/getdata/{username}/");
+                var response6 = _client.Execute<List<ItemInCart>>(request6).Data;
+                ViewBag.ItemInCart = response6;
+                ViewBag.Number = response6.Count();
+
+                //Models.Data data = new Models.Data();
+                //List<ItemInCart> itemincartlist = new List<ItemInCart>();
+                //data.GetItemInCart(itemincartlist, Session["user_logined"].ToString());
+                //ViewBag.ItemInCart = itemincartlist;
+                //ViewBag.Number = itemincartlist.Count();
             }
             return View("~/Areas/Sales/Views/ProductSales/Product.cshtml", result);
         }

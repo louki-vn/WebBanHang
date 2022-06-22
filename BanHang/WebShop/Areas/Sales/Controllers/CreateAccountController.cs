@@ -9,7 +9,7 @@ namespace WebShop.Areas.Sales.Controllers
 {
     public class CreateAccountController : Controller
     {
-        Shop db = new Shop();
+        //Shop db = new Shop();
         private readonly RestClient _client;
 
         public CreateAccountController()
