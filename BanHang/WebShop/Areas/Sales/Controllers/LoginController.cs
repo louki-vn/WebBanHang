@@ -32,8 +32,6 @@ namespace WebShop.Areas.Sales.Controllers
         {
             string username = fc.Get("customer[email]").ToString();
             string pass = fc.Get("customer[password]").ToString();
-            var u = new SqlParameter("@username", username);
-            var p = new SqlParameter("@password", Data.MD5Hash(pass));
 
             //----------------- TUYEN--------------------
             LoginIO lg = new LoginIO();
@@ -57,7 +55,10 @@ namespace WebShop.Areas.Sales.Controllers
                     ViewBag.user_logined = Session["user_logined"];
                     ViewBag.is_logined = Session["is_logined"];
 
-                    var member = db.MEMBERs.Where(x => x.username == username).FirstOrDefault();
+                    var req = new RestRequest($"api/get_member_by_username/{username}/", Method.Get);
+                    var resp = _client.Execute<List<MEMBER>>(req).Data;
+                    MEMBER member = resp[0];
+                    //var member = db.MEMBERs.Where(x => x.username == username).FirstOrDefault();
                     var userSession = new UserLogin();
                     userSession.username = member.username;
                     userSession.member_id = member.member_id;

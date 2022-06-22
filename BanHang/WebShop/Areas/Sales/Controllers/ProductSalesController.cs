@@ -11,7 +11,7 @@ namespace WebShop.Areas.Sales.Controllers
     {
         // GET: Sales/Product
         Shop db = new Shop();
-        private static List<ItemInCart> dl = new List<ItemInCart>();
+        //private static List<ItemInCart> dl = new List<ItemInCart>();
         private readonly RestClient _client;
 
         public ProductSalesController()
@@ -22,27 +22,26 @@ namespace WebShop.Areas.Sales.Controllers
         //GET: Product
         public JsonResult GetPro()
         {
-            List<PRODUCT> productlist = new List<PRODUCT>();
-            var result_product = db.Database.SqlQuery<PRODUCT>("exec selectallfromPRODUCT").ToList();
-            int qty = result_product.Count();
-            for (int i = 0; i < qty; i++)
-            {
-                productlist.Add(result_product[i]);
-            }
-            return Json(productlist, JsonRequestBehavior.AllowGet);
+            //List<PRODUCT> productlist = new List<PRODUCT>();
+            //var result_product = db.Database.SqlQuery<PRODUCT>("exec selectallfromPRODUCT").ToList();
+            //int qty = result_product.Count();
+            //for (int i = 0; i < qty; i++)
+            //{
+            //    productlist.Add(result_product[i]);
+            //}
+
+            var request = new RestRequest($"api/productsales/getallproducts");
+            var result_product = _client.Execute<List<PRODUCT_Plus>>(request).Data;
+            return Json(result_product, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Product()
         {
             ViewBag.user_logined = Session["user_logined"];
-            ViewBag.is_logined = Session["is_logined"];
-        
-            List<PRODUCT_Plus> productpluslist = new List<PRODUCT_Plus>();
-
+            ViewBag.is_logined = Session["is_logined"];      
             var request = new RestRequest($"api/productsales/getallproducts");
-            var result_product = _client.Execute<List<PRODUCT>>(request).Data;
+            var result_product = _client.Execute<List<PRODUCT_Plus>>(request).Data;
             int qty = result_product.Count();
-            Mix_PRODUCT_And_PRODUCT_Plus(result_product, productpluslist);
             ViewBag.qty = qty;
             if (ViewBag.is_logined == 1)
             {
@@ -52,21 +51,16 @@ namespace WebShop.Areas.Sales.Controllers
                 ViewBag.ItemInCart = itemincartlist;
                 ViewBag.Number = itemincartlist.Count();
             }
-            return View(productpluslist);
+            return View(result_product);
         }
 
         public ActionResult Product_Detail(string id)
         {
             ViewBag.user_logined = Session["user_logined"];
             ViewBag.is_logined = Session["is_logined"];
-           
-            List<PRODUCT_Plus> productpluslist = new List<PRODUCT_Plus>();
-
             var request = new RestRequest($"api/productsales/getallproducts");
-            var result_product = _client.Execute<List<PRODUCT>>(request).Data;
+            var result_product = _client.Execute<List<PRODUCT_Plus>>(request).Data;
             int qty = result_product.Count();
-            
-            Mix_PRODUCT_And_PRODUCT_Plus(result_product, productpluslist);
             ViewBag.qty = qty;
             ViewBag.product_id = id;
             if (ViewBag.is_logined == 1)
@@ -77,14 +71,14 @@ namespace WebShop.Areas.Sales.Controllers
                 ViewBag.ItemInCart = itemincartlist;
                 ViewBag.Number = itemincartlist.Count();
             }
-            return View("~/Areas/Sales/Views/ProductSales/Product_Detail.cshtml", productpluslist);
+            return View("~/Areas/Sales/Views/ProductSales/Product_Detail.cshtml", result_product);
         }
 
         public ActionResult Add_To_Cart1(string id)
         {
             ViewBag.user_logined = Session["user_logined"];
             ViewBag.is_logined = Session["is_logined"];
-            List<PRODUCT> productlist = new List<PRODUCT>();
+            List<PRODUCT_Plus> productlist = new List<PRODUCT_Plus>();
             string user = ViewBag.user_logined;
             string size = "S";
             int item_qty = 1;
@@ -97,14 +91,9 @@ namespace WebShop.Areas.Sales.Controllers
         {
             ViewBag.user_logined = Session["user_logined"];
             ViewBag.is_logined = Session["is_logined"];
-            
-            List<PRODUCT_Plus> productpluslist = new List<PRODUCT_Plus>();
             var request = new RestRequest($"api/productsales/getallproducts");
-            var result = _client.Execute<List<PRODUCT>>(request).Data;
-            int qty = result.Count();
-           
-            ViewBag.qty = qty;
-            Mix_PRODUCT_And_PRODUCT_Plus(result, productpluslist);
+            var result = _client.Execute<List<PRODUCT_Plus>>(request).Data;            
+            ViewBag.qty = result.Count();           
             if (ViewBag.is_logined == 1)
             {
                 Models.Data data = new Models.Data();
@@ -140,15 +129,11 @@ namespace WebShop.Areas.Sales.Controllers
             int id = Int32.Parse(fc["id"]);
             int quantity = Int32.Parse(fc["quantity"]);
             string size = fc["size"];
-           
-            List<PRODUCT_Plus> productpluslist = new List<PRODUCT_Plus>();
-
             var request = new RestRequest($"api/productsales/getallproducts");
-            var result = _client.Execute<List<PRODUCT>>(request).Data;
+            var result = _client.Execute<List<PRODUCT_Plus>>(request).Data;
             int qty = result.Count();
             
             ViewBag.qty = qty;
-            Mix_PRODUCT_And_PRODUCT_Plus(result, productpluslist);
             if (ViewBag.is_logined == 1)
             {
                 Models.Data data = new Models.Data();
@@ -240,22 +225,10 @@ namespace WebShop.Areas.Sales.Controllers
         public ActionResult Get_Product_Base_On_Product_Group(string id)
         {
             ViewBag.user_logined = Session["user_logined"];
-            ViewBag.is_logined = Session["is_logined"];
-            int id_int = Int32.Parse(id);
-            var id_var = new SqlParameter("@group_id", id_int);
-            List<PRODUCT> productlist = new List<PRODUCT>();
-            List<PRODUCT_Plus> productpluslist = new List<PRODUCT_Plus>();
-
-            //var request = new RestRequest($"api/productsales/getproductbyid/{id}");
-            //var result = _client.Execute<List<PRODUCT>>(request).Data;
-            var result = db.Database.SqlQuery<PRODUCT>("exec get_product_from_PRODUCT_GROUP @group_id", id_var).ToList();
-            int qty = result.Count();
-            for (int i = 0; i < qty; i++)
-            {
-                productlist.Add(result[i]);
-            }
-            Mix_PRODUCT_And_PRODUCT_Plus(productlist, productpluslist);
-            ViewBag.qty = qty;
+            ViewBag.is_logined = Session["is_logined"];           
+            var request = new RestRequest($"api/productsales/get_product_base_on_product_group/{id}", Method.Get);
+            var result = _client.Execute<List<PRODUCT_Plus>>(request).Data;
+            ViewBag.qty = result.Count();
             if (ViewBag.is_logined == 1)
             {
                 Models.Data data = new Models.Data();
@@ -264,24 +237,17 @@ namespace WebShop.Areas.Sales.Controllers
                 ViewBag.ItemInCart = itemincartlist;
                 ViewBag.Number = itemincartlist.Count();
             }
-            return View("~/Areas/Sales/Views/ProductSales/Product.cshtml", productpluslist);
+            return View("~/Areas/Sales/Views/ProductSales/Product.cshtml", result);
         }
 
         public ActionResult Get_Product_Base_On_Price(int id)
         {
             ViewBag.user_logined = Session["user_logined"];
             ViewBag.is_logined = Session["is_logined"];
-            var along_var = new SqlParameter("@along", id);
-            List<PRODUCT> productlist = new List<PRODUCT>();
-            List<PRODUCT_Plus> productpluslist = new List<PRODUCT_Plus>();
-            var result = db.Database.SqlQuery<PRODUCT>("exec get_product_base_on_price @along", along_var).ToList();
-            int qty = result.Count();
-            for (int i = 0; i < qty; i++)
-            {
-                productlist.Add(result[i]);
-            }
-            Mix_PRODUCT_And_PRODUCT_Plus(productlist, productpluslist);
-            ViewBag.qty = qty;
+            var request = new RestRequest($"api/productsales/get_product_base_on_price/{id}", Method.Get);
+            var result = _client.Execute<List<PRODUCT_Plus>>(request).Data;
+
+            ViewBag.qty = result.Count();
             if (ViewBag.is_logined == 1)
             {
                 Models.Data data = new Models.Data();
@@ -290,21 +256,17 @@ namespace WebShop.Areas.Sales.Controllers
                 ViewBag.ItemInCart = itemincartlist;
                 ViewBag.Number = itemincartlist.Count();
             }
-            return View("~/Areas/Sales/Views/ProductSales/Product.cshtml", productpluslist);
+            return View("~/Areas/Sales/Views/ProductSales/Product.cshtml", result);
         }
 
         public ActionResult Get_Product_Base_On_Brand(string id)
         {
             ViewBag.user_logined = Session["user_logined"];
-            ViewBag.is_logined = Session["is_logined"];         
-            List<PRODUCT_Plus> productpluslist = new List<PRODUCT_Plus>();
+            ViewBag.is_logined = Session["is_logined"];
+            var request = new RestRequest($"api/productsales/get_product_base_on_brand/{id}", Method.Get);
+            var result = _client.Execute<List<PRODUCT_Plus>>(request).Data;
 
-            var request = new RestRequest($"api/productsales/getproductbybrand/{id}");
-            var result = _client.Execute<List<PRODUCT>>(request).Data;
-            int qty = result.Count();
-           
-            Mix_PRODUCT_And_PRODUCT_Plus(result, productpluslist);
-            ViewBag.qty = qty;
+            ViewBag.qty = result.Count();
             if (ViewBag.is_logined == 1)
             {
                 Models.Data data = new Models.Data();
@@ -313,25 +275,16 @@ namespace WebShop.Areas.Sales.Controllers
                 ViewBag.ItemInCart = itemincartlist;
                 ViewBag.Number = itemincartlist.Count();
             }
-            return View("~/Areas/Sales/Views/ProductSales/Product.cshtml", productpluslist);
+            return View("~/Areas/Sales/Views/ProductSales/Product.cshtml", result);
         }
 
         public ActionResult Get_Product_Base_On_Category(string id)
         {
             ViewBag.user_logined = Session["user_logined"];
             ViewBag.is_logined = Session["is_logined"];
-            var name_var = new SqlParameter("@name", id);
-            List<PRODUCT> productlist = new List<PRODUCT>();
-            List<PRODUCT_Plus> productpluslist = new List<PRODUCT_Plus>();
-
             var request = new RestRequest($"api/productsales/getproductbycategory/{id}");
-            var result = _client.Execute<List<PRODUCT>>(request).Data;
-            int qty = result.Count();
-            for (int i = 0; i < qty; i++)
-            {
-                productlist.Add(result[i]);
-            }
-            Mix_PRODUCT_And_PRODUCT_Plus(result, productpluslist);
+            var result = _client.Execute<List<PRODUCT_Plus>>(request).Data;
+            int qty = result.Count();       
             ViewBag.qty = qty;
             if (ViewBag.is_logined == 1)
             {
@@ -341,13 +294,14 @@ namespace WebShop.Areas.Sales.Controllers
                 ViewBag.ItemInCart = itemincartlist;
                 ViewBag.Number = itemincartlist.Count();
             }
-            return View("~/Areas/Sales/Views/ProductSales/Product.cshtml", productpluslist);
+            return View("~/Areas/Sales/Views/ProductSales/Product.cshtml", result);
         }
 
-        public void Add_To_Cart(string user, int product_id, int item_qty, string size, List<PRODUCT> productlist)
+        public void Add_To_Cart(string user, int product_id, int item_qty, string size, List<PRODUCT_Plus> productlist)
         {
             //          Lấy tất cả sản phẩm cho vào 1 list, để sau khi thêm product vào item, quay lại view vẫn hiển thị được full product
-            var result = db.Database.SqlQuery<PRODUCT>("exec selectallfromPRODUCT").ToList();
+            var request = new RestRequest($"api/productsales/getallproducts");
+            var result = _client.Execute<List<PRODUCT_Plus>>(request).Data;
             int qty = result.Count();
             for (int i = 0; i < qty; i++)
             {
@@ -378,14 +332,9 @@ namespace WebShop.Areas.Sales.Controllers
             }
             else
             {
-                //          Tạo ITEM bằng thông tin của member(lấy cart_id) và product đó
-                var product_id_var2 = new SqlParameter("@product_id", product_id);
-                var price_var = new SqlParameter("@price", price);
-                var cart_id_var = new SqlParameter("@cart_id", cart_id);
-                var qty_var = new SqlParameter("@qty", item_qty);
-                var size_var = new SqlParameter("@size", size);
-                db.Database.ExecuteSqlCommand("exec create_CART_ITEM @cart_id, @product_id, @qty, @price, @size",
-                                                            cart_id_var, product_id_var2, qty_var, price_var, size_var);
+                float amount = float.Parse(price) * item_qty;
+                var request1 = new RestRequest($"api/add_cart_item/{cart_id}/{product_id}/{qty}/{amount}/{price}/{size}", Method.Post);
+                var response = _client.Execute(request1);
             }
         }
 
@@ -394,7 +343,7 @@ namespace WebShop.Areas.Sales.Controllers
         {
             ViewBag.user_logined = Session["user_logined"];
             ViewBag.is_logined = Session["is_logined"];
-            List<PRODUCT> productlist = new List<PRODUCT>();
+            List<PRODUCT_Plus> productlist = new List<PRODUCT_Plus>();
             string user = ViewBag.user_logined;
             string size = "S";
             int item_qty = 1;
@@ -414,13 +363,7 @@ namespace WebShop.Areas.Sales.Controllers
         {
             var request = new RestRequest($"api/productsales/search/{keyword}/", Method.Get);
             var result = _client.Execute<List<PRODUCT>>(request).Data;
-            //var key_word_var = new SqlParameter("@key_word", key_word);
-            //List<PRODUCT> productlist = new List<PRODUCT>();
-            List<PRODUCT_Plus> productpluslist = new List<PRODUCT_Plus>();
-            //var result = db.Database.SqlQuery<PRODUCT>("exec get_PRODUCT_from_key_word @key_word", key_word_var).ToList();
             int qty = result.Count();
-    
-            Mix_PRODUCT_And_PRODUCT_Plus(result, productpluslist);
             ViewBag.qty = qty;
             if (ViewBag.is_logined == 1)
             {
@@ -430,35 +373,7 @@ namespace WebShop.Areas.Sales.Controllers
                 ViewBag.ItemInCart = itemincartlist;
                 ViewBag.Number = itemincartlist.Count();
             }
-            return View("~/Areas/Sales/Views/ProductSales/Product.cshtml", productpluslist);
-        }
-
-        public void Mix_PRODUCT_And_PRODUCT_Plus(List<PRODUCT> productlist, List<PRODUCT_Plus> productpluslist)
-        {
-            var result_sale = db.Database.SqlQuery<SALE>("exec get_all_from_SALES").ToList();
-            foreach (var a in productlist)
-            {
-                PRODUCT_Plus c = new PRODUCT_Plus();
-                c.product_id = a.product_id;
-                c.category_id = a.category_id;
-                c.sale_id = a.sale_id;
-                c.name = a.name;
-                c.price = a.price;
-                c.brand_id = (int)a.brand_id;
-                c.sold = a.sold;
-                c.size = a.size;
-                c.content = a.content;
-                c.image_link = a.image_link;
-                foreach (var b in result_sale)
-                {
-                    if (b.sale_id == a.sale_id)
-                    {
-                        c.sale_name = b.sale_name;
-                        c.percent = b.percent;
-                    }
-                }
-                productpluslist.Add(c);
-            }
+            return View("~/Areas/Sales/Views/ProductSales/Product.cshtml", result);
         }
 
         public ActionResult Add_Review_Check(string product_id, string username)
