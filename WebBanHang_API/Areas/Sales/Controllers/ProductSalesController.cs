@@ -151,6 +151,67 @@ namespace WebBanHang_API.Areas.Sales.Controllers
             Mix_PRODUCT_And_PRODUCT_Plus(productlist, productpluslist);
             return Json(productpluslist);
         }
+        
+        // API thêm review
+        [HttpPost]
+        [Route("api/productsales/add_review/{content}/{username}/{product_id}/{date_post}")]
+        public IHttpActionResult Add_Review(string content, string username, string product_id, string datepost)
+        {
+            var datetime_var = new SqlParameter("@date_post", datepost);
+            var username_var = new SqlParameter("@username", username);
+            var product_id_var = new SqlParameter("@product_id", product_id);
+            var review_var = new SqlParameter("@content", content);
+            var result = db.Database.ExecuteSqlCommand("exec create_REVIEW @content, @username, @product_id, @date_post", review_var, username_var, product_id_var, datetime_var);
+            return Json(1);
+        }
+        
+        // Lấy danh sách Item trong cart theo 3 thuộc tính để kiểm tra xem item đó đã tồn tại trong cart chưa
+
+        [HttpGet]
+        [Route("api/productsales/check_product_in_cart/{cart_id}/{product_id}/{size}")]
+        public IHttpActionResult Check_Product_In_Cart(int cart_id, int product_id, string size)
+        {
+            var product_id_var = new SqlParameter("@product_id", product_id);
+            var cart_id_var = new SqlParameter("@cart_id", cart_id);
+            var size_var = new SqlParameter("@size", size);
+            var result_check = db.Database.SqlQuery<CART_ITEM>("exec CheckProductInCart @cart_id, @product_id, @size", cart_id_var, product_id_var, size_var).ToList();
+            return Json(result_check);
+        }
+        
+                // API cập nhật số lượng sản phẩm trong giỏ hàng
+
+        [HttpGet]
+        [Route("api/productsales/update_number_product_in_cart/{cart_id}/{product_id}/{size}/{qty}")]
+        public IHttpActionResult Update_Number_Product_In_Cart(int cart_id, int product_id, string size, int qty)
+        {
+            var product_id_var = new SqlParameter("@product_id", product_id);
+            var cart_id_var = new SqlParameter("@cart_id", cart_id);
+            var size_var = new SqlParameter("@size", size);
+            var qty_var = new SqlParameter("@qty", qty);
+            db.Database.ExecuteSqlCommand("UpdateNumberProductInCartItem @cart_id, @product_id, @size,@qty", cart_id_var, product_id_var, size_var, qty_var);
+            return Json(1);
+        }
+        
+        // Lấy các giao dịch của một user 
+        [HttpGet]
+        [Route("api/productsales/get_transaction_by_username/{username}")]
+        public IHttpActionResult Get_Transaction_By_Username(string username)
+        {
+            var username_var = new SqlParameter("@username", username);
+            var result_transaction = db.Database.SqlQuery<TRANSACTION>("exec get_TRANSACTION_from_username @username", username_var).ToList();
+            return Json(result_transaction);
+        }
+
+        // Lấy ra một item trong transaction, để xem người dùng đã mua sản phẩm đó chưa
+        [HttpGet]
+        [Route("api/productsales/get_item_from_transaction_by_id/{transaction_id}/{product_id}")]
+        public IHttpActionResult Get_Item_In_Transaction_By_Id(int transaction_id, int product_id)
+        {
+            var transaction_id_var = new SqlParameter("@transaction_id", transaction_id);
+            var product_id_var = new SqlParameter("@product_id", product_id);
+            var item_list = db.Database.SqlQuery<int>("exec check_ITEM_in_TRANSACTION @transaction_id, @product_id", transaction_id_var, product_id_var).ToList();
+            return Json(item_list);
+        }
     }
 }
 
