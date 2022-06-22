@@ -71,20 +71,6 @@ namespace WebShop.Areas.Admin.Controllers
         public ActionResult AddProduct(FormCollection fc, HttpPostedFileBase file)
         {
             PRODUCT pro = new PRODUCT();
-            //var category_id = new SqlParameter("@category_id", fc["category_id"]);
-            //var name = new SqlParameter("@name", fc["productname"]);
-            //var price = new SqlParameter("@price", int.Parse(fc["price"]));
-            //var content = new SqlParameter("@content", fc["content"]);
-            //var brand = new SqlParameter("@brand", fc["brand"]);
-            //var size = new SqlParameter("@size", fc["size"]);
-            //var sale_id = new SqlParameter("@sale_id", int.Parse(fc["sale_id"]));
-            //var sold = new SqlParameter("@sold", int.Parse("0"));           
-            //var image_list = new SqlParameter("@image_list", "");
-            //string path = GetUrl(file);
-            //var image_link = new SqlParameter("@image_link", path.ToString());
-
-            //db.Database.ExecuteSqlCommand("AddProduct @name, @category_id, @sale_id, @price, @brand, @sold, @size, @content, @image_link, @image_list",
-            //                                            name, category_id, sale_id, price, brand, sold, size, content, image_link, image_list);
 
             pro.category_id = int.Parse(fc["category_id"]);
             pro.name = fc["productname"];
@@ -106,8 +92,8 @@ namespace WebShop.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult DeleteProduct(string product_id)
         {
-            var id = new SqlParameter("@id", product_id);
-            db.Database.ExecuteSqlCommand("DeleteProduct @id", id);
+            var request = new RestRequest($"api/admin/DeleteProduct?id={product_id}", Method.Delete);
+            _client.Execute(request);
             return RedirectToAction("Index");
         }
       
@@ -115,15 +101,14 @@ namespace WebShop.Areas.Admin.Controllers
         [HasCredential(RoleID = "EDIT_PRODUCT_ADMIN")]
         public ActionResult EditProduct(string product_id, string name, string size, string price, string content, string sale)
         {
-            var id = new SqlParameter("@id", product_id);
-            var name_var = new SqlParameter("@name", name);
-            var size_var = new SqlParameter("@size", size);
-            var price_var = new SqlParameter("@price", price);
-            var content_var = new SqlParameter("@content", content);
-            var sale_var = new SqlParameter("@sale", sale);
-
-            db.Database.ExecuteSqlCommand("exec EditProduct @id, @name, @size, @price, @content, @sale",
-                                                        id, name_var, size_var, price_var, content_var, sale_var);
+            PRODUCT pro = new PRODUCT();
+            pro.name = name;
+            pro.size = size;
+            pro.price = int.Parse(price);
+            pro.content = content;
+            pro.sale_id = int.Parse(sale);
+            var request = new RestRequest($"api/admin/updateProduct?id={product_id}", Method.Put).AddObject(pro);
+            _client.Execute(request);
             return RedirectToAction("Index");
         }
 
@@ -134,29 +119,22 @@ namespace WebShop.Areas.Admin.Controllers
             ViewBag.is_logined = Session["is_logined"];
 
             //  Lọc theo danh mục sản phẩm
-            var category = db.CATEGORies.ToArray();
-            var brand = db.BRANDs.ToList();
-            List<string> p1 = new List<string>();
-            foreach (var item in brand)
-            {
-                p1.Add(item.brand_name);
-            }
-            Dictionary<int, string> p = new Dictionary<int, string>();
-            foreach (var item in category)
-            {
-                p.Add(item.category_id, item.name);
-            }
-            ViewBag.Brand = p1;
-            ViewBag.Category = p;
+            
+            var request = new RestRequest($"api/admin/get_listbrand_product");
+            ViewBag.Brand = _client.Execute<Dictionary<int, string>>(request).Data;
+            request = new RestRequest($"api/admin/get_listcategory_product");
+            ViewBag.Category = _client.Execute<Dictionary<int, string>>(request).Data;
             var type = new SqlParameter("@type", filter);
             if (type.Value.ToString() == "0")
             {
-                var result = db.PRODUCTs.ToList();
+                request = new RestRequest($"api/admin/getproduct");
+                var result = _client.Execute<List<PRODUCT>>(request).Data;
                 return View("Index", result);
             }
             else
             {
-                var result = db.PRODUCTs.SqlQuery("FilterProduct @type", type).ToList();
+                request = new RestRequest($"api/admin/searchProduct?filter={filter}");
+                var result = _client.Execute<List<PRODUCT>>(request).Data;
                 return View("Index", result);
             }
         }

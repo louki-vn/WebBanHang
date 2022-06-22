@@ -107,9 +107,9 @@ namespace WebBanHang_API.Areas.Admin.Controllers
         }
 
         [HttpDelete]
-        [Route("api/admin/deletecategory")]
+        [Route("api/admin/DeleteProduct")]
 
-        public IHttpActionResult deleteCategory(int id)
+        public IHttpActionResult deleteProduct(int id)
         {
             var id_product = new SqlParameter("@id", id);
             db.Database.ExecuteSqlCommand("DeleteProduct @id", id_product);

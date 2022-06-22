@@ -48,10 +48,6 @@ namespace WebBanHang_API.Areas.Admin.Controllers
         {
             var tran_id_2 = new SqlParameter("@tran_id_2", id);
             var product = db.Database.SqlQuery<Order_Products>("GetProductInTransaction @tran_id_2", tran_id_2).ToList();
-            if (product.Count <= 0)
-            {
-                return NotFound();
-            }
             return Ok(product);
             //return con.THEMTHONGTINDANGKYCLVUKHITAU(id, mc) ?
             //    Request.CreateResponse(HttpStatusCode.Created, mc)
