@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RestSharp;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -14,6 +15,12 @@ namespace WebShop.Areas.Admin.Controllers
         // Khai báo database
         Shop db = new Shop();
         private static List<ItemInCart> dl = new List<ItemInCart>();
+        private readonly RestClient _client;
+
+        public CartShopController()
+        {
+            _client = new RestClient("https://localhost:44396/");
+        }
         // GET: Admin/CartShop
         [HasCredential(RoleID = "SELL_OFLINE_ADMIN")]
         public ActionResult Index()
@@ -41,7 +48,8 @@ namespace WebShop.Areas.Admin.Controllers
         {
             int _id = int.Parse(id);
             var product_id = new SqlParameter("@product_id", _id);
-            var dt = db.Database.SqlQuery<PRODUCT>("exec get_PRODUCT_from_product_id @product_id", product_id).FirstOrDefault();
+            var request = new RestRequest($"api/admin/GetProduct_CartShop?id={id}");
+            var dt = _client.Execute<PRODUCT>(request).Data;
 
             if (dt != null) 
             {
@@ -151,8 +159,10 @@ namespace WebShop.Areas.Admin.Controllers
                 info.status = 1;
                 info.payment = true;
                 info.amount = 0;
-                db.TRANSACTIONs.Add(info);
-                db.SaveChanges();
+                //db.TRANSACTIONs.Add(info);
+                //db.SaveChanges();
+                var request = new RestRequest($"api/admin/insertTransaction_CartShop", Method.Post).AddObject(info);
+                _client.Execute(request);
                 Js.Data = new
                 {
                     status = "OK"
@@ -177,11 +187,15 @@ namespace WebShop.Areas.Admin.Controllers
             }
             else
             {
-                var item_sold = db.TRANSACTIONs.OrderByDescending(p => p.transaction_id).FirstOrDefault();
+                //var item_sold = db.TRANSACTIONs.OrderByDescending(p => p.transaction_id).FirstOrDefault();
+
+                TRANSACTION item_sold = new TRANSACTION();
 
                 item_sold.status = 2;
                 item_sold.amount = int.Parse(amount);
-                db.SaveChanges();
+                //db.SaveChanges();
+                var request = new RestRequest($"api/admin/SaveInfoPayment_CartShop", Method.Post).AddObject(item_sold);
+                _client.Execute(request);
                 Js.Data = new
                 {
                     status = "OK"
@@ -198,8 +212,10 @@ namespace WebShop.Areas.Admin.Controllers
                     item.size = i.size;
                     item.transaction_id = item_sold.transaction_id;
 
-                    db.ITEM_SOLD.Add(item);
-                    db.SaveChanges();
+                    //db.ITEM_SOLD.Add(item);
+                    //db.SaveChanges();
+                    request = new RestRequest($"api/admin/SaveItemSold_CartShop", Method.Post).AddObject(item);
+                    _client.Execute(request);
                 }
 
             }

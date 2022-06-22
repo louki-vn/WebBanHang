@@ -130,7 +130,7 @@
                                                                         <input id="delete_name" name="delete_name" disabled="disabled" />
                                                                     </div>
                                                                     <div class="modal-footer">
-                                                                        <button type="submit" class="btn btn-primary" onclick="DeleteMember()">Xóa</button>
+                                                                        <button type="submit" class="btn btn-primary">Xóa</button>
                                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                                                                     </div>
                                                                 </div>
@@ -163,3 +163,17 @@
         <a href="@Url.Action("Login", null, new { area = "Sales", controller = "Login"}, Request.Url.Scheme) ">Đăng nhập ngay</a>
     }
 }
+
+<script>
+    function DelMem(id) {
+        $.ajax({
+            type: "POST",
+            data: {id: id},
+            url: "/UserData/DeleteMember",
+            success: function (e) {
+
+            }
+        });
+        location.reload();
+    }
+</script>
