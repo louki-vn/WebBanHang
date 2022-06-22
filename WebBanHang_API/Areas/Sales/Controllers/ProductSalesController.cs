@@ -103,7 +103,7 @@ namespace WebBanHang_API.Areas.Sales.Controllers
 
 
         [HttpGet]
-        [Route("api/get_product_base_on_product_group/{id}")]
+        [Route("api/productsales/get_product_base_on_product_group/{id}")]
         public IHttpActionResult Get_Product_Base_On_Product_Group(string id)
         {
             int id_int = Int32.Parse(id);
@@ -121,7 +121,7 @@ namespace WebBanHang_API.Areas.Sales.Controllers
         }
 
         [HttpGet]
-        [Route("api/get_product_base_on_price/{id}")]
+        [Route("api/productsales/get_product_base_on_price/{id}")]
         public IHttpActionResult Get_Product_Base_On_Price(int id)
         {
             var along_var = new SqlParameter("@along", id);
@@ -138,7 +138,7 @@ namespace WebBanHang_API.Areas.Sales.Controllers
         }
 
         [HttpGet]
-        [Route("api/get_product_base_on_brand/{id}")]
+        [Route("api/productsales/get_product_base_on_brand/{id}")]
         public IHttpActionResult Get_Product_Base_On_Brand(string id)
         {
             var brand_var = new SqlParameter("@brand", Int32.Parse(id));
