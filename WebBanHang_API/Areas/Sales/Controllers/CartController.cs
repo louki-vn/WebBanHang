@@ -98,6 +98,15 @@ namespace WebBanHang_API.Areas.Sales.Controllers
             return Json(itemincartlist);
         }
         
+                // Xóa toàn bộ item
+        [HttpPost]
+        [Route("api/cart/removeallitem")]
+        public IHttpActionResult Remove_Item()
+        {
+            db.Database.ExecuteSqlCommand("exec remove_all_CART_ITEM");
+            return Json(1);
+        }
+        
     }
 }
 
