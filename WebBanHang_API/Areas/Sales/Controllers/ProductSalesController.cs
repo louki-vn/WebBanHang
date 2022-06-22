@@ -164,6 +164,19 @@ namespace WebBanHang_API.Areas.Sales.Controllers
             var result = db.Database.ExecuteSqlCommand("exec create_REVIEW @content, @username, @product_id, @date_post", review_var, username_var, product_id_var, datetime_var);
             return Json(1);
         }
+        
+        // Lấy danh sách Item trong cart theo 3 thuộc tính để kiểm tra xem item đó đã tồn tại trong cart chưa
+
+        [HttpGet]
+        [Route("api/productsales/check_product_in_cart/{cart_id}/{product_id}/{size}")]
+        public IHttpActionResult Check_Product_In_Cart(int cart_id, int product_id, string size)
+        {
+            var product_id_var = new SqlParameter("@product_id", product_id);
+            var cart_id_var = new SqlParameter("@cart_id", cart_id);
+            var size_var = new SqlParameter("@size", size);
+            var result_check = db.Database.SqlQuery<CART_ITEM>("exec CheckProductInCart @cart_id, @product_id, @size", cart_id_var, product_id_var, size_var).ToList();
+            return Json(result_check);
+        }
     }
 }
 
