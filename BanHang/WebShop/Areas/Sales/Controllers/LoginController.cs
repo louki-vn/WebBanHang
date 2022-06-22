@@ -10,7 +10,6 @@ namespace WebShop.Areas.Sales.Controllers
 {
     public class LoginController : Controller
     {
-        Shop db = new Shop();
         private readonly RestClient _client;
 
         public LoginController()

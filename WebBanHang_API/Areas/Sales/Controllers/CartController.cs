@@ -86,7 +86,7 @@ namespace WebBanHang_API.Areas.Sales.Controllers
         // Api này thêm tham số username vì trong bản gốc có sử dụng username được lấy từ session.
         
         [HttpPut]
-        [Route("api/cart/removeitem/{username}/{id}")]
+        [Route("api/cart/removeitem/{username}/{id}/{size}")]
         public IHttpActionResult Remove_Item(string username, string id, string size)
         {
             SqlParameter[] pro_id = { new SqlParameter("@id", Int32.Parse(id)),
@@ -96,6 +96,16 @@ namespace WebBanHang_API.Areas.Sales.Controllers
             List<ItemInCart> itemincartlist = new List<ItemInCart>();
             itemincartlist = Get_Data(username, itemincartlist);
             return Json(itemincartlist);
+        }
+        
+        // Xóa toàn bộ item cua 1 carrt
+        [HttpPost]
+        [Route("api/cart/removeallitem/{cart_id}")]
+        public IHttpActionResult Remove_Item(int cart_id)
+        {
+            var c = new SqlParameter("@cart_id", cart_id);
+            db.Database.ExecuteSqlCommand("exec remove_all_CART_ITEM @cart_id", c);
+            return Json(1);
         }
         
     }

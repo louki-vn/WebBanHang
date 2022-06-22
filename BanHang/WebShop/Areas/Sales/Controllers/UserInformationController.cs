@@ -9,8 +9,7 @@ using WebShop.Models;
 namespace WebShop.Areas.Sales.Controllers
 {
     public class UserInformationController : Controller
-    {
-        Shop db = new Shop();
+    {       
         private readonly RestClient _client;
 
         public UserInformationController()
@@ -31,16 +30,22 @@ namespace WebShop.Areas.Sales.Controllers
             user = response[0];
 
             if (ViewBag.is_logined == 1)
-            {
-                Models.Data data = new Models.Data();
-                List<ItemInCart> itemincartlist = new List<ItemInCart>();
-                data.GetItemInCart(itemincartlist, Session["user_logined"].ToString());
-                ViewBag.ItemInCart = itemincartlist;
-                ViewBag.Number = itemincartlist.Count();
+            {                
+                var request6 = new RestRequest($"api/cart/getdata/{username}/");
+                var response6 = _client.Execute<List<ItemInCart>>(request6).Data;
+                ViewBag.ItemInCart = response6;
+                ViewBag.Number = response6.Count();
+
+                //Models.Data data = new Models.Data();
+                //List<ItemInCart> itemincartlist = new List<ItemInCart>();
+                //data.GetItemInCart(itemincartlist, Session["user_logined"].ToString());
+                //ViewBag.ItemInCart = itemincartlist;
+                //ViewBag.Number = itemincartlist.Count();
             }
 
             return View(user);
         }
+
         [HasCredential(RoleID = "UPDATE_INFORMATION_USER")]
         public ActionResult update_information(string member_id, string name, string phone, string address)
         {
@@ -48,11 +53,17 @@ namespace WebShop.Areas.Sales.Controllers
             var response = _client.Execute<int>(request).Data;
             if (ViewBag.is_logined == 1)
             {
-                Models.Data data = new Models.Data();
-                List<ItemInCart> itemincartlist = new List<ItemInCart>();
-                data.GetItemInCart(itemincartlist, Session["user_logined"].ToString());
-                ViewBag.ItemInCart = itemincartlist;
-                ViewBag.Number = itemincartlist.Count();
+                string username = Session["user_logined"].ToString();
+                var request6 = new RestRequest($"api/cart/getdata/{username}/");
+                var response6 = _client.Execute<List<ItemInCart>>(request6).Data;
+                ViewBag.ItemInCart = response6;
+                ViewBag.Number = response6.Count();
+
+                //Models.Data data = new Models.Data();
+                //List<ItemInCart> itemincartlist = new List<ItemInCart>();
+                //data.GetItemInCart(itemincartlist, Session["user_logined"].ToString());
+                //ViewBag.ItemInCart = itemincartlist;
+                //ViewBag.Number = itemincartlist.Count();
             }
 
             return Content("1");
@@ -82,7 +93,6 @@ namespace WebShop.Areas.Sales.Controllers
 
         [HasCredential(RoleID = "CHANGE_PASSWORD_USER")]
         [HttpPost]
-
         public JsonResult Change_Password(FormCollection form)
         {
             string old_pass = form["old_pass"];

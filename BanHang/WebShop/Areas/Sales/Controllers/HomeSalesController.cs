@@ -39,35 +39,6 @@ namespace WebShop.Areas.Sales.Controllers
             return View("~/Areas/Sales/Views/HomeSales/Home.cshtml", res);
         }
 
-        //public void Mix_PRODUCT_And_PRODUCT_Plus(List<PRODUCT> productlist, List<PRODUCT_Plus> productpluslist)
-        //{
-        //    var result_sale = db.Database.SqlQuery<SALE>("exec get_all_from_SALES").ToList();
-        //    foreach (var a in productlist)
-        //    {
-        //        PRODUCT_Plus c = new PRODUCT_Plus();
-        //        c.product_id = a.product_id;
-        //        c.category_id = a.category_id;
-        //        c.sale_id = a.sale_id;
-        //        c.name = a.name;
-        //        c.price = a.price;
-        //        c.brand_id = (int)a.brand_id;
-        //        c.sold = a.sold;
-        //        c.size = a.size;
-        //        c.content = a.content;
-        //        c.image_link = a.image_link;
-        //        foreach (var b in result_sale)
-        //        {
-        //            if (b.sale_id == a.sale_id)
-        //            {
-        //                c.sale_name = b.sale_name;
-        //                c.percent = b.percent;
-        //            }
-        //        }
-        //        productpluslist.Add(c);
-        //    }
-        //}
-
-
         [HttpPost]
         public JsonResult HandleAdd_Cart(FormCollection data)
         {
