@@ -195,7 +195,7 @@ namespace WebShop.Areas.Admin.Controllers
                 item_sold.amount = int.Parse(amount);
                 //db.SaveChanges();
                 var request = new RestRequest($"api/admin/SaveInfoPayment_CartShop", Method.Post).AddObject(item_sold);
-                _client.Execute(request);
+                item_sold = _client.Execute<TRANSACTION>(request).Data;
                 Js.Data = new
                 {
                     status = "OK"
