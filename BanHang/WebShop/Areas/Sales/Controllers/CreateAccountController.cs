@@ -43,6 +43,9 @@ namespace WebShop.Areas.Sales.Controllers
                 {
                     Session["user_logined"] = username;
                     Session["is_logined"] = 1;
+                    var request1 = new RestRequest($"api/userinformation/getuserinfor/{username}/", Method.Get);
+                    var response1 = _client.Execute<List<MEMBER>>(request1).Data;
+                    Session["member_id"] = response1[0].member_id.ToString();
                     ViewBag.user_logined = Session["user_logined"];
                     ViewBag.is_logined = Session["is_logined"];
                     return RedirectToAction("Home", "HomeSales", new { area = "Sales" });
