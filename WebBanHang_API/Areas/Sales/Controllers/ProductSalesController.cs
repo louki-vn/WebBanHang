@@ -212,6 +212,22 @@ namespace WebBanHang_API.Areas.Sales.Controllers
             var item_list = db.Database.SqlQuery<int>("exec check_ITEM_in_TRANSACTION @transaction_id, @product_id", transaction_id_var, product_id_var).ToList();
             return Json(item_list);
         }
+        
+                // Create transaction
+        [HttpPost]
+        [Route("api/productsales/add_transaction/{status}/{member_id}/{member_name}/{payment}/{delivery}/{member_phone_number}/{amount}")]
+        public IHttpActionResult Add_Transaction(int status, int member_id, string member_name, int payment, string delivery, string member_phone_number, int amount)
+        {
+            var status_var = new SqlParameter("@status", status);
+            var member_id_var = new SqlParameter("@member_id", member_id);
+            var member_name_var = new SqlParameter("@member_name", member_name);
+            var payment_var = new SqlParameter("@payment", payment);
+            var delivery_var = new SqlParameter("@delivery", delivery);
+            var member_phone_number_var = new SqlParameter("@member_phone_number", member_phone_number);
+            var amount_var = new SqlParameter("@amount", amount);
+            db.Database.ExecuteSqlCommand("exec create_TRANSACTION @satus @member_id @member_name @payment @delivery @member_phone_number, @amount", status_var, member_id_var, payment_var, delivery_var, member_phone_number_var, amount_var);
+            return Json(1);
+        }
     }
 }
 
