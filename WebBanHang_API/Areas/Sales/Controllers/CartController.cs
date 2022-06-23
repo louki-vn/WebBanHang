@@ -108,6 +108,17 @@ namespace WebBanHang_API.Areas.Sales.Controllers
             return Json(1);
         }
         
+                // Lấy review của một sản phẩm
+
+        [HttpGet]
+        [Route("api/cart/get_review/{product_id}")]
+        public IHttpActionResult Get_Review(int product_id)
+        {
+            var product_id_var = new SqlParameter("@product_id", product_id);
+            var review_list = db.Database.SqlQuery<REVIEW>("exec get_review_by_product_id @product_id", product_id_var);
+            return Json(review_list);
+        }
+        
     }
 }
 

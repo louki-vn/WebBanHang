@@ -57,7 +57,6 @@ namespace WebShop.Areas.Sales.Controllers
                     var req = new RestRequest($"api/get_member_by_username/{username}/", Method.Get);
                     var resp = _client.Execute<List<MEMBER>>(req).Data;
                     MEMBER member = resp[0];
-                    //var member = db.MEMBERs.Where(x => x.username == username).FirstOrDefault();
                     var userSession = new UserLogin();
                     userSession.username = member.username;
                     userSession.member_id = member.member_id;
