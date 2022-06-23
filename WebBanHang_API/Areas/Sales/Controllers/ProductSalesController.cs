@@ -253,11 +253,11 @@ namespace WebBanHang_API.Areas.Sales.Controllers
             return Json(result);
         }
         
-                [HttpGet]
+        [HttpGet]
         [Route("api/productsales/get_all_transaction")]
         public IHttpActionResult Get_All_Transaction()
         {
-            var result = db.TRANSACTIONs.ToList();
+            var result = db.Database.SqlQuery<TRANSACTION>("select * from [TRANSACTION]").ToList();
             return Json(result);
         }
     }
