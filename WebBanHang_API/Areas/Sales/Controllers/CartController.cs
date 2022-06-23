@@ -70,7 +70,7 @@ namespace WebBanHang_API.Areas.Sales.Controllers
         
         // API create cart_item
         [HttpPost]
-        [Route("api/add_cart_item/{cart_id}/{product_id}/{qty}/{amount}/{price}/{size}")]
+        [Route("api/cart/add_cart_item/{cart_id}/{product_id}/{qty}/{amount}/{price}/{size}")]
         public IHttpActionResult Add_Cart_Item(int cart_id, int product_id, int qty, int amount,int price, string size)
         {
             var cart_id_var = new SqlParameter("@cart_id", cart_id);

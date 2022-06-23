@@ -43,6 +43,7 @@ namespace WebShop.Areas.Admin.Controllers
             var res = _client.Execute(request);
             return RedirectToAction("Index");
         }
+
         [HasCredential(RoleID = "EDIT_CATEGORY_ADMIN")]
         [HttpGet]
         public ActionResult EditCategory(string category_id, string category_name)
@@ -53,6 +54,7 @@ namespace WebShop.Areas.Admin.Controllers
             var res = _client.Execute(request);                     
             return RedirectToAction("Index");
         }
+
         [HasCredential(RoleID = "DELETE_CATEGORY_ADMIN")]
         [HttpGet]
         public ActionResult DeleteCategory(string delete_id)
