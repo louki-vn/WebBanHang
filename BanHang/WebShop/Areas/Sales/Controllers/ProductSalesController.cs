@@ -174,17 +174,19 @@ namespace WebShop.Areas.Sales.Controllers
             }
             else
             {
-                TRANSACTION info = new TRANSACTION();
-                var member_id = Session["member_id"].ToString();
-                info.member_name = usename;
-                info.member_id = int.Parse(member_id);
-                info.member_phone_number = numberphone;
-                info.status = 0;
-                info.delivery = address;
-                info.payment = true;
-                info.amount = Int32.Parse(amount);
-                db.TRANSACTIONs.Add(info);
-                db.SaveChanges();
+                var request = new RestRequest($"api/productsales/add_transaction/{0}/{Session["member_id"].ToString()}/{usename}/{1}/{address}/{numberphone}/{amount}", Method.Post);
+                var response = _client.Execute(request);
+                //TRANSACTION info = new TRANSACTION();
+                //var member_id = Session["member_id"].ToString();
+                //info.member_name = usename;
+                //info.member_id = int.Parse(member_id);
+                //info.member_phone_number = numberphone;
+                //info.status = 0;
+                //info.delivery = address;
+                //info.payment = true;
+                //info.amount = Int32.Parse(amount);
+                //db.TRANSACTIONs.Add(info);
+                //db.SaveChanges();
                 Js.Data = new
                 {
                     status = "OK"
@@ -196,15 +198,20 @@ namespace WebShop.Areas.Sales.Controllers
         public JsonResult SaveInfoPayment(FormCollection data)
         {
             JsonResult Js = new JsonResult();
-            var member_id = Session["member_id"].ToString();
-            var id_var = new SqlParameter("@id", member_id);
-            var id_var2 = new SqlParameter("@id", member_id);
-            List<CART_ITEM> list_cart_item = new List<CART_ITEM>();
-            var result = db.Database.SqlQuery<CART_ITEM>("select * from CART_ITEM where cart_id = @id", id_var).ToList();
-            List<ITEM_SOLD> list_item_sold = new List<ITEM_SOLD>();
 
-            int mem_id2 = Int32.Parse(member_id);
-            var id_mem = new SqlParameter("@id", Int32.Parse(member_id));
+
+            var member_id = Session["member_id"].ToString();
+            var request1 = new RestRequest($"api/cart/getdata/{Session["user_logined"].ToString()}", Method.Get);
+            var response1 = _client.Execute(request1);
+
+            var id_var = new SqlParameter("@id", member_id);
+            //var id_var2 = new SqlParameter("@id", member_id);
+           //List<CART_ITEM> list_cart_item = new List<CART_ITEM>();
+            var result = db.Database.SqlQuery<CART_ITEM>("select * from CART_ITEM where cart_id = @id", id_var).ToList();
+            //List<ITEM_SOLD> list_item_sold = new List<ITEM_SOLD>();
+
+            //int mem_id2 = Int32.Parse(member_id);
+            //var id_mem = new SqlParameter("@id", Int32.Parse(member_id));
             var tran_id = db.TRANSACTIONs.OrderByDescending(p => p.transaction_id).ToList();
             for (int i = 0; i < result.Count(); i++)
             {
@@ -217,8 +224,11 @@ namespace WebShop.Areas.Sales.Controllers
                 db.ITEM_SOLD.Add(t);
             }
 
-            db.Database.ExecuteSqlCommand("delete CART_ITEM where cart_id = @id", id_var2);
-            db.SaveChanges();
+            var request4 = new RestRequest($"api/productsales/deletecartitem/{member_id}", Method.Delete);
+            var response4 = _client.Execute(request4);
+
+            //db.Database.ExecuteSqlCommand("delete CART_ITEM where cart_id = @id", id_var2);
+            //db.SaveChanges();
             return Json(Js, JsonRequestBehavior.AllowGet);
         }
 
