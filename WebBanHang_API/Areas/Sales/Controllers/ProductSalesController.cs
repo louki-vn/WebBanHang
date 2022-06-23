@@ -225,7 +225,8 @@ namespace WebBanHang_API.Areas.Sales.Controllers
             var delivery_var = new SqlParameter("@delivery", delivery);
             var member_phone_number_var = new SqlParameter("@member_phone_number", member_phone_number);
             var amount_var = new SqlParameter("@amount", amount);
-            db.Database.ExecuteSqlCommand("exec create_TRANSACTION @satus @member_id @member_name @payment @delivery @member_phone_number, @amount", status_var, member_id_var, payment_var, delivery_var, member_phone_number_var, amount_var);
+            db.Database.ExecuteSqlCommand("exec create_TRANSACTION @status, @member_id, @member_name, @payment, @delivery, @member_phone_number, @amount",
+                                                status_var, member_id_var, member_name_var, payment_var, delivery_var, member_phone_number_var, amount_var);
             return Json(1);
         }
         
@@ -239,7 +240,8 @@ namespace WebBanHang_API.Areas.Sales.Controllers
             var price_var = new SqlParameter("@price", price);
             var size_var = new SqlParameter("@size", size);
             var transaction_id_var = new SqlParameter("@transaction_id", transaction_id);
-            db.Database.ExecuteSqlCommand("exec add_item_sold @product_id @qty @price @size @transaction_id", product_id_var, qty_var, price_var, size_var, transaction_id_var);
+            db.Database.ExecuteSqlCommand("exec add_item_sold @product_id, @qty, @price, @size, @transaction_id",
+                                                        product_id_var, qty_var, price_var, size_var, transaction_id_var);
             return Json(1);
         }
 
@@ -266,7 +268,7 @@ namespace WebBanHang_API.Areas.Sales.Controllers
         public IHttpActionResult DeleteCartItem(int id)
         {
             var id_var = new SqlParameter("@id_var2", id);
-            db.Database.ExecuteSqlCommand("delete CART_ITEM where cart_id = @id", id_var);
+            db.Database.ExecuteSqlCommand("delete CART_ITEM where cart_id = @id_var2", id_var);
             return Json(1);
         }
     }

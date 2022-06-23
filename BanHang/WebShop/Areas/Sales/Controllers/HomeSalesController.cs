@@ -61,29 +61,9 @@ namespace WebShop.Areas.Sales.Controllers
             {
                 int _product_id = int.Parse(product_id);
                 var request = new RestRequest($"api/productsales/getproductbyid/{_product_id}", Method.Get);
-                var res = _client.Execute<PRODUCT_Plus>(request).Data;
-                //var x = db.PRODUCTs.Where(p => p.product_id == _product_id).FirstOrDefault();
-
-                var request2 = new RestRequest($"api/get_itemincart/{_product_id}", Method.Get);
+                var res = _client.Execute<PRODUCT_Plus>(request).Data;                
+                var request2 = new RestRequest($"api/get_itemincart?id={_product_id}", Method.Get);
                 var itemincart = _client.Execute<List<CART_ITEM>>(request2).Data;
-
-                //var itemincart = db.CART_ITEM.Where(p => p.product_id == _product_id).ToList();
-                foreach (var it in itemincart)
-                {
-                    if (_member_id == it.cart_id && it.product_id == _product_id)
-                    {
-                        CART_ITEM i = new CART_ITEM();
-                        i.qty = i.qty + 1;
-                        i.amount = i.qty * i.price;
-                        db.SaveChanges();
-                        Js.Data = new
-                        {
-                            status = "OK",
-                            no_add = 1
-                        };
-                        return Json(Js, JsonRequestBehavior.AllowGet);
-                    }
-                }
 
                 CART_ITEM item = new CART_ITEM();
                 item.cart_id = int.Parse(member_id);
@@ -92,14 +72,9 @@ namespace WebShop.Areas.Sales.Controllers
                 item.size = "S";
                 item.price = res.price;
                 item.amount = item.price * item.qty;
-
-
                 var request3 = new RestRequest($"api/insert_CartItem", Method.Post).AddObject(item);
                  _client.Execute(request3);
-
-                //db.CART_ITEM.Add(item);
-                //db.SaveChanges();
-
+              
                 Js.Data = new
                 {
                     status = "OK",

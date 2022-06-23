@@ -15,6 +15,10 @@ namespace WebBanHang_API.Areas.Sales.Controllers
     {
         Shop db = new Shop();
 
+        public HomeSalesController()
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+        }
         public void Mix_PRODUCT_And_PRODUCT_Plus(List<PRODUCT> productlist, List<PRODUCT_Plus> productpluslist)
         {
 

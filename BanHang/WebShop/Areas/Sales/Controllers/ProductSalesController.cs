@@ -176,17 +176,7 @@ namespace WebShop.Areas.Sales.Controllers
             {
                 var request = new RestRequest($"api/productsales/add_transaction/{0}/{Session["member_id"].ToString()}/{usename}/{1}/{address}/{numberphone}/{amount}", Method.Post);
                 var response = _client.Execute(request);
-                //TRANSACTION info = new TRANSACTION();
-                //var member_id = Session["member_id"].ToString();
-                //info.member_name = usename;
-                //info.member_id = int.Parse(member_id);
-                //info.member_phone_number = numberphone;
-                //info.status = 0;
-                //info.delivery = address;
-                //info.payment = true;
-                //info.amount = Int32.Parse(amount);
-                //db.TRANSACTIONs.Add(info);
-                //db.SaveChanges();
+        
                 Js.Data = new
                 {
                     status = "OK"
@@ -198,39 +188,14 @@ namespace WebShop.Areas.Sales.Controllers
         public JsonResult SaveInfoPayment(FormCollection data)
         {
             JsonResult Js = new JsonResult();
-
-
-            var member_id = Session["member_id"].ToString();
-            //var request1 = new RestRequest($"api/cart/getdata/{Session["user_logined"].ToString()}", Method.Get);
-            //var response1 = _client.Execute(request1);
-
+            var member_id = Session["member_id"].ToString();           
             var request2 = new RestRequest($"api/productsales/get_cart_item_by_cart_id/{member_id}", Method.Get);
             var response2 = _client.Execute<List<CART_ITEM>>(request2).Data;
-
-            //var id_var = new SqlParameter("@id", member_id);
-            //var id_var2 = new SqlParameter("@id", member_id);
-            //List<CART_ITEM> list_cart_item = new List<CART_ITEM>();
-            //var result = db.Database.SqlQuery<CART_ITEM>("select * from CART_ITEM where cart_id = @id", id_var).ToList();
-            //List<ITEM_SOLD> list_item_sold = new List<ITEM_SOLD>();
-
-            //int mem_id2 = Int32.Parse(member_id);
-            //var id_mem = new SqlParameter("@id", Int32.Parse(member_id));
-
             var request1 = new RestRequest($"api/productsales/get_all_transaction", Method.Get);
             var tran_id = _client.Execute<List<TRANSACTION>>(request1).Data;
 
-            //var tran_id = db.TRANSACTIONs.OrderByDescending(p => p.transaction_id).ToList();
             for (int i = 0; i < response2.Count(); i++)
-            {
-                //var t = new ITEM_SOLD();
-                //t.product_id = result[i].product_id;
-                //t.price = result[i].price;
-                //t.qty = (int)result[i].qty;
-                //t.size = result[i].size;
-                //t.transaction_id = tran_id[0].transaction_id;
-                //db.ITEM_SOLD.Add(t);
-
-
+            {               
                 var request3 = new RestRequest($"api/productsales/add_item_sold/{response2[i].product_id}/{(int)response2[i].qty}/" +
                     $"{response2[i].price}/{response2[i].size}/{tran_id[0].transaction_id}", Method.Get);
                 var response3 = _client.Execute(request3);
@@ -239,8 +204,6 @@ namespace WebShop.Areas.Sales.Controllers
             var request4 = new RestRequest($"api/productsales/deletecartitem/{member_id}", Method.Delete);
             var response4 = _client.Execute(request4);
 
-            //db.Database.ExecuteSqlCommand("delete CART_ITEM where cart_id = @id", id_var2);
-            //db.SaveChanges();
             return Json(Js, JsonRequestBehavior.AllowGet);
         }
 
@@ -400,8 +363,6 @@ namespace WebShop.Areas.Sales.Controllers
             bool check = false;
             var request = new RestRequest($"api/productsales/get_transaction_by_username/{username}/", Method.Get);
             var result = _client.Execute<List<TRANSACTION>>(request).Data;
-            //var username_var = new SqlParameter("@username", username);
-            //var result_transaction = db.Database.SqlQuery<TRANSACTION>("exec get_TRANSACTION_from_username @username", username_var).ToList();
             int[] check_arr = new int[20];
             for (int k = 0; k < 20; k++)
             {
@@ -413,9 +374,7 @@ namespace WebShop.Areas.Sales.Controllers
                 var request1 = new RestRequest($"api/productsales/get_item_from_transaction_by_id/{a.transaction_id}/{product_id}", Method.Get);
                 var result1 = _client.Execute<int>(request1).Data;
                 check_arr[i] = result1;
-                //var transaction_id_var = new SqlParameter("@transaction_id", a.transaction_id);
-                //var product_id_var = new SqlParameter("@product_id", product_id);
-                //check_arr[i] = db.Database.SqlQuery<int>("exec check_ITEM_in_TRANSACTION @transaction_id, @product_id", transaction_id_var, product_id_var).FirstOrDefault();
+              
                 if (check_arr[i] == 1)
                 {
                     check = true;
@@ -438,11 +397,7 @@ namespace WebShop.Areas.Sales.Controllers
             string a = date.ToString("dd/MM/yyyy");
             var request = new RestRequest($"api/productsales/add_review/{review}/{username}/{product_id}/{a}", Method.Get);
             var result = _client.Execute<int>(request).Data;
-            //var datetime_var = new SqlParameter("@date_post", a);
-            //var username_var = new SqlParameter("@username", username);
-            //var product_id_var = new SqlParameter("@product_id", product_id);
-            //var review_var = new SqlParameter("@content", review);
-            //var result = db.Database.ExecuteSqlCommand("exec create_REVIEW @content, @username, @product_id, @date_post", review_var, username_var, product_id_var, datetime_var);
+          
             return Content("1");
         }
     }
