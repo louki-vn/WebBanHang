@@ -1,2 +1,0 @@
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\obj\Debug\WebShop.csproj.AssemblyReference.cache
-C:\Users\anhtu\Desktop\LTTH\BanHang\WebShop\obj\Debug\WebShop.csproj.CoreCompileInputs.cache
