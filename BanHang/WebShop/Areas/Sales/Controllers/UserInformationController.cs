@@ -58,10 +58,10 @@ namespace WebShop.Areas.Sales.Controllers
         }
 
         [HasCredential(RoleID = "CHANGE_PASSWORD_USER")]
-        public ActionResult Change_Password()
-        {
-            ViewBag.user_logined = Session["user_logined"];
-            ViewBag.is_logined = Session["is_logined"];
+        //public ActionResult Change_Password()
+        //{
+        //    ViewBag.user_logined = Session["user_logined"];
+        //    ViewBag.is_logined = Session["is_logined"];
 
             var req = new RestRequest($"api/get_member_by_username/{Session["user_logined"].ToString()}/", Method.Get);
             var response = _client.Execute<List<MEMBER>>(req).Data;
@@ -71,11 +71,11 @@ namespace WebShop.Areas.Sales.Controllers
 
             if (ViewBag.is_logined == 1)
             {
-                string username = Session["user_logined"].ToString();
-                var request6 = new RestRequest($"api/cart/getdata/{username}/");
-                var response6 = _client.Execute<List<ItemInCart>>(request6).Data;
-                ViewBag.ItemInCart = response6;
-                ViewBag.Number = response6.Count();
+                Models.Data data = new Models.Data();
+                List<ItemInCart> itemincartlist = new List<ItemInCart>();
+                data.GetItemInCart(itemincartlist, Session["user_logined"].ToString());
+                ViewBag.ItemInCart = itemincartlist;
+                ViewBag.Number = itemincartlist.Count();
             }
             return View(user);
         }
