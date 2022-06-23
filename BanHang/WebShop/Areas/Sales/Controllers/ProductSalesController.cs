@@ -324,14 +324,14 @@ namespace WebShop.Areas.Sales.Controllers
             var res3 = _client.Execute<List<CART_ITEM>>(request3).Data;
             if (res3.Count() == 1)
             {
-                var request4 = new RestRequest($"api/productsales/update_number_product_in_cart/{cart_id}/{product_id}/{size}/{qty}", Method.Get);
+                var request4 = new RestRequest($"api/productsales/update_number_product_in_cart/{cart_id}/{product_id}/{size}/{item_qty}", Method.Get);
                 var res4 = _client.Execute<List<CART_ITEM>>(request4).Data;
             }
             else
             {
                 float amount = float.Parse(price) * item_qty;
-                var request5 = new RestRequest($"api/add_cart_item/{cart_id}/{product_id}/{qty}/{amount}/{price}/{size}", Method.Post);
-                var response = _client.Execute(request5);
+                var request5 = new RestRequest($"api/cart/add_cart_item/{cart_id}/{product_id}/{item_qty}/{amount}/{price}/{size}", Method.Post);
+                var response = _client.Execute<int>(request5);
             }
         }
 

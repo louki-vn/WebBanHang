@@ -43,7 +43,10 @@ namespace WebShop.Areas.Sales.Controllers
         public JsonResult HandleAdd_Cart(FormCollection data)
         {
             JsonResult Js = new JsonResult();
-            string member_id = Session["member_id"].ToString();
+            string username = Session["user_logined"].ToString();
+            var request1 = new RestRequest($"api/userinformation/getuserinfor/{username}/", Method.Get);
+            var response1 = _client.Execute<List<MEMBER>>(request1).Data;
+            string member_id = response1[0].member_id.ToString();
             string product_id = data["product_id"];
             int _member_id = int.Parse(member_id);
 
