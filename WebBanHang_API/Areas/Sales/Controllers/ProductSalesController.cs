@@ -252,6 +252,14 @@ namespace WebBanHang_API.Areas.Sales.Controllers
             var result = db.Database.SqlQuery<CART_ITEM>("select * from CART_ITEM where cart_id = @cart_id", cart_id_var).ToList();
             return Json(result);
         }
+        
+                [HttpGet]
+        [Route("api/productsales/get_all_transaction")]
+        public IHttpActionResult Get_All_Transaction()
+        {
+            var result = db.TRANSACTIONs.ToList();
+            return Json(result);
+        }
     }
 }
 
