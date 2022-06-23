@@ -252,13 +252,22 @@ namespace WebBanHang_API.Areas.Sales.Controllers
             var result = db.Database.SqlQuery<CART_ITEM>("select * from CART_ITEM where cart_id = @cart_id", cart_id_var).ToList();
             return Json(result);
         }
-        
-                [HttpGet]
+
+        [HttpGet]
         [Route("api/productsales/get_all_transaction")]
         public IHttpActionResult Get_All_Transaction()
         {
             var result = db.TRANSACTIONs.ToList();
             return Json(result);
+        }
+
+        [HttpDelete]
+        [Route("api/productsales/deletecartitem/{id}")]
+        public IHttpActionResult DeleteCartItem(int id)
+        {
+            var id_var = new SqlParameter("@id_var2", id);
+            db.Database.ExecuteSqlCommand("delete CART_ITEM where cart_id = @id", id_var);
+            return Json(1);
         }
     }
 }

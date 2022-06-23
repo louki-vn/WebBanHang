@@ -74,5 +74,23 @@ namespace WebBanHang_API.Areas.Sales.Controllers
             data.GetItemInCart(itemincartlist, username);
             return Json(itemincartlist);
         }
+
+        [HttpGet]
+        [Route("api/get_itemincart")]
+        public IHttpActionResult get_itemincart(int id)
+        {
+            var itemincart = db.CART_ITEM.Where(p => p.product_id == id).ToList();
+            return Ok(itemincart);
+        }
+
+        [HttpPost]
+        [Route("api/insert_CartItem")]
+        public IHttpActionResult insert_CartItem([FromBody] CART_ITEM fc)
+        {
+
+            db.CART_ITEM.Add(fc);
+            db.SaveChanges();
+            return Ok(fc);
+        }
     }
 }

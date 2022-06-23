@@ -63,7 +63,11 @@ namespace WebShop.Areas.Sales.Controllers
                 var request = new RestRequest($"api/productsales/getproductbyid/{_product_id}", Method.Get);
                 var res = _client.Execute<PRODUCT_Plus>(request).Data;
                 //var x = db.PRODUCTs.Where(p => p.product_id == _product_id).FirstOrDefault();
-                var itemincart = db.CART_ITEM.Where(p => p.product_id == _product_id).ToList();
+
+                var request2 = new RestRequest($"api/get_itemincart/{_product_id}", Method.Get);
+                var itemincart = _client.Execute<List<CART_ITEM>>(request2).Data;
+
+                //var itemincart = db.CART_ITEM.Where(p => p.product_id == _product_id).ToList();
                 foreach (var it in itemincart)
                 {
                     if (_member_id == it.cart_id && it.product_id == _product_id)
@@ -89,8 +93,12 @@ namespace WebShop.Areas.Sales.Controllers
                 item.price = res.price;
                 item.amount = item.price * item.qty;
 
-                db.CART_ITEM.Add(item);
-                db.SaveChanges();
+
+                var request3 = new RestRequest($"api/insert_CartItem", Method.Post).AddObject(item);
+                 _client.Execute(request3);
+
+                //db.CART_ITEM.Add(item);
+                //db.SaveChanges();
 
                 Js.Data = new
                 {

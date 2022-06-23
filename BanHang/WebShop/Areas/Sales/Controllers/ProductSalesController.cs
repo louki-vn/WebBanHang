@@ -209,13 +209,17 @@ namespace WebShop.Areas.Sales.Controllers
 
             //var id_var = new SqlParameter("@id", member_id);
             //var id_var2 = new SqlParameter("@id", member_id);
-           //List<CART_ITEM> list_cart_item = new List<CART_ITEM>();
+            //List<CART_ITEM> list_cart_item = new List<CART_ITEM>();
             //var result = db.Database.SqlQuery<CART_ITEM>("select * from CART_ITEM where cart_id = @id", id_var).ToList();
             //List<ITEM_SOLD> list_item_sold = new List<ITEM_SOLD>();
 
             //int mem_id2 = Int32.Parse(member_id);
             //var id_mem = new SqlParameter("@id", Int32.Parse(member_id));
-            var tran_id = db.TRANSACTIONs.OrderByDescending(p => p.transaction_id).ToList();
+
+            var request1 = new RestRequest($"api/productsales/get_all_transaction", Method.Get);
+            var tran_id = _client.Execute<List<TRANSACTION>>(request1).Data;
+
+            //var tran_id = db.TRANSACTIONs.OrderByDescending(p => p.transaction_id).ToList();
             for (int i = 0; i < response2.Count(); i++)
             {
                 //var t = new ITEM_SOLD();
