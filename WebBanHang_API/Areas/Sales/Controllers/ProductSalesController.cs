@@ -228,6 +228,30 @@ namespace WebBanHang_API.Areas.Sales.Controllers
             db.Database.ExecuteSqlCommand("exec create_TRANSACTION @satus @member_id @member_name @payment @delivery @member_phone_number, @amount", status_var, member_id_var, payment_var, delivery_var, member_phone_number_var, amount_var);
             return Json(1);
         }
+        
+                // Theem item sold
+        [HttpGet]
+        [Route("api/productsales/add_item_sold/{product_id}/{qty}/{price}/{size}/{transaction_id}")]
+        public IHttpActionResult Add_Item_Sold(int product_id, int qty, int price, string size, int transaction_id)
+        {
+            var product_id_var = new SqlParameter("@product_id", product_id);
+            var qty_var = new SqlParameter("@qty", qty);
+            var price_var = new SqlParameter("@price", price);
+            var size_var = new SqlParameter("@size", size);
+            var transaction_id_var = new SqlParameter("@transaction_id", transaction_id);
+            db.Database.ExecuteSqlCommand("exec add_item_sold @product_id @qty @price @size @transaction_id", product_id_var, qty_var, price_var, size_var, transaction_id_var);
+            return Json(1);
+        }
+
+        // lay item tu cart_id
+        [HttpGet]
+        [Route("api/productsales/get_cart_item_by_cart_id/{cart_id}")]
+        public IHttpActionResult Get_Cart_Item_By_Cart_id(int cart_id)
+        {
+            var cart_id_var = new SqlParameter("@cart_id", cart_id);
+            var result = db.Database.SqlQuery<CART_ITEM>("select * from CART_ITEM where cart_id = @cart_id", cart_id_var).ToList();
+            return Json(result);
+        }
     }
 }
 
