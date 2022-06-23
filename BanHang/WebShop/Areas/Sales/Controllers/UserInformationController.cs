@@ -70,25 +70,25 @@ namespace WebShop.Areas.Sales.Controllers
         }
 
         [HasCredential(RoleID = "CHANGE_PASSWORD_USER")]
-        public ActionResult Change_Password()
-        {
-            ViewBag.user_logined = Session["user_logined"];
-            ViewBag.is_logined = Session["is_logined"];
+        //public ActionResult Change_Password()
+        //{
+        //    ViewBag.user_logined = Session["user_logined"];
+        //    ViewBag.is_logined = Session["is_logined"];
 
-            var user_var = new SqlParameter("@username", ViewBag.user_logined);
-            var result = db.Database.SqlQuery<MEMBER>("exec get_MEMBER_from_username @username", user_var).ToList();
-            MEMBER user = new MEMBER();
-            user = result[0];
+        //    var user_var = new SqlParameter("@username", ViewBag.user_logined);
+        //    var result = db.Database.SqlQuery<MEMBER>("exec get_MEMBER_from_username @username", user_var).ToList();
+        //    MEMBER user = new MEMBER();
+        //    user = result[0];
 
-            if (ViewBag.is_logined == 1)
-            {
-                Models.Data data = new Models.Data();
-                List<ItemInCart> itemincartlist = new List<ItemInCart>();
-                data.GetItemInCart(itemincartlist, Session["user_logined"].ToString());
-                ViewBag.ItemInCart = itemincartlist;
-                ViewBag.Number = itemincartlist.Count();
-            }
-            return View(user);
+        //    if (ViewBag.is_logined == 1)
+        //    {
+        //        Models.Data data = new Models.Data();
+        //        List<ItemInCart> itemincartlist = new List<ItemInCart>();
+        //        data.GetItemInCart(itemincartlist, Session["user_logined"].ToString());
+        //        ViewBag.ItemInCart = itemincartlist;
+        //        ViewBag.Number = itemincartlist.Count();
+        //    }
+        //    return View(user);
         }
 
         [HasCredential(RoleID = "CHANGE_PASSWORD_USER")]
